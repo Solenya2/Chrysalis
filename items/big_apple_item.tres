@@ -9,5 +9,5 @@ heal_amount = 1.0
 name = "Big Apple"
 plural_name = ""
 icon = ExtResource("1_kolen")
-description = "Heals 3 hearts."
+description = "very yummy"
 is_equipment = false

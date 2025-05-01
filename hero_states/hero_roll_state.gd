@@ -1,7 +1,9 @@
 class_name HeroRollState
-extends State
+extends ItemState
 
 func enter() -> void:
+	assert(item is RollItem, "the item in your roll state is not a roll item")
+	item = item as RollItem
 	var hero: = actor as Hero
 	hero.hurtbox.is_invincible = true
 	hero.play_animation("roll")

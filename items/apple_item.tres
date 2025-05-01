@@ -9,5 +9,5 @@ heal_amount = 1.0
 name = "Apple"
 plural_name = ""
 icon = ExtResource("1_5nb61")
-description = "Heals 1 heart."
+description = "yummy"
 is_equipment = false

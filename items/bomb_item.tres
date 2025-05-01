@@ -8,5 +8,5 @@ script = ExtResource("1_eixgw")
 name = "Bomb"
 plural_name = ""
 icon = ExtResource("1_fqku4")
-description = "Use it to blow things up."
+description = "take a gues"
 is_equipment = false

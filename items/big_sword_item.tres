@@ -11,5 +11,5 @@ animation = "sword"
 name = "Big Sword"
 plural_name = ""
 icon = ExtResource("1_34lr4")
-description = "Even more power to vanquish your foes."
+description = "pest control"
 is_equipment = true

@@ -8,5 +8,5 @@ script = ExtResource("1_quy5o")
 name = "Roll Ring"
 plural_name = ""
 icon = ExtResource("1_64jyk")
-description = "Use it to avoid enemy attacks."
+description = "speeed"
 is_equipment = true

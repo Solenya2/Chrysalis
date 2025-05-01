@@ -6,10 +6,10 @@
 [resource]
 script = ExtResource("1_e1qk3")
 damage = 1.0
-knockback = 175.0
+knockback = 300.0
 animation = "sword"
 name = "Sword"
 plural_name = ""
 icon = ExtResource("1_w3bi7")
-description = "Use it to vanquish your foes."
+description = "it hurts"
 is_equipment = true

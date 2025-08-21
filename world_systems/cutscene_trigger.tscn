@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cj7yxmug1db04"]
+
+[ext_resource type="Script" uid="uid://bblm2mltlg5ck" path="res://world_systems/cutscene_trigger.gd" id="1_ponmi"]
+
+[node name="CutsceneTrigger" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_ponmi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

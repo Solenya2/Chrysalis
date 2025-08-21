@@ -1,0 +1,176 @@
+[gd_scene load_steps=21 format=4 uid="uid://eh0n87v38f3m"]
+
+[ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_5161d"]
+[ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_6sa5o"]
+[ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="3_not02"]
+[ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="5_0gyys"]
+[ext_resource type="Resource" uid="uid://b54j6ylhsufm1" path="res://level_connections/level_usable_playerroomto_staircase_.tres" id="6_2yx28"]
+[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="7_3pgnh"]
+[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="8_qwwoi"]
+[ext_resource type="Texture2D" uid="uid://c1fgmp7s63af3" path="res://Assetsforleveldesign/deskithink.png" id="10_2yx28"]
+[ext_resource type="Resource" uid="uid://cc63cwob7wtvh" path="res://level_connections/level_1_to_level_bedroom.tres" id="10_plmko"]
+[ext_resource type="Texture2D" uid="uid://ce3gk762kgeur" path="res://Assetsforleveldesign/CHAIR.png" id="11_0gyys"]
+[ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="11_5xr1u"]
+[ext_resource type="Texture2D" uid="uid://cig624kwbk1cf" path="res://Assetsforleveldesign/familyphoto.png" id="12_1fkmi"]
+[ext_resource type="Texture2D" uid="uid://dui3ensrxjmdl" path="res://Assetsforleveldesign/door.png" id="13_3pgnh"]
+[ext_resource type="Texture2D" uid="uid://b7k1uud5hhhs" path="res://Assetsforleveldesign/BEDS.PNG" id="14_2yx28"]
+[ext_resource type="Texture2D" uid="uid://dtw21yx6gf1bm" path="res://Assetsforleveldesign/realgoodcabinet.png" id="15_1fkmi"]
+[ext_resource type="Texture2D" uid="uid://b7h3oica3dwje" path="res://Assetsforleveldesign/laptop.png" id="16_3pgnh"]
+[ext_resource type="PackedScene" uid="uid://5tki6pe8ypuk" path="res://side_worlds/dimensional_hole.tscn" id="17_3pgnh"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("8_qwwoi")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmsli"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yx28"]
+size = Vector2(15, 11)
+
+[node name="levelbedroom" instance=ExtResource("1_5161d")]
+
+[node name="CameraLimits" type="Control" parent="." index="0"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 384.0
+offset_bottom = 208.0
+script = ExtResource("2_6sa5o")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" parent="." index="1"]
+visible = false
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 384.0
+offset_bottom = 208.0
+
+[node name="LevelMusicPlaylist" type="Node" parent="." index="2"]
+script = ExtResource("7_3pgnh")
+song_list = SubResource("AudioStreamPlaylist_2lxy0")
+
+[node name="CabinTilesLayer" parent="." index="3" instance=ExtResource("11_5xr1u")]
+tile_map_data = PackedByteArray("AAAMAAYABgACAAEAAAALAAYABgACAAEAAAAKAAYABgACAAEAAAAJAAYABgACAAEAAAAIAAYABgACAAEAAAAIAAUABgACAAEAAAAJAAUABgACAAEAAAAKAAUABgACAAEAAAALAAUABgACAAEAAAAMAAUABgACAAEAAAAMAAcABgACAAEAAAAEAAYABgACAAEAAAAEAAUABgACAAEAAAAEAAQABgACAAEAAAAEAAgABgACAAEAAAAEAAcABgACAAEAAAAEAAMABgACAAEAAAAKAAMABgACAAEAAAALAAMABgACAAEAAAALAAcABgACAAEAAAAKAAgABgACAAEAAAAJAAcABgACAAEAAAAIAAcABgACAAEAAAAHAAYABgACAAEAAAAGAAYABgACAAEAAAAGAAUABgACAAEAAAAFAAUABgACAAEAAAAFAAQABgACAAEAAAAFAAcABgACAAEAAAAGAAcABgACAAEAAAAGAAgABgACAAEAAAAHAAgABgACAAEAAAAIAAgABgACAAEAAAAJAAgABgACAAEAAAALAAgABgACAAEAAAALAAQABgACAAEAAAAKAAQABgACAAEAAAAKAAcABgACAAEAAAAIAAQABgACAAEAAAAHAAUABgACAAEAAAAHAAQABgACAAEAAAAJAAQABgACAAEAAAAGAAQABgACAAEAAAAHAAcABgACAAEAAAAFAAgABgACAAEAAAAFAAMABgACAAEAAAAGAAMABgACAAEAAAAHAAMABgACAAEAAAAIAAMABgACAAEAAAAJAAMABgACAAEAAAAMAAgABgACAAEAAAAMAAQABgACAAEAAAAMAAMABgACAAEAAAANAAQABgACAAEAAAAFAAYABgACAAEAAAADAAQABgABAAEAAAA=")
+
+[node name="ForestTilesLayer2" parent="CabinTilesLayer" index="0" instance=ExtResource("3_not02")]
+tile_map_data = PackedByteArray("AAAOAAQAAQADAAEAAAAOAAMAAQADAAEAAAAPAAQAAQADAAEAAAAPAAUAAQADAAIAAAAPAAMAAQADAAEAAAAQAAMAAQADAAEAAAARAAMAAQADAAEAAAASAAQAAQADAAEAAAATAAQAAQADAAEAAAASAAUAAQADAAEAAAARAAUAAQAFAAAAAAAQAAQAAQADAAEAAAAQAAUAAQADAAEAAAARAAQAAQAFAAAAAAAQAAIAAQADAAEAAAAPAAIAAQADAAEAAAARAAIAAQADAAEAAAASAAIAAQADAAEAAAASAAMAAQADAAEAAAANAAQAAQACAAEAAAANAAMAAQACAAEAAAAOAAUAAQADAAEAAAANAAUAAQADAAEAAAANAAYAAQADAAEAAAAOAAYAAQADAAEAAAAPAAYAAQADAAEAAAAQAAYAAQADAAEAAAARAAYAAQAFAAIAAAANAAcAAQADAAEAAAAOAAcAAQADAAEAAAAPAAcAAQADAAEAAAAQAAcAAQADAAEAAAARAAcAAQAFAAIAAAASAAcAAQADAAEAAAASAAYAAQADAAEAAAATAAUAAQADAAEAAAAUAAUAAQADAAEAAAAUAAQAAQAFAAAAAAATAAYAAQADAAEAAAAUAAYAAQADAAEAAAAVAAQAAQADAAEAAAAVAAMAAQADAAEAAAAVAAIAAQADAAEAAAAVAAUAAQADAAEAAAAWAAQAAQADAAEAAAAWAAUAAQAFAAIAAAAWAAYAAQADAAEAAAAVAAcAAQADAAEAAAAVAAYAAQADAAEAAAAUAAIAAQAFAAIAAAATAAIAAQADAAEAAAAUAAEAAQADAAEAAAAVAAEAAQADAAEAAAAUAAMAAQADAAEAAAATAAMAAQADAAEAAAATAAEAAQADAAEAAAASAAEAAQAFAAIAAAARAAAAAQADAAEAAAARAP//AQADAAEAAAASAAAAAQADAAEAAAATAAAAAQADAAEAAAAUAAAAAQADAAEAAAAWAAIAAQADAAEAAAAXAAMAAQADAAEAAAAYAAQAAQADAAEAAAAZAAUAAQADAAEAAAAYAAUAAQADAAEAAAAXAAUAAQADAAEAAAAUAAcAAQADAAEAAAAUAAgAAQADAAEAAAATAAcAAQAFAAAAAAATAAgAAQAFAAAAAAARAAgAAQADAAEAAAAQAAgAAQADAAEAAAASAAgAAQADAAEAAAA=")
+
+[node name="walls" parent="CabinTilesLayer" index="1" instance=ExtResource("11_5xr1u")]
+tile_map_data = PackedByteArray("AAANAAYABgADAAEAAAAJAAkABgACAAIAAAAKAAkABgACAAIAAAALAAkABgACAAIAAAAMAAkABgACAAIAAAANAAkABgADAAIAAAANAAgABgADAAEAAAANAAcABgADAAEAAAANAAMABgADAAEAAAANAAIABgADAAAAAAAMAAIABgACAAAAAAALAAIABgACAAAAAAAKAAIABgACAAAAAAAJAAIABgACAAAAAAAIAAIABgACAAAAAAAHAAIABgACAAAAAAAGAAIABgACAAAAAAAFAAIABgACAAAAAAAEAAIABgACAAAAAAADAAIABgABAAAAAAADAAMABgABAAEAAAADAAUABgABAAEAAAADAAYABgABAAEAAAADAAcABgABAAEAAAADAAgABgABAAEAAAADAAkABgABAAIAAAAFAAkABgACAAIAAAAEAAkABgACAAIAAAAGAAkABgACAAIAAAAHAAkABgACAAIAAAA=")
+
+[node name="wallsandfurnitre" parent="CabinTilesLayer/walls" index="0"]
+position = Vector2(-1, 0)
+tile_map_data = PackedByteArray("AAAGAAkACQACAAIAAAAHAAkACQACAAIAAAAFAAkACQACAAIAAAAEAAkACQACAAIAAAA=")
+
+[node name="Deskithink" type="Sprite2D" parent="CabinTilesLayer/walls" index="1"]
+position = Vector2(115, 48)
+texture = ExtResource("10_2yx28")
+hframes = 2
+
+[node name="Chair" type="Sprite2D" parent="CabinTilesLayer/walls" index="2"]
+position = Vector2(106, 56)
+texture = ExtResource("11_0gyys")
+hframes = 3
+frame = 2
+
+[node name="Familyphoto" type="Sprite2D" parent="CabinTilesLayer/walls" index="3"]
+position = Vector2(98, 42)
+scale = Vector2(0.28125, 0.28125)
+texture = ExtResource("12_1fkmi")
+
+[node name="Chair2" type="Sprite2D" parent="CabinTilesLayer/walls" index="4"]
+position = Vector2(175, 57)
+texture = ExtResource("11_0gyys")
+hframes = 3
+frame = 1
+
+[node name="Door" type="Sprite2D" parent="CabinTilesLayer/walls" index="5"]
+position = Vector2(135.5, 150)
+scale = Vector2(1.09375, 1)
+texture = ExtResource("13_3pgnh")
+hframes = 2
+frame = 1
+
+[node name="ForestTilesLayer" parent="CabinTilesLayer" index="2" instance=ExtResource("3_not02")]
+visible = false
+tile_map_data = PackedByteArray("AAAOAAQAAQADAAEAAAAOAAMAAQADAAEAAAAPAAQAAQADAAEAAAAPAAMAAQADAAEAAAAQAAMAAQADAAEAAAARAAMAAQADAAEAAAASAAQAAQADAAEAAAATAAQAAQADAAEAAAASAAUAAQADAAEAAAARAAUAAQAFAAAAAAAQAAQAAQADAAEAAAAQAAUAAQADAAEAAAARAAQAAQAFAAAAAAAQAAIAAQADAAEAAAAPAAIAAQADAAEAAAARAAIAAQADAAEAAAASAAIAAQADAAEAAAASAAMAAQADAAEAAAANAAQAAQACAAEAAAANAAMAAQACAAEAAAAOAAUAAQADAAEAAAAOAAYAAQADAAEAAAAPAAYAAQADAAEAAAAQAAYAAQADAAEAAAARAAYAAQAFAAIAAAAOAAcAAQADAAEAAAAPAAcAAQADAAEAAAAQAAcAAQADAAEAAAARAAcAAQAFAAIAAAASAAcAAQADAAEAAAASAAYAAQADAAEAAAATAAUAAQADAAEAAAAUAAUAAQADAAEAAAAUAAQAAQAFAAAAAAATAAYAAQADAAEAAAAUAAYAAQADAAEAAAAVAAQAAQADAAEAAAAVAAMAAQADAAEAAAAVAAIAAQADAAEAAAAVAAUAAQADAAEAAAAWAAQAAQADAAEAAAAWAAUAAQAFAAIAAAAWAAYAAQADAAEAAAAVAAcAAQADAAEAAAAVAAYAAQADAAEAAAAUAAIAAQAFAAIAAAATAAIAAQADAAEAAAAUAAEAAQADAAEAAAAVAAEAAQADAAEAAAAUAAMAAQADAAEAAAATAAMAAQADAAEAAAATAAEAAQADAAEAAAASAAEAAQAFAAIAAAARAAAAAQADAAEAAAARAP//AQADAAEAAAASAAAAAQADAAEAAAATAAAAAQADAAEAAAAUAAAAAQADAAEAAAAWAAIAAQADAAEAAAAXAAMAAQADAAEAAAAYAAQAAQADAAEAAAAZAAUAAQADAAEAAAAYAAUAAQADAAEAAAAXAAUAAQADAAEAAAAUAAcAAQADAAEAAAAUAAgAAQADAAEAAAATAAcAAQAFAAAAAAATAAgAAQAFAAAAAAARAAgAAQADAAEAAAAQAAgAAQADAAEAAAASAAgAAQADAAEAAAA=")
+
+[node name="wallsandfurnitre" parent="CabinTilesLayer" index="3"]
+position = Vector2(-1, 0)
+
+[node name="Deskithink" type="Sprite2D" parent="CabinTilesLayer" index="4"]
+position = Vector2(115, 48)
+texture = ExtResource("10_2yx28")
+hframes = 2
+
+[node name="Chair" type="Sprite2D" parent="CabinTilesLayer" index="5"]
+position = Vector2(106, 56)
+texture = ExtResource("11_0gyys")
+hframes = 3
+frame = 2
+
+[node name="Familyphoto" type="Sprite2D" parent="CabinTilesLayer" index="6"]
+position = Vector2(97, 42)
+scale = Vector2(0.28125, 0.28125)
+texture = ExtResource("12_1fkmi")
+
+[node name="Chair2" type="Sprite2D" parent="CabinTilesLayer" index="7"]
+position = Vector2(175, 57)
+texture = ExtResource("11_0gyys")
+hframes = 3
+frame = 1
+
+[node name="Door" type="Sprite2D" parent="CabinTilesLayer" index="8"]
+position = Vector2(135.5, 150)
+scale = Vector2(1.09375, 1)
+texture = ExtResource("13_3pgnh")
+hframes = 2
+frame = 1
+
+[node name="Door4" type="Area2D" parent="." index="4"]
+position = Vector2(295, 74)
+script = ExtResource("5_0gyys")
+exit_direction = 1
+connection = ExtResource("10_plmko")
+next_level_path = "uid://burvhv42pe1q6"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door4" index="0"]
+position = Vector2(-2, 11)
+shape = SubResource("RectangleShape2D_nmsli")
+
+[node name="Door" type="Area2D" parent="." index="5"]
+position = Vector2(136, 153)
+script = ExtResource("5_0gyys")
+exit_direction = 1
+connection = ExtResource("6_2yx28")
+next_level_path = "uid://4hsgnsm2sq1i"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_2yx28")
+
+[node name="Beds" type="Sprite2D" parent="." index="6"]
+position = Vector2(148, 70)
+texture = ExtResource("14_2yx28")
+hframes = 2
+
+[node name="Realgoodcabinet" type="Sprite2D" parent="." index="7"]
+position = Vector2(80, 49)
+texture = ExtResource("15_1fkmi")
+hframes = 2
+frame = 1
+
+[node name="Laptop" type="Sprite2D" parent="." index="8"]
+position = Vector2(114, 51)
+scale = Vector2(0.71875, 0.6875)
+texture = ExtResource("16_3pgnh")
+
+[node name="DimensionalHole" parent="." index="9" instance=ExtResource("17_3pgnh")]
+position = Vector2(248, 50)
+
+[editable path="CabinTilesLayer"]
+[editable path="CabinTilesLayer/walls"]

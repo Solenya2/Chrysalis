@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c08vvb5rtj7xb"]
+
+[ext_resource type="Script" uid="uid://daq6yw5cju6ft" path="res://rap/rap_battle_manager.gd" id="1_memtx"]
+
+[node name="RapBattleManager" type="Node2D"]
+script = ExtResource("1_memtx")

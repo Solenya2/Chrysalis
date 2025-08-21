@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccm6hmp8hqyud"]
+
+[ext_resource type="Texture2D" uid="uid://cqf3vpn5r4x5u" path="res://ui/inventory_cursor.png" id="1_h3uw4"]
+[ext_resource type="Texture2D" uid="uid://1hhyahsdpg5v" path="res://ui/empty_inventory_slot.png" id="2_1e3n3"]
+[ext_resource type="Script" uid="uid://wgedaj7qiqy" path="res://ui/shop_slot_ui.gd" id="3_1e3n3"]
+[ext_resource type="LabelSettings" uid="uid://djw12prjnf8bd" path="res://fonts/paragraph_label_settings.tres" id="3_d0wc3"]
+[ext_resource type="Texture2D" uid="uid://bkk1gl2uokgl1" path="res://items/thisisanx.png" id="5_d0wc3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_x68r1"]
+texture = ExtResource("1_h3uw4")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a6ohe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3msv5"]
+
+[node name="ShopSlotUi" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_styles/focus = SubResource("StyleBoxTexture_x68r1")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_a6ohe")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_x68r1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_x68r1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_x68r1")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3msv5")
+icon = ExtResource("2_1e3n3")
+script = ExtResource("3_1e3n3")
+
+[node name="PriceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 6.0
+offset_right = 18.0
+offset_bottom = 20.0
+text = "2"
+label_settings = ExtResource("3_d0wc3")
+
+[node name="SoldOverlay" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("5_d0wc3")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SunbeamItem" load_steps=3 format=3 uid="uid://7ylqi3vkmgxj"]
+
+[ext_resource type="Script" uid="uid://brn6vv4nkp7e7" path="res://items/Sunbeam_Item.gd" id="1_1bjed"]
+[ext_resource type="Texture2D" uid="uid://cydwg8jtxe2jw" path="res://pleasedontsuemenintendo.png" id="1_bbyp2"]
+
+[resource]
+script = ExtResource("1_1bjed")
+name = "sunbeam"
+plural_name = ""
+icon = ExtResource("1_bbyp2")
+description = ""
+is_equipment = true
+metadata/_custom_type_script = "uid://bo1xqm82vhed0"

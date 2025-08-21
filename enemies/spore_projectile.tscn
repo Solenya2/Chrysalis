@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwm7yn2ocvspx"]
+
+[ext_resource type="PackedScene" uid="uid://dj7v576wdd5iu" path="res://projectiles/projectile.tscn" id="1_5nh6l"]
+[ext_resource type="Texture2D" uid="uid://d1sv58t5nha4r" path="res://enemies/shittymuhsroom.png" id="2_qx5xl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx5xl"]
+
+[node name="SporeProjectile" instance=ExtResource("1_5nh6l")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_qx5xl")
+
+[node name="Hitbox" parent="." index="1"]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_qx5xl")

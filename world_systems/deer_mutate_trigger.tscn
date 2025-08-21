@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://2j4vmge77smk"]
+
+[ext_resource type="PackedScene" uid="uid://cj7yxmug1db04" path="res://world_systems/cutscene_trigger.tscn" id="1_bners"]
+[ext_resource type="Script" uid="uid://p3u1wei0aove" path="res://world_systems/deer_mutate_trigger.gd" id="2_1pu6k"]
+
+[node name="DeerMutateTrigger" instance=ExtResource("1_bners")]
+visible = false
+script = ExtResource("2_1pu6k")
+one_shot = false

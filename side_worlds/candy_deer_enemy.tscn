@@ -1,0 +1,163 @@
+[gd_scene load_steps=18 format=3 uid="uid://ccdi5p211g5xr"]
+
+[ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_jxcmm"]
+[ext_resource type="Script" uid="uid://cinph0ho253n1" path="res://enemies/deer_enemy.gd" id="2_cu5ij"]
+[ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="3_g3jqi"]
+[ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="4_ulbg2"]
+[ext_resource type="Texture2D" uid="uid://dxmlccwsbjyq8" path="res://Assetsforleveldesign/candydeer.png" id="5_csrb6"]
+
+[sub_resource type="Resource" id="Resource_nb82g"]
+script = ExtResource("3_g3jqi")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_wmc6l"]
+script = ExtResource("4_ulbg2")
+max_health = 1.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="Animation" id="Animation_0s28r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_73322"]
+resource_name = "charge"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.707341),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 2]
+}
+
+[sub_resource type="Animation" id="Animation_vbjm5"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_ptepw"]
+resource_name = "move"
+length = 0.15
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_uhqbl"]
+resource_name = "mutating"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.59, 1.09, 1.6, 2.12, 2.59, 3.08, 3.56, 4.02, 4.57),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_5hk5m"]
+resource_name = "windup"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ptepw"]
+_data = {
+&"RESET": SubResource("Animation_0s28r"),
+&"charge": SubResource("Animation_73322"),
+&"idle": SubResource("Animation_vbjm5"),
+&"move": SubResource("Animation_ptepw"),
+&"mutating": SubResource("Animation_uhqbl"),
+&"windup": SubResource("Animation_5hk5m")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0s28r"]
+size = Vector2(24, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73322"]
+size = Vector2(33, 30)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ptepw"]
+radius = 4.0
+height = 8.0
+
+[node name="CandyDeerEnemy" instance=ExtResource("1_jxcmm")]
+position = Vector2(0, 2)
+script = ExtResource("2_cu5ij")
+charge_cooldown = 2.5
+min_distance_to_charge = 40.0
+movement_stats = SubResource("Resource_nb82g")
+stats = SubResource("Resource_wmc6l")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-6, -11)
+texture = ExtResource("5_csrb6")
+hframes = 14
+frame = 1
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_ptepw")
+}
+
+[node name="CollisionShape2D" parent="." index="2"]
+visible = false
+position = Vector2(-1, -8)
+shape = SubResource("RectangleShape2D_0s28r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
+visible = false
+position = Vector2(-0.5, -11)
+shape = SubResource("RectangleShape2D_73322")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+visible = false
+position = Vector2(10, -17)
+shape = SubResource("CapsuleShape2D_ptepw")
+
+[node name="NavigationAgentOffset2D" type="Node2D" parent="." index="5"]
+position = Vector2(0, -5)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="NavigationAgentOffset2D" index="0"]
+unique_name_in_owner = true
+path_desired_distance = 8.0
+target_desired_distance = 8.0

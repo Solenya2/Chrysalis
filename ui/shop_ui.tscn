@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8r3gbu1ws0n0"]
+
+[ext_resource type="Script" uid="uid://u1urv8pwysqn" path="res://ui/shop_ui.gd" id="1_h5uvh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w63dr"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="ShopUI" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w63dr")
+script = ExtResource("1_h5uvh")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Shoppy shop "
+
+[node name="ItemsGrid" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 4
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Exit"
+flat = true

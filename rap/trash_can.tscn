@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxdbtpnnarxdu"]
+
+[ext_resource type="Script" uid="uid://blbiwo4rcwq0d" path="res://rap/trash_can.gd" id="1_s2onw"]
+[ext_resource type="Texture2D" uid="uid://ve1b7apu0hdx" path="res://Npc/piretedarkman.png" id="1_uq8hi"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="2_s2onw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxd7"]
+size = Vector2(12, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyul"]
+size = Vector2(17, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y6bd"]
+size = Vector2(245, 150.5)
+
+[node name="TrashCan" type="Node2D"]
+script = ExtResource("1_s2onw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uq8hi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gcxd7")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("2_s2onw")
+metadata/_custom_type_script = "uid://c4b5s7nqfdlvm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_4qyul")
+
+[node name="RapProximity" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RapProximity"]
+position = Vector2(-2, 5)
+shape = SubResource("RectangleShape2D_0y6bd")

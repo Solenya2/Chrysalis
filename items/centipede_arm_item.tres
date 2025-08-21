@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cjbctrkdvyye7"]
+
+[ext_resource type="Script" uid="uid://d2nlp37p321si" path="res://items/centipede_arm_item.gd" id="1_t707q"]
+
+[resource]
+script = ExtResource("1_t707q")
+animation_name = "centipede_attack"
+damage = 1.0
+knockback = 175.0
+animation = "sword"
+name = ""
+plural_name = ""
+description = ""
+is_equipment = false
+metadata/_custom_type_script = "uid://col3mye8bmwqm"

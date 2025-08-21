@@ -1,0 +1,147 @@
+[gd_scene load_steps=16 format=3 uid="uid://2gqkr10vlng4"]
+
+[ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_5kkbt"]
+[ext_resource type="Script" uid="uid://mgx0c63q4ixt" path="res://enemies/rabit_enemy.gd" id="2_v8f6y"]
+[ext_resource type="Texture2D" uid="uid://be8h76v7aafem" path="res://Temporaryassets/bummy.png" id="3_pfu5e"]
+[ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="3_xo1it"]
+[ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="4_u5r33"]
+
+[sub_resource type="Resource" id="Resource_7d5bi"]
+script = ExtResource("3_xo1it")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_l2lgu"]
+script = ExtResource("4_u5r33")
+max_health = 30.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="Animation" id="Animation_l2lgu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_xo1it"]
+resource_name = "bite"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_7vo0s"]
+resource_name = "dodge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_u5r33"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="Animation" id="Animation_7d5bi"]
+resource_name = "move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hkfqr"]
+_data = {
+&"RESET": SubResource("Animation_l2lgu"),
+&"bite": SubResource("Animation_xo1it"),
+&"dodge": SubResource("Animation_7vo0s"),
+&"hurt": SubResource("Animation_u5r33"),
+&"move": SubResource("Animation_7d5bi")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xo1it"]
+size = Vector2(20, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u5r33"]
+height = 26.0
+
+[node name="RabitEnemy" instance=ExtResource("1_5kkbt")]
+script = ExtResource("2_v8f6y")
+dodge_cooldown = 0.0
+movement_stats = SubResource("Resource_7d5bi")
+stats = SubResource("Resource_l2lgu")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(3, -25)
+texture = ExtResource("3_pfu5e")
+hframes = 10
+frame = 1
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_hkfqr")
+}
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-1, -9)
+shape = SubResource("RectangleShape2D_xo1it")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(2, -12)
+rotation = 1.32426
+shape = SubResource("CapsuleShape2D_u5r33")
+
+[node name="Hitbox" parent="." index="4"]
+position = Vector2(-1, -2)
+
+[node name="NavigationAgentOffset2D" type="Node2D" parent="." index="5"]
+position = Vector2(0, -5)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="NavigationAgentOffset2D" index="0"]
+unique_name_in_owner = true
+path_desired_distance = 8.0
+target_desired_distance = 8.0

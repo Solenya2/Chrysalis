@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://csv512cg3trq7"]
+
+[ext_resource type="Script" uid="uid://c1skvdpx7qhke" path="res://Npc/npc_base.gd" id="1_s6gr2"]
+[ext_resource type="Texture2D" uid="uid://ve1b7apu0hdx" path="res://Npc/piretedarkman.png" id="2_0y6bd"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_0y6bd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxd7"]
+size = Vector2(12, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyul"]
+size = Vector2(17, 10)
+
+[node name="npc_base" type="CharacterBody2D"]
+script = ExtResource("1_s6gr2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0y6bd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gcxd7")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_0y6bd")
+metadata/_custom_type_script = "uid://c4b5s7nqfdlvm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_4qyul")

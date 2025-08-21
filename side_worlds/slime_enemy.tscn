@@ -1,0 +1,124 @@
+[gd_scene load_steps=7 format=3 uid="uid://d38221weranpq"]
+
+[ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_by4wr"]
+[ext_resource type="Script" uid="uid://qb4qvypdrpo5" path="res://side_worlds/slime_enemy.gd" id="2_6e1ig"]
+[ext_resource type="Texture2D" uid="uid://ck4iva2eurpay" path="res://side_worlds/slimeshet.png" id="3_6ktbq"]
+
+[sub_resource type="Animation" id="Animation_y6vwu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [15]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(-3, 0, 14, -2, -8, -10)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [PackedVector2Array(8, 0, -9, 0, -5, -10, 7, -10)]
+}
+
+[sub_resource type="Animation" id="Animation_jgkp5"]
+resource_name = "ground_slam"
+length = 7.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.32, 0.86, 1.2, 1.72, 2.07, 2.56, 2.96, 3.44, 3.85, 4.34, 4.7, 5.18, 5.54, 6, 6.37, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.71, 3.83, 4.43, 5.58, 6.18, 7.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-3, 0, 14, -2, -8, -10), PackedVector2Array(0, -28, -3, -11, 4, -8, 8, -15, 5, -27), PackedVector2Array(26, -25, 14, -25, 11, -33, 17, -37, 26, -36, 30, -29), PackedVector2Array(25, -5, 26, -18, 36, -17, 40, -8, 34, -2), PackedVector2Array(43, 2, 21, 1, 21, -6, 37, -10, 45, -2, 42, 2), PackedVector2Array(47, 4, 39, 7, 28, 8, 16, 5, 10, -4, 19, -10, 37, -12, 45, -8, 51, -1), PackedVector2Array()]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionPolygon2D:polygon")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.68, 3.63, 4.76, 5.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(8, 0, -9, 0, -5, -10, 7, -10), PackedVector2Array(3, -33, -4, -23, 3, -13, 7, -13, 12, -23, 8, -32), PackedVector2Array(27, -25, 13, -25, 10, -34, 16, -38, 25, -36, 30, -31), PackedVector2Array(37, -2, 26, -2, 25, -13, 29, -19, 38, -16, 40, -8, 36, 0), PackedVector2Array(43, 2, 21, 1, 23, -8, 33, -11, 42, -5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1g4cw"]
+_data = {
+&"RESET": SubResource("Animation_y6vwu"),
+&"ground_slam": SubResource("Animation_jgkp5")
+}
+
+[node name="SlimeEnemy" instance=ExtResource("1_by4wr")]
+script = ExtResource("2_6e1ig")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1, -16)
+texture = ExtResource("3_6ktbq")
+hframes = 46
+frame = 15
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_1g4cw")
+}
+
+[node name="Hurtbox" parent="." index="3"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hurtbox" index="0"]
+polygon = PackedVector2Array(-3, 0, 14, -2, -8, -10)
+
+[node name="Hitbox" parent="." index="4"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox" index="0"]
+polygon = PackedVector2Array(8, 0, -9, 0, -5, -10, 7, -10)
+
+[node name="NavigationAgentOffset2D" type="Node2D" parent="." index="5"]
+position = Vector2(0, -5)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="NavigationAgentOffset2D" index="0"]
+unique_name_in_owner = true
+path_desired_distance = 8.0
+target_desired_distance = 8.0

@@ -1,0 +1,33 @@
+import asyncio
+import websockets
+import json
+import sounddevice as sd
+from vosk import Model, KaldiRecognizer
+
+model = Model("vosk_models/vosk-model-small-en-us-0.15")
+recognizer = KaldiRecognizer(model, 16000)
+
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+
+async def recognize(websocket):
+    def callback(indata, frames, time, status):
+        if recognizer.AcceptWaveform(bytes(indata)):  # 🛠️ FIXED HERE
+            result = json.loads(recognizer.Result())
+            text = result.get("text", "")
+            if text:
+                print(f"[VOICE] {text}")
+                asyncio.run_coroutine_threadsafe(websocket.send(text), loop)
+
+    with sd.RawInputStream(samplerate=16000, blocksize=8000, dtype='int16',
+                           channels=1, callback=callback):
+        await websocket.wait_closed()
+
+async def handler(websocket):
+    print("🟢 Client connected.")
+    await recognize(websocket)
+
+start_server = websockets.serve(handler, "localhost", 8765)
+loop.run_until_complete(start_server)
+print("🟢 Voice server running on ws://localhost:8765")
+loop.run_forever()

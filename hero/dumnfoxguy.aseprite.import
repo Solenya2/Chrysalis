@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cbv6u7886dkyv"
+path="res://.godot/imported/dumnfoxguy.aseprite-66a1ccf51a2ee59e9c363c352c700072.res"
+
+[deps]
+
+source_file="res://hero/dumnfoxguy.aseprite"
+dest_files=["res://.godot/imported/dumnfoxguy.aseprite-66a1ccf51a2ee59e9c363c352c700072.res"]
+
+[params]
+

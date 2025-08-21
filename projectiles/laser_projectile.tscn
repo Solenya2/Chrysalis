@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://cb7353kss5wmr"]
+
+[ext_resource type="PackedScene" uid="uid://dj7v576wdd5iu" path="res://projectiles/projectile.tscn" id="1_vyb4r"]
+[ext_resource type="Script" uid="uid://b0qaoh7323nls" path="res://projectiles/laser_projectile.gd" id="2_c7er8"]
+[ext_resource type="Texture2D" uid="uid://bywgb1jx12d7c" path="res://projectiles/sunbeam.png" id="3_88plj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enurp"]
+size = Vector2(4, 25)
+
+[sub_resource type="Animation" id="Animation_rqyv4"]
+resource_name = "fade"
+length = 1.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 0.966667, 1.23333, 1.53333, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_ncdla"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ctciv"]
+_data = {
+&"RESET": SubResource("Animation_ncdla"),
+&"fade": SubResource("Animation_rqyv4")
+}
+
+[node name="LaserProjectile" instance=ExtResource("1_vyb4r")]
+rotation = -0.00353098
+script = ExtResource("2_c7er8")
+fade_time = 3.0
+max_distance = 1000.0
+impact_effect_scene = null
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-6, 0)
+texture = ExtResource("3_88plj")
+hframes = 7
+
+[node name="Hitbox" parent="." index="1"]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(1, -9.5)
+shape = SubResource("RectangleShape2D_enurp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+&"": SubResource("AnimationLibrary_ctciv")
+}

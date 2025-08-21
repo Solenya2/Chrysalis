@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://5tki6pe8ypuk"]
+
+[ext_resource type="Script" uid="uid://dsw8rtx72tk3d" path="res://side_worlds/dimensional_hole.gd" id="1_nepmu"]
+[ext_resource type="Texture2D" uid="uid://pspupexw4kke" path="res://side_worlds/dimesninalhole.png" id="1_ui28v"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="2_nepmu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(16, 16.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nepmu"]
+radius = 18.0278
+
+[node name="DimensionalHole" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_nepmu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, 6)
+texture = ExtResource("1_ui28v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6.25)
+shape = SubResource("RectangleShape2D_jor8q")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("2_nepmu")
+metadata/_custom_type_script = "uid://c4b5s7nqfdlvm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_nepmu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AlignmentData" load_steps=2 format=3 uid="uid://bhllv2av4dx0x"]
+
+[ext_resource type="Script" uid="uid://qsxif87830qg" path="res://Alignment/alignment_data.gd" id="1_x3eio"]
+
+[resource]
+script = ExtResource("1_x3eio")
+bat_kills = 0

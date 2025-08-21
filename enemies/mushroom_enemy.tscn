@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=3 uid="uid://b5ousac4oyqe6"]
+
+[ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_myskp"]
+[ext_resource type="Script" uid="uid://cecc87pptgrch" path="res://enemies/mushroom_enemy.gd" id="2_bumi0"]
+[ext_resource type="Texture2D" uid="uid://d1sv58t5nha4r" path="res://enemies/shittymuhsroom.png" id="3_e34t0"]
+[ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="3_x0ric"]
+[ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="4_p34ul"]
+
+[sub_resource type="Resource" id="Resource_08o2j"]
+script = ExtResource("3_x0ric")
+max_speed = 80.0
+acceleration = 100.0
+friction = 100.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_uq2t2"]
+script = ExtResource("4_p34ul")
+max_health = 4.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="Animation" id="Animation_bumi0"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p34ul"]
+resource_name = "shoot_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_x0ric"]
+resource_name = "spit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p34ul"]
+_data = {
+&"RESET": SubResource("Animation_bumi0"),
+&"shoot_animation": SubResource("Animation_p34ul"),
+&"spit": SubResource("Animation_x0ric")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0ric"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p34ul"]
+size = Vector2(12, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_08o2j"]
+size = Vector2(14, 14)
+
+[node name="MushroomEnemy" instance=ExtResource("1_myskp")]
+script = ExtResource("2_bumi0")
+movement_stats = SubResource("Resource_08o2j")
+stats = SubResource("Resource_uq2t2")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(2, -14)
+texture = ExtResource("3_e34t0")
+
+[node name="ShootMarker2D" type="Marker2D" parent="Sprite2D" index="0"]
+position = Vector2(-2, 14)
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_p34ul")
+}
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_x0ric")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(1, -3)
+shape = SubResource("RectangleShape2D_p34ul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_08o2j")

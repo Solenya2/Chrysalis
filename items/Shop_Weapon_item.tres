@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=5 format=3 uid="uid://0jfheflk0mq1"]
+
+[ext_resource type="Texture2D" uid="uid://dx2j6qjm6yghd" path="res://items/big_sword_icon.png" id="1_i3inl"]
+[ext_resource type="Script" uid="uid://4maqk666i4fc" path="res://ui/ShopItem.gd" id="1_tctuw"]
+[ext_resource type="Script" uid="uid://col3mye8bmwqm" path="res://items/weapon_item.gd" id="2_fqu57"]
+
+[sub_resource type="Resource" id="Resource_tat58"]
+script = ExtResource("2_fqu57")
+damage = 5.0
+knockback = 500.0
+animation = "sword"
+name = "BigSword"
+plural_name = ""
+icon = ExtResource("1_i3inl")
+description = "wow thats huge "
+is_equipment = true
+metadata/_custom_type_script = "uid://col3mye8bmwqm"
+
+[resource]
+script = ExtResource("1_tctuw")
+item = SubResource("Resource_tat58")
+price = 1
+metadata/_custom_type_script = "uid://4maqk666i4fc"

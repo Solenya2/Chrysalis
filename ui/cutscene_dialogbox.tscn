@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcpptwsaivp70"]
+
+[ext_resource type="PackedScene" uid="uid://dj6cjw6r764af" path="res://ui/dialogbox.tscn" id="1_0xydi"]
+[ext_resource type="Script" uid="uid://dcsarijn6ma4m" path="res://ui/cutscene_dialogbox.gd" id="2_tgwgw"]
+
+[node name="CutsceneDialogbox" instance=ExtResource("1_0xydi")]
+script = ExtResource("2_tgwgw")

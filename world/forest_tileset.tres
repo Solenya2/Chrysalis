@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=29 format=3 uid="uid://b4uxsdo36kb7s"]
+[gd_resource type="TileSet" load_steps=31 format=3 uid="uid://b4uxsdo36kb7s"]
 
 [ext_resource type="Texture2D" uid="uid://s6phg86oh6ur" path="res://world/forest_tiles.png" id="1_vvalk"]
 [ext_resource type="Texture2D" uid="uid://bdocy82vse7ww" path="res://Assetsforleveldesign/Grass.png" id="2_cfhj8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://jy7vonm05o14" path="res://corupted_levels/forest tiles/forest-palette01-day.png" id="4_bx5c1"]
 [ext_resource type="Texture2D" uid="uid://dck06yimwrx5j" path="res://Assetsforleveldesign/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png" id="4_oeddt"]
 [ext_resource type="Texture2D" uid="uid://b23ln51yf5bhn" path="res://Assetsforleveldesign/uhblack.png" id="5_oeddt"]
+[ext_resource type="Texture2D" uid="uid://dqi733roux8wi" path="res://attempt7walls.png" id="5_t1mad"]
 [ext_resource type="Texture2D" uid="uid://bxt54piv8re0r" path="res://Assetsforleveldesign/dirtandflame.png" id="6_oeddt"]
 [ext_resource type="Texture2D" uid="uid://c88ono6377faw" path="res://Assetsforleveldesign/grasstilemap.png" id="7_tt4e5"]
 [ext_resource type="Texture2D" uid="uid://kvjcf3yaokjn" path="res://Assetsforleveldesign/grasstilemaocandy.png" id="8_c2mgc"]
@@ -347,6 +348,27 @@ texture = ExtResource("4_bx5c1")
 13:17/0 = 0
 14:17/0 = 0
 15:17/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5025r"]
+texture = ExtResource("5_t1mad")
+0:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+3:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2mgc"]
 texture = ExtResource("3_4kabu")
@@ -1160,3 +1182,4 @@ sources/8 = SubResource("TileSetAtlasSource_1stt5")
 sources/9 = SubResource("TileSetAtlasSource_k4fr6")
 sources/10 = SubResource("TileSetAtlasSource_7ia1h")
 sources/11 = SubResource("TileSetAtlasSource_gko66")
+sources/12 = SubResource("TileSetAtlasSource_5025r")

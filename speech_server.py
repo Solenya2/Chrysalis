@@ -13,35 +13,41 @@ HOST = "localhost"
 PORT = 8765
 
 SAMPLE_RATE = 16000
-BLOCKSIZE   = 8000                 # ~0.5s frames
-SILENCE_RMS = 800                  # gate: ignore quiet blocks (tune 600–1200)
+BLOCKSIZE   = 3200                 # ~0.2s frames (more responsive)
+SILENCE_RMS = 1100                 # tweak 900–1500 depending on room noise
+END_SILENCE_SEC = 0.6              # quiet duration that forces a final
 
 MIN_GAP_BETWEEN_FINALS = 1.5       # debounce same-final repeats from Vosk (s)
 SERVER_COOLDOWN        = 1.2       # prevent rapid-fire commands (s)
 
 # Exact phrases ONLY. Keep them multi-word to reduce hallucinations.
 GRAMMAR = [
-    # Demo
-    "pizza time",
-    "open the door",
-    "spaghetti ravioli",
+    # English
+    "boom boom", "bad game", "this game sucks",
+    "bedroom player", "boss level one", "corruption level",
+    "i challenge you to a rap battle",
+    "candy world", "slime world", "neutral world",
+    "play mozart", "mute sound", "summon", "pizza", "help", "kill them" "i love you", 
 
-    # Punishments
-    "this game is bad",
-    "this game sucks",
-    "bad game",
-    "boom boom",
+    # Norwegian variants
+    "dorlee spill", "detta spillet soooger", "so verom spiller",
+    "shef nivoh en", "korrup shon nivoh", "yai oodforrer dai til en rap battle",
+    "gottery verden", "sleem verden", "noytral verden",
+    "spill mozart", "demp leeden", "pawkalle",
 
-    # Warps / debug
-    "bedroom player",
-    "bedroom sister",
-    "corruption level",
-    "boss level one",
-    "boss level two",
+    # Finnish phonetics
+    "huo no pelli", "tama peli on pasca", "makoo hoo one pelaya",
+    "pomo taso ooksi", "korrup shun taso", "haastan sinut rap taisteloon",
+    "karki ma il ma", "leema ma il ma", "neutrahli ma il ma",
+    "soita mozartia", "mykista aani", "kutsua",
 
-    # Allow recognizer to decline instead of forcing a match
-    "[unk]",
+    # Sámi phonetics
+    "heyoss spelloo", "dat spelloo ee let buorre", "songut spelloo",
+    "bassi dassi okta", "korup shuvna dassi", "valdan du rahpat dakon",
+    "goddi mailbmi", "sleema mailbmi", "neutraala mailbmi",
+    "chohpa mozart", "yoga yietna", "chokket",
 ]
+
 
 # =========================
 # PyInstaller support
@@ -118,65 +124,87 @@ async def handle_client(websocket):
 
     last_final_text = ""
     last_final_time = 0.0
-    last_sent_time  = 0.0  # server-side cooldown so Godot never sees floods
+    last_sent_time  = 0.0
+    silence_start   = None
 
     def send_final(text: str):
         payload = json.dumps({"type": "final", "text": text})
         loop.call_soon_threadsafe(asyncio.create_task, websocket.send(payload))
 
-    def callback(indata, frames, t, status):
+    def handle_final(now: float):
         nonlocal last_final_text, last_final_time, last_sent_time
+        try:
+            res  = json.loads(recognizer.Result())
+        except json.JSONDecodeError:
+            return
+        raw  = res.get("text") or ""
+        text = normalize_final(raw)
+        if not text:
+            return
+
+        # Debounce duplicate finals
+        if text == last_final_text and (now - last_final_time) < MIN_GAP_BETWEEN_FINALS:
+            return
+        last_final_text = text
+        last_final_time = now
+
+        phrase = pick_phrase(text)
+        if not phrase:
+            return
+
+        # Cooldown so repeated phrases don't spam
+        if (now - last_sent_time) < SERVER_COOLDOWN:
+            return
+        last_sent_time = now
+
+        print(f"[VOICE FINAL] {text}  ->  [{phrase}]")
+        send_final(phrase)
+
+        # IMPORTANT: clear internal state so we don't "stack" into next utterance
+        recognizer.Reset()
+
+    def callback(indata, frames, t, status):
+        nonlocal silence_start
 
         audio_bytes = bytes(indata)
+        now = monotonic()
 
-        # Silence gate — prevents hallucinations on noise/idling
+        # Always feed the recognizer — including silence!
         try:
-            if audioop.rms(audio_bytes, 2) < SILENCE_RMS:  # 2 bytes/sample (int16)
-                return
+            rms = audioop.rms(audio_bytes, 2)  # 2 bytes/sample (int16)
         except Exception:
-            return  # don't crash the stream on edge cases
+            rms = 0
 
-        if recognizer.AcceptWaveform(audio_bytes):
-            # FINAL
-            try:
-                res = json.loads(recognizer.Result())
-            except json.JSONDecodeError:
-                return
+        is_silence = rms < SILENCE_RMS
 
-            raw = res.get("text") or ""
-            text = normalize_final(raw)
-            if not text:
-                return
+        # Feed original audio (we still let Vosk see silence)
+        got_final = recognizer.AcceptWaveform(audio_bytes)
 
-            # Debounce duplicate finals coming from Vosk
-            now = monotonic()
-            if text == last_final_text and (now - last_final_time) < MIN_GAP_BETWEEN_FINALS:
-                return
-            last_final_text = text
-            last_final_time = now
+        if got_final:
+            handle_final(now)
+            silence_start = None
+            return
 
-            # Map to exactly one known phrase; drop if no hit
-            phrase = pick_phrase(text)
-            if not phrase:
-                return
-
-            # Server-side cooldown so “boom boom boom …” cannot stack triggers
-            if (now - last_sent_time) < SERVER_COOLDOWN:
-                return
-            last_sent_time = now
-
-            print(f"[VOICE FINAL] {text}  ->  [{phrase}]")
-            send_final(phrase)
-
+        # Track silence duration to force a segment boundary if Vosk doesn't finalize itself
+        if is_silence:
+            if silence_start is None:
+                silence_start = now
+            if (now - silence_start) >= END_SILENCE_SEC:
+                # Nudge Vosk to finalize whatever it has buffered
+                recognizer.AcceptWaveform(b"")
+                handle_final(now)
+                silence_start = None
         else:
-            # PARTIAL — log only (comment out if you want silence)
-            try:
-                pres = json.loads(recognizer.PartialResult())
-                ptxt = (pres.get("partial") or "").strip().lower()
-                if ptxt:
-                    print(f"[VOICE PARTIAL] {ptxt}")
-            except json.JSONDecodeError:
-                pass
+            silence_start = None
+
+        # PARTIAL — optional logging (keep lightweight)
+        try:
+            pres = json.loads(recognizer.PartialResult())
+            ptxt = (pres.get("partial") or "").strip().lower()
+            if ptxt:
+                print(f"[VOICE PARTIAL] {ptxt}")
+        except json.JSONDecodeError:
+            pass
 
     # Open mic stream
     with sd.RawInputStream(

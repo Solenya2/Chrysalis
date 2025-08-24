@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://btwi2c5qye0ds"]
+[gd_scene load_steps=37 format=4 uid="uid://btwi2c5qye0ds"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_rmgsb"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_i11tg"]
@@ -23,7 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://cn4kmtgpwneax" path="res://Assetsforleveldesign/roads.png" id="19_h75xp"]
 [ext_resource type="PackedScene" uid="uid://csv512cg3trq7" path="res://Npc/npc_base.tscn" id="20_c2xw1"]
 [ext_resource type="PackedScene" uid="uid://d38221weranpq" path="res://side_worlds/slime_enemy.tscn" id="21_h75xp"]
-[ext_resource type="PackedScene" uid="uid://cy667831fere1" path="res://enemies/shaman_boss.tscn" id="24_fwrkl"]
 [ext_resource type="PackedScene" uid="uid://csteocmfklci7" path="res://enemies/bat_enemy.tscn" id="25_iijem"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
@@ -306,6 +305,18 @@ script = ExtResource("16_3bi1c")
 max_health = 1.0
 metadata/_custom_type_script = "uid://05i5kvcdbtva"
 
+[sub_resource type="Resource" id="Resource_guiaw"]
+script = ExtResource("15_0sks5")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_fwrkl"]
+script = ExtResource("16_3bi1c")
+max_health = 1.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
 [node name="corupted_outside" instance=ExtResource("1_rmgsb")]
 
 [node name="CameraLimits" type="Control" parent="." index="0"]
@@ -493,16 +504,15 @@ position = Vector2(221, 124)
 movement_stats = SubResource("Resource_c2xw1")
 stats = SubResource("Resource_sder4")
 
-[node name="ShamanBoss" parent="." index="16" instance=ExtResource("24_fwrkl")]
-position = Vector2(4474, 203)
-
-[node name="BatEnemy" parent="." index="17" instance=ExtResource("25_iijem")]
+[node name="BatEnemy" parent="." index="16" instance=ExtResource("25_iijem")]
 position = Vector2(1670, -130)
 
-[node name="BatEnemy2" parent="." index="18" instance=ExtResource("25_iijem")]
+[node name="BatEnemy2" parent="." index="17" instance=ExtResource("25_iijem")]
 position = Vector2(1690, -171)
 
-[node name="DeerEnemy2" parent="." index="19" instance=ExtResource("14_q5rb4")]
+[node name="DeerEnemy2" parent="." index="18" instance=ExtResource("14_q5rb4")]
 position = Vector2(1619, 579)
+movement_stats = SubResource("Resource_guiaw")
+stats = SubResource("Resource_fwrkl")
 
 [editable path="DeerMutateTrigger"]

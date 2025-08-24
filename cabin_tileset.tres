@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://htko6ykcqfvx"]
+[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://htko6ykcqfvx"]
 
 [ext_resource type="Texture2D" uid="uid://d2ekdgndc4ijx" path="res://Assetsforleveldesign/kenney_roguelike-indoors/Tilesheets/roguelikeIndoor_transparent.png" id="1_5x741"]
 [ext_resource type="Texture2D" uid="uid://bv674lqmgl5w4" path="res://Assetsforleveldesign/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Roof_Tilset.png" id="1_ptgjp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://be7nq4rkcumns" path="res://Assetsforleveldesign/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Walls_Tilset.png" id="2_gwtj2"]
 [ext_resource type="Texture2D" uid="uid://dkwyjg6pio4fk" path="res://Assetsforleveldesign/makeshift_furnitureset.png" id="3_ptgjp"]
 [ext_resource type="Texture2D" uid="uid://bdocy82vse7ww" path="res://Assetsforleveldesign/Grass.png" id="4_atw30"]
+[ext_resource type="Texture2D" uid="uid://dqi733roux8wi" path="res://attempt7walls.png" id="6_e2vow"]
 [ext_resource type="Texture2D" uid="uid://dtqcug7wdrqu2" path="res://Assetsforleveldesign/attempt7walls.png" id="6_ewb4m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fnj43"]
@@ -1307,6 +1308,65 @@ texture = ExtResource("2_gwtj2")
 0:2/0 = 0
 0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(3.23746, -8, 8, -8, 8, 8, 3.41732, 8)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fnj43"]
+load_path = "res://.godot/imported/attempt7walls.png-c8a687a78c109f205f72274de792f518.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ox4r2"]
+texture = SubResource("CompressedTexture2D_fnj43")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nc0mf"]
+load_path = "res://.godot/imported/attempt7walls.png-c8a687a78c109f205f72274de792f518.ctex"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vxlm3"]
+texture = SubResource("CompressedTexture2D_nc0mf")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f6taf"]
+texture = ExtResource("6_e2vow")
+0:0/0 = 0
+2:0/0 = 0
+4:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+3:1/0 = 0
+5:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+2:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1a62s"]
 texture = ExtResource("6_ewb4m")
 1:0/0 = 0
@@ -1359,3 +1419,6 @@ sources/7 = SubResource("TileSetAtlasSource_cxprf")
 sources/10 = SubResource("TileSetAtlasSource_ewb4m")
 sources/11 = SubResource("TileSetAtlasSource_e2vow")
 sources/0 = SubResource("TileSetAtlasSource_fnj43")
+sources/3 = SubResource("TileSetAtlasSource_ox4r2")
+sources/4 = SubResource("TileSetAtlasSource_vxlm3")
+sources/5 = SubResource("TileSetAtlasSource_f6taf")

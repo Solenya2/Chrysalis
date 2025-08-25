@@ -1,47 +1,100 @@
-# Music.gd — Handles background music playback and fading, synced to the "Music" audio bus.
-# Can play a single AudioStream or an AudioStreamPlaylist. Used as an autoloaded singleton.
+# Music.gd — Autoload singleton for background music (Godot 4.4)
+# Plays single tracks or playlists, supports fade, and key-based lookup.
 
 extends Node
 
-# Name of the audio bus used for music (must match Audio panel setup)
-const MUSIC_BUS_STRING := "Music"
+# --- Config ---
+const MUSIC_BUS_STRING := "Music"  # must match your Audio bus name
 
-# AudioStreamPlayer node used to play music tracks
+# --- Nodes ---
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
-# Emitted after a fade completes (e.g., for syncing transitions)
+# --- Signals ---
 signal fade_completed()
 
+# --- Track lookup (voice-friendly keys) ---
+# Pre-fill with your Mozart track. Add more keys as needed.
+@export var track_map: Dictionary = {
+	"mozart": preload("res://muisc_and_sounds/requiem-mozart-remix-265907.mp3")
+}
+
 func _ready() -> void:
-	pass  # Placeholder if needed later
+	# If needed later, init here.
+	pass
 
-# Gets the current dB volume of the music bus
-func _get_bus_volume_db() -> float:
-	var music_bus_index := AudioServer.get_bus_index(MUSIC_BUS_STRING)
-	return AudioServer.get_bus_volume_db(music_bus_index)
 
-# Returns true if the specified AudioStream is currently playing
+# =========================
+# Queries
+# =========================
 func is_playing_song(song: AudioStream) -> bool:
-	return (audio_stream_player.stream == song)
+	return audio_stream_player.stream == song
 
-# Returns true if the specified playlist is currently playing
 func is_playing_playlist(song_playlist: AudioStreamPlaylist) -> bool:
-	return (audio_stream_player.stream == song_playlist)
+	return audio_stream_player.stream == song_playlist
 
-# Starts playing the given song, syncing volume with the music bus
+
+# =========================
+# Core playback
+# =========================
 func play(song: AudioStream) -> void:
+	# Sync player volume with bus (keeps behavior consistent with your original script)
 	audio_stream_player.volume_db = _get_bus_volume_db()
+	audio_stream_player.stream_paused = false
 	audio_stream_player.stream = song
 	audio_stream_player.play()
 
-# Smoothly fades out the current song over the specified duration
+func pause_music() -> void:
+	audio_stream_player.stream_paused = true
+
+func resume_music() -> void:
+	audio_stream_player.stream_paused = false
+
+func stop() -> void:
+	audio_stream_player.stop()
+
+
+# =========================
+# Key-based helpers
+# =========================
+func play_track_by_key(key: String) -> bool:
+	var stream := track_map.get(key) as AudioStream
+	if stream == null:
+		push_warning("Track key not found: %s" % key)
+		return false
+
+	# If it's already the current stream, just ensure it's playing and volume is in sync.
+	if is_playing_song(stream):
+		audio_stream_player.volume_db = _get_bus_volume_db()
+		if not audio_stream_player.playing:
+			audio_stream_player.play()
+		audio_stream_player.stream_paused = false
+		return true
+
+	# Smooth handoff from whatever is playing.
+	await fade(0.75)
+	play(stream)
+	return true
+
+
+# =========================
+# Fades
+# =========================
 func fade(duration: float = 0.75) -> void:
-	if audio_stream_player.playing:
-		var bus_volume := _get_bus_volume_db()
-
-		# Tween fades to silence relative to the bus volume
-		var tween = create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
-		tween.tween_property(audio_stream_player, "volume_db", -80 - bus_volume, duration)
-
-		await tween.finished
+	if not audio_stream_player.playing:
+		# Nothing to fade; just emit for consistency
 		fade_completed.emit()
+		return
+
+	# Fade player down to silence. (Bus is applied after player; -80 dB here is effectively silent.)
+	var tween := create_tween().set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	tween.tween_property(audio_stream_player, "volume_db", -80.0, duration)
+	await tween.finished
+	fade_completed.emit()
+
+
+# =========================
+# Internals
+# =========================
+func _get_bus_volume_db() -> float:
+	var idx := AudioServer.get_bus_index(MUSIC_BUS_STRING)
+	return AudioServer.get_bus_volume_db(idx)

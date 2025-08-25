@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://4xecpxdxvi07"]
+
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_xasrm"]
+[ext_resource type="Texture2D" uid="uid://dtr45dk6ewjjj" path="res://Assetsforleveldesign/lightgrandma.png" id="2_jptu7"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_5etjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(7, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(15, 23)
+
+[node name="Lamp" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_xasrm")
+message = "Damn they were prettier in my memory "
+enable_toggle = true
+message_when_open = "Let there be light!!!"
+message_when_closed = "Let there be unlight!!"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+texture = ExtResource("2_jptu7")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -4.5)
+shape = SubResource("RectangleShape2D_jor8q")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_5etjc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(1.5, -5.5)
+shape = SubResource("RectangleShape2D_my5cn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

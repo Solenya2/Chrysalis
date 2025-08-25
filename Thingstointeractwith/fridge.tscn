@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://djkyv810jnpr4"]
+
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_snl6c"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="2_vknip"]
+[ext_resource type="Texture2D" uid="uid://ba67wrqqi3qe7" path="res://Assetsforleveldesign/fridge.asprite-.png" id="3_vrur5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(22, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(18.3906, 33.1797)
+
+[node name="Fridge" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_snl6c")
+message = "Damn they were prettier in my memory "
+enable_toggle = true
+message_when_open = "Omg a penguin!! anyways wanna open it?"
+message_when_closed = "Wow such a full fridge your so resposible "
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("2_vknip")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(-1, 2.5)
+shape = SubResource("RectangleShape2D_my5cn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0.589844)
+shape = SubResource("RectangleShape2D_jor8q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -6)
+texture = ExtResource("3_vrur5")
+hframes = 2

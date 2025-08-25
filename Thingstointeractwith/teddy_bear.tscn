@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://du7qevob6sw7g"]
+
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_l5lku"]
+[ext_resource type="Texture2D" uid="uid://c4uo5si7me7ua" path="res://Assetsforleveldesign/teddybear.png" id="2_4a22r"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_hpudg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(19.5, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(35, 41.5)
+
+[node name="TeddyBear" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_l5lku")
+message = "I hope shes okay "
+start_open = true
+message_when_open = "You already ate it all you glutton "
+message_when_closed = "Oh look dinner ya hungry? "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+texture = ExtResource("2_4a22r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.75, -4.5)
+shape = SubResource("RectangleShape2D_jor8q")
+disabled = true
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_hpudg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(1.5, -7.75)
+shape = SubResource("RectangleShape2D_my5cn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

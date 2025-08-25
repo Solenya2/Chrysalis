@@ -7,6 +7,13 @@ var ws := WebSocketPeer.new()
 # --- Command-mode cooldowns ---
 var last_trigger_time := {}
 const COOLDOWN := 1.5  # seconds per word
+# --- Voice aliases (exact phrases from Python server) ---
+const PLAY_MOZART_ALIASES := [
+	"play mozart",
+	"spill mozart",     # Norwegian
+	"soita mozartia",   # Finnish
+	"chohpa mozart"     # Sámi phonetic
+]
 
 # --- Rap battle protocol state ---
 var mode: String = "command"
@@ -98,6 +105,14 @@ func _handle_command_final(text_raw: String) -> void:
 		Utils.load_level("res://enemies/sami_boss_level.tscn")
 	elif "corruption level" in text:
 		Utils.load_level("res://corupted_levels/corupted_outside.tscn")
+	elif text in PLAY_MOZART_ALIASES:
+		print("🎼 PLAY MOZART")
+		if Music.play_track_by_key("mozart"):
+			# Optional: add UI feedback / toast / sfx here
+			pass
+		else:
+			print("⚠️ 'mozart' not found in Music.track_map")
+
 	elif "i challenge you to a rap battle" in text:
 		_try_emit_rap_battle_requested()
 

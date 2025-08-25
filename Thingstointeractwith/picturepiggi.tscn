@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dv48eulb2d2b8"]
+
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_h57mr"]
+[ext_resource type="Texture2D" uid="uid://cy2sq44nh54hp" path="res://Assetsforleveldesign/piggiart-Sheet.png" id="2_vjjr5"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_1d0gb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(15, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(20.75, 20.75)
+
+[node name="Picturepiggi" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_h57mr")
+message = "His name was
+Jormundgander i miss him, wanna see some pictures? "
+enable_toggle = true
+start_open = true
+message_when_open = "You already ate it all you glutton "
+message_when_closed = "Oh look dinner ya hungry? "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+texture = ExtResource("2_vjjr5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, -3.5)
+shape = SubResource("RectangleShape2D_jor8q")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_1d0gb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(2, -3)
+shape = SubResource("RectangleShape2D_my5cn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

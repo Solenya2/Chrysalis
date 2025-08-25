@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://b73m3miiaof6q"]
+
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_66ho2"]
+[ext_resource type="Texture2D" uid="uid://byv2ng7n17unj" path="res://Assetsforleveldesign/sinkkicthen.png" id="2_vl4pj"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_oa1oq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(42, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(55, 44)
+
+[node name="Sink" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_66ho2")
+message = "Why the hell is there an egg there? "
+start_open = true
+message_when_open = "You already ate it all you glutton "
+message_when_closed = "Oh look dinner ya hungry? "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+texture = ExtResource("2_vl4pj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_jor8q")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_oa1oq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(0.5, 2)
+shape = SubResource("RectangleShape2D_my5cn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://pj8vondquwf8"]
+
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_7wxfa"]
+[ext_resource type="Texture2D" uid="uid://ceu1uuru78yoe" path="res://Assetsforleveldesign/oven.png" id="2_w4qec"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_c5m1n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(7, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(15, 23)
+
+[node name="TomatoOven" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_7wxfa")
+message = "Damn they were prettier in my memory "
+enable_toggle = true
+start_open = true
+message_when_open = "You already ate it all you glutton "
+message_when_closed = "Oh look dinner ya hungry? "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+texture = ExtResource("2_w4qec")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -4.5)
+shape = SubResource("RectangleShape2D_jor8q")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_c5m1n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(1.5, -5.5)
+shape = SubResource("RectangleShape2D_my5cn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

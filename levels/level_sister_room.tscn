@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://j2d6kpnkr86a"]
+[gd_scene load_steps=19 format=4 uid="uid://j2d6kpnkr86a"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_y0xcr"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_1h5vm"]
@@ -10,9 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="7_uq5tj"]
 [ext_resource type="Texture2D" uid="uid://b7k1uud5hhhs" path="res://Assetsforleveldesign/BEDS.PNG" id="8_64kag"]
 [ext_resource type="Texture2D" uid="uid://c4uo5si7me7ua" path="res://Assetsforleveldesign/teddybear.png" id="9_2krk1"]
-[ext_resource type="Texture2D" uid="uid://cwmhi6t2cp8df" path="res://Assetsforleveldesign/deskdark.png" id="10_ste6o"]
 [ext_resource type="Texture2D" uid="uid://cp0loxknouejm" path="res://Assetsforleveldesign/portrait.png" id="11_2v4vi"]
 [ext_resource type="Texture2D" uid="uid://dtw21yx6gf1bm" path="res://Assetsforleveldesign/realgoodcabinet.png" id="12_djnhh"]
+[ext_resource type="PackedScene" uid="uid://dposyiqarfxm" path="res://Thingstointeractwith/bed_player.tscn" id="14_yxly3"]
+[ext_resource type="PackedScene" uid="uid://du7qevob6sw7g" path="res://Thingstointeractwith/teddy_bear.tscn" id="15_uq5tj"]
+[ext_resource type="PackedScene" uid="uid://drg03petyq3qs" path="res://Thingstointeractwith/colthing_desk.tscn" id="16_64kag"]
+[ext_resource type="PackedScene" uid="uid://ckcm4tifmhyfm" path="res://Thingstointeractwith/desknormal.tscn" id="17_2krk1"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
 shuffle = true
@@ -78,17 +81,41 @@ rotation = 1.58747
 scale = Vector2(0.295432, 0.265625)
 texture = ExtResource("9_2krk1")
 
-[node name="Deskdark" type="Sprite2D" parent="." index="8"]
-position = Vector2(199, 78)
-texture = ExtResource("10_ste6o")
-hframes = 2
-
-[node name="Portrait" type="Sprite2D" parent="." index="9"]
+[node name="Portrait" type="Sprite2D" parent="." index="8"]
 position = Vector2(160, 58)
 texture = ExtResource("11_2v4vi")
 
-[node name="Realgoodcabinet" type="Sprite2D" parent="." index="10"]
+[node name="Realgoodcabinet" type="Sprite2D" parent="." index="9"]
 position = Vector2(133, 64)
 texture = ExtResource("12_djnhh")
 hframes = 2
 frame = 1
+
+[node name="BedPlayer" parent="." index="10" instance=ExtResource("14_yxly3")]
+position = Vector2(175, 106)
+rotation = 1.56617
+
+[node name="Sprite2D" parent="BedPlayer" index="0"]
+frame = 1
+
+[node name="TeddyBear" parent="." index="11" instance=ExtResource("15_uq5tj")]
+position = Vector2(153, 111)
+
+[node name="Sprite2D" parent="TeddyBear" index="0"]
+position = Vector2(-73, -25)
+scale = Vector2(0.40625, 0.3125)
+
+[node name="CollisionShape2D" parent="TeddyBear" index="1"]
+position = Vector2(-73, -14)
+
+[node name="CollisionShape2D" parent="TeddyBear/Interaction" index="0"]
+position = Vector2(-73, -26)
+
+[node name="ColthingDesk" parent="." index="12" instance=ExtResource("16_64kag")]
+position = Vector2(132, 71)
+
+[node name="desknormal" parent="." index="13" instance=ExtResource("17_2krk1")]
+position = Vector2(198, 85)
+
+[editable path="BedPlayer"]
+[editable path="TeddyBear"]

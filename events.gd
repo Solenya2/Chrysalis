@@ -41,6 +41,7 @@ signal request_show_dialog(bbcode: String)
 
 # Emitted when a dialog finishes — useful for resuming gameplay or triggering follow-ups.
 signal dialog_finished()
+signal request_close_dialog()
 
 signal bat_killed()
 

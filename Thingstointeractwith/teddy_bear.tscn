@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_hpudg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
-size = Vector2(19.5, 31)
+size = Vector2(19.5, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(35, 41.5)
+size = Vector2(28, 26)
 
 [node name="TeddyBear" type="StaticBody2D" groups=["navigation"]]
 script = ExtResource("1_l5lku")

@@ -1,18 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bw0bq8ralyje5"]
+[gd_scene load_steps=6 format=3 uid="uid://c08cc8oj0shnv"]
 
-[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_iitip"]
-[ext_resource type="Texture2D" uid="uid://beaa821p68u0e" path="res://Assetsforleveldesign/stairsimproved.png" id="2_kowcg"]
-[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_t5ntf"]
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_njlk0"]
+[ext_resource type="Texture2D" uid="uid://ce3gk762kgeur" path="res://Assetsforleveldesign/CHAIR.png" id="2_bgr0f"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_k31c0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
-size = Vector2(19.5, 12)
+size = Vector2(5.75, 9.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(28, 26)
+size = Vector2(15, 17)
 
-[node name="Staircase1" type="StaticBody2D" groups=["navigation"]]
-script = ExtResource("1_iitip")
-message = "Damn they were prettier in my memory "
+[node name="Chair" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_njlk0")
+message = "Okay repaet after me......Boom boom "
 enable_toggle = true
 start_open = true
 message_when_open = "You already ate it all you glutton "
@@ -20,19 +20,19 @@ message_when_closed = "Oh look dinner ya hungry? "
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -7)
-texture = ExtResource("2_kowcg")
+texture = ExtResource("2_bgr0f")
 hframes = 3
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -4.5)
+position = Vector2(-12.125, -6.25)
 shape = SubResource("RectangleShape2D_jor8q")
+disabled = true
 
 [node name="Interaction" type="Area2D" parent="."]
-script = ExtResource("3_t5ntf")
+script = ExtResource("3_k31c0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
-position = Vector2(1.5, -2.5)
+position = Vector2(1.5, 0.5)
 shape = SubResource("RectangleShape2D_my5cn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

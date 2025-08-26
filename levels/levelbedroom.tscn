@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://eh0n87v38f3m"]
+[gd_scene load_steps=22 format=4 uid="uid://eh0n87v38f3m"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_5161d"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_6sa5o"]
@@ -11,12 +11,13 @@
 [ext_resource type="Resource" uid="uid://cc63cwob7wtvh" path="res://level_connections/level_1_to_level_bedroom.tres" id="10_plmko"]
 [ext_resource type="Texture2D" uid="uid://ce3gk762kgeur" path="res://Assetsforleveldesign/CHAIR.png" id="11_0gyys"]
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="11_5xr1u"]
-[ext_resource type="Texture2D" uid="uid://cig624kwbk1cf" path="res://Assetsforleveldesign/familyphoto.png" id="12_1fkmi"]
+[ext_resource type="PackedScene" uid="uid://cbcwkgeqs307n" path="res://Thingstointeractwith/picture_of_family.tscn" id="11_plmko"]
+[ext_resource type="PackedScene" uid="uid://dposyiqarfxm" path="res://Thingstointeractwith/bed_player.tscn" id="12_5xr1u"]
 [ext_resource type="Texture2D" uid="uid://dui3ensrxjmdl" path="res://Assetsforleveldesign/door.png" id="13_3pgnh"]
-[ext_resource type="Texture2D" uid="uid://b7k1uud5hhhs" path="res://Assetsforleveldesign/BEDS.PNG" id="14_2yx28"]
-[ext_resource type="Texture2D" uid="uid://dtw21yx6gf1bm" path="res://Assetsforleveldesign/realgoodcabinet.png" id="15_1fkmi"]
-[ext_resource type="Texture2D" uid="uid://b7h3oica3dwje" path="res://Assetsforleveldesign/laptop.png" id="16_3pgnh"]
+[ext_resource type="PackedScene" uid="uid://drg03petyq3qs" path="res://Thingstointeractwith/colthing_desk.tscn" id="13_jpryc"]
+[ext_resource type="PackedScene" uid="uid://c08cc8oj0shnv" path="res://Thingstointeractwith/chair.tscn" id="13_qwwoi"]
 [ext_resource type="PackedScene" uid="uid://5tki6pe8ypuk" path="res://side_worlds/dimensional_hole.tscn" id="17_3pgnh"]
+[ext_resource type="PackedScene" uid="uid://b1c61yakvpci4" path="res://Thingstointeractwith/laptop.tscn" id="17_qwwoi"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
 shuffle = true
@@ -75,18 +76,13 @@ texture = ExtResource("11_0gyys")
 hframes = 3
 frame = 2
 
-[node name="Familyphoto" type="Sprite2D" parent="CabinTilesLayer/walls" index="3"]
-position = Vector2(98, 42)
-scale = Vector2(0.28125, 0.28125)
-texture = ExtResource("12_1fkmi")
-
-[node name="Chair2" type="Sprite2D" parent="CabinTilesLayer/walls" index="4"]
+[node name="Chair2" type="Sprite2D" parent="CabinTilesLayer/walls" index="3"]
 position = Vector2(175, 57)
 texture = ExtResource("11_0gyys")
 hframes = 3
 frame = 1
 
-[node name="Door" type="Sprite2D" parent="CabinTilesLayer/walls" index="5"]
+[node name="Door" type="Sprite2D" parent="CabinTilesLayer/walls" index="4"]
 position = Vector2(135.5, 150)
 scale = Vector2(1.09375, 1)
 texture = ExtResource("13_3pgnh")
@@ -111,23 +107,41 @@ texture = ExtResource("11_0gyys")
 hframes = 3
 frame = 2
 
-[node name="Familyphoto" type="Sprite2D" parent="CabinTilesLayer" index="6"]
-position = Vector2(97, 42)
-scale = Vector2(0.28125, 0.28125)
-texture = ExtResource("12_1fkmi")
-
-[node name="Chair2" type="Sprite2D" parent="CabinTilesLayer" index="7"]
+[node name="Chair2" type="Sprite2D" parent="CabinTilesLayer" index="6"]
 position = Vector2(175, 57)
 texture = ExtResource("11_0gyys")
 hframes = 3
 frame = 1
 
-[node name="Door" type="Sprite2D" parent="CabinTilesLayer" index="8"]
+[node name="Door" type="Sprite2D" parent="CabinTilesLayer" index="7"]
 position = Vector2(135.5, 150)
 scale = Vector2(1.09375, 1)
 texture = ExtResource("13_3pgnh")
 hframes = 2
 frame = 1
+
+[node name="PictureOfFamily" parent="CabinTilesLayer" index="8" instance=ExtResource("11_plmko")]
+position = Vector2(236, 103)
+message = "what kinds photographer took this picture? "
+
+[node name="Sprite2D" parent="CabinTilesLayer/PictureOfFamily" index="0"]
+position = Vector2(-137, -61)
+scale = Vector2(0.375, 0.34375)
+
+[node name="CollisionShape2D" parent="CabinTilesLayer/PictureOfFamily" index="1"]
+position = Vector2(-281, -34)
+
+[node name="CollisionShape2D" parent="CabinTilesLayer/PictureOfFamily/Interaction" index="0"]
+position = Vector2(-138.5, -62.5)
+
+[node name="BedPlayer" parent="CabinTilesLayer" index="9" instance=ExtResource("12_5xr1u")]
+position = Vector2(140, 76)
+
+[node name="ColthingDesk" parent="CabinTilesLayer" index="10" instance=ExtResource("13_jpryc")]
+position = Vector2(77, 55)
+
+[node name="Chair3" parent="CabinTilesLayer" index="11" instance=ExtResource("13_qwwoi")]
+position = Vector2(174, 64)
 
 [node name="Door4" type="Area2D" parent="." index="4"]
 position = Vector2(295, 74)
@@ -153,24 +167,23 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_2yx28")
 
-[node name="Beds" type="Sprite2D" parent="." index="6"]
-position = Vector2(148, 70)
-texture = ExtResource("14_2yx28")
-hframes = 2
-
-[node name="Realgoodcabinet" type="Sprite2D" parent="." index="7"]
-position = Vector2(80, 49)
-texture = ExtResource("15_1fkmi")
-hframes = 2
-frame = 1
-
-[node name="Laptop" type="Sprite2D" parent="." index="8"]
-position = Vector2(114, 51)
-scale = Vector2(0.71875, 0.6875)
-texture = ExtResource("16_3pgnh")
-
-[node name="DimensionalHole" parent="." index="9" instance=ExtResource("17_3pgnh")]
+[node name="DimensionalHole" parent="." index="6" instance=ExtResource("17_3pgnh")]
 position = Vector2(248, 50)
+
+[node name="Laptop2" parent="." index="7" instance=ExtResource("17_qwwoi")]
+position = Vector2(115, 63)
+
+[node name="Sprite2D" parent="Laptop2" index="0"]
+position = Vector2(-1.5, -11.5)
+scale = Vector2(0.84375, 0.859375)
+
+[node name="CollisionShape2D" parent="Laptop2" index="1"]
+position = Vector2(-1, -12)
+
+[node name="CollisionShape2D" parent="Laptop2/Interaction" index="0"]
+position = Vector2(-1, -11)
 
 [editable path="CabinTilesLayer"]
 [editable path="CabinTilesLayer/walls"]
+[editable path="CabinTilesLayer/PictureOfFamily"]
+[editable path="Laptop2"]

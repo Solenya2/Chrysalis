@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_5etjc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
-size = Vector2(7, 15)
+size = Vector2(19.5, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(15, 23)
+size = Vector2(28, 26)
 
 [node name="Lamp" type="StaticBody2D" groups=["navigation"]]
 script = ExtResource("1_xasrm")

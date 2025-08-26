@@ -62,7 +62,6 @@ func play_track_by_key(key: String) -> bool:
 		push_warning("Track key not found: %s" % key)
 		return false
 
-	# If it's already the current stream, just ensure it's playing and volume is in sync.
 	if is_playing_song(stream):
 		audio_stream_player.volume_db = _get_bus_volume_db()
 		if not audio_stream_player.playing:
@@ -70,10 +69,11 @@ func play_track_by_key(key: String) -> bool:
 		audio_stream_player.stream_paused = false
 		return true
 
-	# Smooth handoff from whatever is playing.
-	await fade(0.75)
+	# Smooth handoff from whatever is playing (fire and forget)
+	fade(0.75)   # no await here
 	play(stream)
 	return true
+
 
 
 # =========================

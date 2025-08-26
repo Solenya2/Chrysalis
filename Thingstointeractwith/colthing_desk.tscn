@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_7h38v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
-size = Vector2(15, 11)
+size = Vector2(19.5, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(30, 29)
+size = Vector2(28, 26)
 
 [node name="ColthingDesk" type="StaticBody2D" groups=["navigation"]]
 script = ExtResource("1_iojin")

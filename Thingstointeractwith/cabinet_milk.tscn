@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://y3rbtxge75ab" path="res://Assetsforleveldesign/cabinetbad.png" id="2_kbv78"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
-size = Vector2(32.5, 33.5)
+size = Vector2(19.5, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(43, 43)
+size = Vector2(28, 26)
 
 [node name="CabinetMilk" type="StaticBody2D" groups=["navigation"]]
 script = ExtResource("1_85i7f")

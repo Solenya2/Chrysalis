@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1c61yakvpci4"]
+
+[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_ihl02"]
+[ext_resource type="Texture2D" uid="uid://da0788cv2r4n5" path="res://Assetsforleveldesign/laptopopen.png" id="2_l7odq"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_3a7br"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(16.875, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(28, 26)
+
+[node name="Laptop" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_ihl02")
+enable_toggle = true
+start_open = true
+message_when_open = "Oh yea it has parental locks ):"
+message_when_closed = "Wanna see what ya did last nugtt? "
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -7)
+texture = ExtResource("2_l7odq")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.4375, -7)
+shape = SubResource("RectangleShape2D_jor8q")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_3a7br")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(1, -6)
+shape = SubResource("RectangleShape2D_my5cn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

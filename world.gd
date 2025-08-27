@@ -7,7 +7,7 @@ extends Node2D
 
 func _ready() -> void:
 	y_sort_enabled = true
-	RenderingServer.set_default_clear_color(Color("#14182e"))
+	RenderingServer.set_default_clear_color(Color("#00ffba"))
 	Events.door_entered.connect(change_levels, CONNECT_DEFERRED)
 	hero.stats.no_health.connect(func():
 		await get_tree().create_timer(3.0).timeout

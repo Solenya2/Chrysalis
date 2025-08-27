@@ -20,16 +20,22 @@ END_SILENCE_SEC = 0.6              # quiet duration that forces a final
 MIN_GAP_BETWEEN_FINALS = 1.5       # debounce same-final repeats from Vosk (s)
 SERVER_COOLDOWN        = 1.2       # prevent rapid-fire commands (s)
 
-# Exact phrases ONLY. Keep them multi-word to reduce hallucinations.
+UNMATCHED_LOG = os.path.join(os.path.dirname(__file__), "unmatched_phrases.txt")
+
+# =========================
+# Grammar
+#   Exact phrases ONLY. Keep them multi-word to reduce hallucinations.
+#   Include "[unk]" to let Vosk decline instead of forcing a match.
+# =========================
 GRAMMAR = [
     # English
     "boom boom", "bad game", "this game sucks",
     "bedroom player", "boss level one", "corruption level",
     "i challenge you to a rap battle",
     "candy world", "slime world", "neutral world",
-    "play mozart", "mute sound", "summon", "pizza", "help", "kill them" "i love you", 
+    "play mozart", "mute sound", "summon", "pizza", "help", "kill them", "i love you",
 
-    # Norwegian variants
+    # Norwegian phonetics / variants
     "dorlee spill", "detta spillet soooger", "so verom spiller",
     "shef nivoh en", "korrup shon nivoh", "yai oodforrer dai til en rap battle",
     "gottery verden", "sleem verden", "noytral verden",
@@ -46,8 +52,27 @@ GRAMMAR = [
     "bassi dassi okta", "korup shuvna dassi", "valdan du rahpat dakon",
     "goddi mailbmi", "sleema mailbmi", "neutraala mailbmi",
     "chohpa mozart", "yoga yietna", "chokket",
-]
+    
+    
+    # German phonetics
+    "shlek tes shpeel", "dee zes shpeel ist shlekt", "shlaf tseemer shpeeler",
+    "boss level ayns", "ko rup tsee ons shtoo feh", "ikh for der uh dikh tsu rap betl",
+    "bon bon velt", "shlime velt", "noy trah le velt",
+    "shpeel mozart", "shtoom shal ten", "besh vuren",
 
+    
+         # Spanish phonetics
+    "hweh go malo", "es te hweh go a pes ta", "hoo ga dor del dor mee toh rio",
+    "nee vel he feh oo no", "nee vel de ko rup see on", "te deh sa fee oh a oo na ba tah ya de rap",
+    "moon do de dool sess", "moon do de slaym", "moon do new tral",
+    "toh ka mozart", "see len see ah el so nee do", "een vo car",
+
+
+
+    # Allow recognizer to decline instead of forcing a match
+    "[unk]",
+]
+_PHRASES = [p for p in GRAMMAR if p != "[unk]"]
 
 # =========================
 # PyInstaller support
@@ -95,25 +120,25 @@ _RE_REPEAT = re.compile(r'\b(\w+)(\s+\1){2,}\b', re.IGNORECASE)
 # squeeze whitespace
 _RE_WS = re.compile(r'\s+')
 
-_PHRASES = [p for p in GRAMMAR if p != "[unk]"]
-
 def normalize_final(text: str) -> str:
     t = (text or "").lower().strip()
     if not t:
         return ""
-    t = t.replace("[unk]", " ").strip()
-    if not t:
-        return ""
+    # NOTE: we do NOT strip "[unk]" here; we want to detect it explicitly.
     t = _RE_REPEAT.sub(lambda m: f"{m.group(1)} {m.group(1)}", t)
     t = _RE_WS.sub(" ", t)
     return t.strip()
 
 def pick_phrase(text: str) -> str | None:
-    """Return the single phrase we care about, preferring the longest contained phrase."""
-    hits = [p for p in _PHRASES if p in text]
-    if not hits:
-        return None
-    return max(hits, key=len)
+    """Return the single phrase we care about via exact match only."""
+    return text if text in _PHRASES else None
+
+def log_unmatched(text: str):
+    try:
+        with open(UNMATCHED_LOG, "a", encoding="utf-8") as f:
+            f.write(text + "\n")
+    except Exception:
+        pass
 
 # =========================
 # Server
@@ -142,6 +167,13 @@ async def handle_client(websocket):
         if not text:
             return
 
+        # If Vosk said unknown, ignore but log
+        if text == "[unk]":
+            print(f"[VOICE FINAL UNK]")
+            log_unmatched("[unk]")
+            recognizer.Reset()
+            return
+
         # Debounce duplicate finals
         if text == last_final_text and (now - last_final_time) < MIN_GAP_BETWEEN_FINALS:
             return
@@ -150,6 +182,9 @@ async def handle_client(websocket):
 
         phrase = pick_phrase(text)
         if not phrase:
+            print(f"[VOICE FINAL UNMATCHED] {text}")
+            log_unmatched(text)
+            recognizer.Reset()
             return
 
         # Cooldown so repeated phrases don't spam

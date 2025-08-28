@@ -247,3 +247,6 @@ dee ist
 de tes
 de ko ons
 [unk]
+tes
+sound
+ist

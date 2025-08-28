@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://dgum7dgrfswem"]
+[gd_scene load_steps=21 format=4 uid="uid://dgum7dgrfswem"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_8hsus"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_xo636"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="7_30mia"]
 [ext_resource type="Resource" uid="uid://c4gpy4hr5lpm3" path="res://level_connections/kitchen_to_staircase.tres" id="8_xo636"]
 [ext_resource type="Texture2D" uid="uid://bwyhlnbaiorjn" path="res://Assetsforleveldesign/tablewithcutlery.png" id="9_trtw3"]
-[ext_resource type="Texture2D" uid="uid://ba67wrqqi3qe7" path="res://Assetsforleveldesign/fridge.asprite-.png" id="10_qdot3"]
 [ext_resource type="Texture2D" uid="uid://d2rdtub0vn8ua" path="res://Assetsforleveldesign/flower.png" id="11_dfdcm"]
 [ext_resource type="Texture2D" uid="uid://bavrt17fvtlbc" path="res://Assetsforleveldesign/mug.png" id="12_viv43"]
 [ext_resource type="Texture2D" uid="uid://ce3gk762kgeur" path="res://Assetsforleveldesign/CHAIR.png" id="14_kowj8"]
@@ -80,87 +79,176 @@ texture = ExtResource("9_trtw3")
 hframes = 2
 frame = 1
 
-[node name="Fridge_asprite-" type="Sprite2D" parent="." index="6"]
-position = Vector2(180, 47)
-texture = ExtResource("10_qdot3")
-hframes = 2
-frame = 1
-
-[node name="Flower" type="Sprite2D" parent="." index="7"]
+[node name="Flower" type="Sprite2D" parent="." index="6"]
 position = Vector2(62, 126)
 texture = ExtResource("11_dfdcm")
 
-[node name="Mug" type="Sprite2D" parent="." index="8"]
+[node name="Mug" type="Sprite2D" parent="." index="7"]
 top_level = true
-position = Vector2(81, 50)
+position = Vector2(68, 47)
 texture = ExtResource("12_viv43")
 
-[node name="Chair" type="Sprite2D" parent="." index="9"]
+[node name="Chair" type="Sprite2D" parent="." index="8"]
 top_level = true
 position = Vector2(121, 104)
 texture = ExtResource("14_kowj8")
 hframes = 3
 frame = 1
 
-[node name="Chair2" type="Sprite2D" parent="." index="10"]
+[node name="Chair2" type="Sprite2D" parent="." index="9"]
 position = Vector2(107, 96)
 texture = ExtResource("14_kowj8")
 hframes = 3
 frame = 2
 
-[node name="Chair3" type="Sprite2D" parent="." index="11"]
+[node name="Chair3" type="Sprite2D" parent="." index="10"]
 position = Vector2(122, 84)
 texture = ExtResource("14_kowj8")
 hframes = 3
 
-[node name="Chair4" type="Sprite2D" parent="." index="12"]
+[node name="Chair4" type="Sprite2D" parent="." index="11"]
 position = Vector2(138, 95)
 texture = ExtResource("14_kowj8")
 flip_h = true
 hframes = 3
 frame = 2
 
-[node name="CabinetMilk" parent="." index="13" instance=ExtResource("17_30mia")]
+[node name="CabinetMilk" parent="." index="12" instance=ExtResource("17_30mia")]
 position = Vector2(100, 61)
 
 [node name="Sprite2D" parent="CabinetMilk" index="0"]
+position = Vector2(-8, -6)
 frame = 0
+
+[node name="CollisionShape2D" parent="CabinetMilk" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="CabinetMilk/Interaction" index="0"]
+visible = false
 
 [node name="CabinetMilk" parent="CabinetMilk" index="4" instance=ExtResource("17_30mia")]
 position = Vector2(100, 61)
 
 [node name="Sprite2D" parent="CabinetMilk/CabinetMilk" index="0"]
-position = Vector2(36, -32)
+position = Vector2(116, 16)
 frame = 0
 
+[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk" index="1"]
+visible = false
+
 [node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk/Interaction" index="0"]
+visible = false
 position = Vector2(31, -31)
 
-[node name="FlowerDanedlion" parent="." index="14" instance=ExtResource("18_racdh")]
+[node name="CabinetMilk2" parent="CabinetMilk" index="5" instance=ExtResource("17_30mia")]
+position = Vector2(100, 61)
+
+[node name="Sprite2D" parent="CabinetMilk/CabinetMilk2" index="0"]
+position = Vector2(-73, -67)
+frame = 0
+
+[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/Interaction" index="0"]
+visible = false
+
+[node name="CabinetMilk" parent="CabinetMilk/CabinetMilk2" index="4" instance=ExtResource("17_30mia")]
+position = Vector2(100, 61)
+
+[node name="Sprite2D" parent="CabinetMilk/CabinetMilk2/CabinetMilk" index="0"]
+position = Vector2(116, 16)
+frame = 0
+
+[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/CabinetMilk" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/CabinetMilk/Interaction" index="0"]
+visible = false
+position = Vector2(31, -31)
+
+[node name="FlowerDanedlion" parent="." index="13" instance=ExtResource("18_racdh")]
 position = Vector2(61, 133)
 
-[node name="Fridge" parent="." index="15" instance=ExtResource("19_trtw3")]
-position = Vector2(181, 52)
+[node name="CollisionShape2D" parent="FlowerDanedlion" index="1"]
+visible = false
 
-[node name="Sink" parent="." index="16" instance=ExtResource("20_qdot3")]
+[node name="CollisionShape2D" parent="FlowerDanedlion/Interaction" index="0"]
+visible = false
+
+[node name="Fridge" parent="." index="14" instance=ExtResource("19_trtw3")]
+position = Vector2(202, 51)
+
+[node name="CollisionShape2D" parent="Fridge/Interaction" index="0"]
+visible = false
+
+[node name="CollisionShape2D" parent="Fridge" index="2"]
+visible = false
+
+[node name="Sprite2D" parent="Fridge" index="3"]
+position = Vector2(0, -5)
+
+[node name="Sink" parent="." index="15" instance=ExtResource("20_qdot3")]
 position = Vector2(79, 113)
 
 [node name="Sprite2D" parent="Sink" index="0"]
-position = Vector2(-9, -64)
+position = Vector2(-25, -64)
 scale = Vector2(0.875, 0.859375)
 
 [node name="CollisionShape2D" parent="Sink" index="1"]
+visible = false
 position = Vector2(-10, -53)
 
 [node name="CollisionShape2D" parent="Sink/Interaction" index="0"]
+visible = false
 position = Vector2(-8, -52)
 
-[node name="TomatoOven" parent="." index="17" instance=ExtResource("21_dfdcm")]
-position = Vector2(158, 63)
+[node name="TomatoOven" parent="." index="16" instance=ExtResource("21_dfdcm")]
+position = Vector2(180, 63)
 
-[node name="Tablewithcuttlery" parent="." index="18" instance=ExtResource("19_koa1n")]
+[node name="CollisionShape2D" parent="TomatoOven" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="TomatoOven/Interaction" index="0"]
+visible = false
+
+[node name="Tablewithcuttlery" parent="." index="17" instance=ExtResource("19_koa1n")]
 position = Vector2(121, 109)
+
+[node name="CabinetMilk2" parent="." index="18" instance=ExtResource("17_30mia")]
+position = Vector2(100, 61)
+
+[node name="Sprite2D" parent="CabinetMilk2" index="0"]
+position = Vector2(52, -6)
+frame = 0
+
+[node name="CollisionShape2D" parent="CabinetMilk2" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="CabinetMilk2/Interaction" index="0"]
+visible = false
+
+[node name="CabinetMilk" parent="CabinetMilk2" index="4" instance=ExtResource("17_30mia")]
+position = Vector2(100, 61)
+
+[node name="Sprite2D" parent="CabinetMilk2/CabinetMilk" index="0"]
+position = Vector2(116, 16)
+frame = 0
+
+[node name="CollisionShape2D" parent="CabinetMilk2/CabinetMilk" index="1"]
+visible = false
+
+[node name="CollisionShape2D" parent="CabinetMilk2/CabinetMilk/Interaction" index="0"]
+visible = false
+position = Vector2(31, -31)
 
 [editable path="CabinetMilk"]
 [editable path="CabinetMilk/CabinetMilk"]
+[editable path="CabinetMilk/CabinetMilk2"]
+[editable path="CabinetMilk/CabinetMilk2/CabinetMilk"]
+[editable path="FlowerDanedlion"]
+[editable path="Fridge"]
 [editable path="Sink"]
+[editable path="TomatoOven"]
+[editable path="CabinetMilk2"]
+[editable path="CabinetMilk2/CabinetMilk"]

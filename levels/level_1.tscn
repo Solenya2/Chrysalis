@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://burvhv42pe1q6"]
+[gd_scene load_steps=20 format=4 uid="uid://burvhv42pe1q6"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_7yyhx"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="3_mlspe"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://csv512cg3trq7" path="res://Npc/npc_base.tscn" id="9_3sk1a"]
 [ext_resource type="Resource" uid="uid://cc63cwob7wtvh" path="res://level_connections/level_1_to_level_bedroom.tres" id="12_aerfg"]
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="13_nmsli"]
+[ext_resource type="Texture2D" uid="uid://dpusmym5o02xp" path="res://Assetsforleveldesign/trees.png" id="14_betor"]
 [ext_resource type="PackedScene" uid="uid://2gqkr10vlng4" path="res://enemies/rabit_enemy.tscn" id="15_bgw3c"]
 [ext_resource type="Resource" uid="uid://bdtfkix1ed3c1" path="res://level_connections/level_1_to_sami_boss.tres" id="15_vjtdm"]
 
@@ -108,3 +109,8 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 shape = SubResource("RectangleShape2D_nmsli")
 
 [node name="CabinTilesLayer" parent="." index="11" instance=ExtResource("13_nmsli")]
+
+[node name="Trees" type="Sprite2D" parent="." index="12"]
+position = Vector2(130, 162)
+texture = ExtResource("14_betor")
+hframes = 2

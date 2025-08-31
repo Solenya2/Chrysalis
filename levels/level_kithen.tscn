@@ -69,6 +69,7 @@ next_level_path = "uid://cg461ddgb6a50"
 metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
+visible = false
 position = Vector2(4.3579, 17.1186)
 shape = SubResource("RectangleShape2D_vjtdm")
 

@@ -34,13 +34,20 @@ var facing_direction: = Vector2.DOWN :
 		if interaction_detector is Area2D:
 			interaction_detector.rotation = facing_direction.angle()
 
+# Alignment-based sprite references
+@onready var normal_sprite: Sprite2D = $FlipAnchor/NormalSprite2D
+@onready var good_sprite: Sprite2D = $FlipAnchor/GoodSprite2D
+@onready var evil_sprite: Sprite2D = $FlipAnchor/EvilSprite2D
+
+# Current active sprite (will be set based on alignment)
+var active_sprite: Sprite2D
+
 # Node references
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var flip_anchor: Node2D = $FlipAnchor
-@onready var sprite_2d: Sprite2D = $FlipAnchor/Sprite2D
 @onready var remote_transform_2d: RemoteTransform2D = $RemoteTransform2D
-@onready var flasher: Flasher = Flasher.new().set_target(sprite_2d).set_color(CUSTOM_RED)
-@onready var blinker: Blinker = Blinker.new().set_target(sprite_2d)
+@onready var flasher: Flasher = Flasher.new()
+@onready var blinker: Blinker = Blinker.new()
 @onready var hitbox: Hitbox = $FlipAnchor/Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
 @onready var interaction_detector: Area2D = $InteractionDetector
@@ -74,9 +81,15 @@ func _enter_tree() -> void:
 # Remove global reference on unload
 func _exit_tree() -> void:
 	MainInstances.hero = null
+
 func _ready() -> void:
-	# Check alignment once on spawn or load
+	# Initialize alignment system
 	check_alignment()
+	
+	# Set up flasher and blinker for the active sprite
+	flasher.set_target(active_sprite).set_color(CUSTOM_RED)
+	blinker.set_target(active_sprite)
+	
 	Events.cutscene_resume.connect(func():
 		if fsm.state == cutscene_pause_state:
 			fsm.change_state(move_state)
@@ -138,15 +151,35 @@ func _ready() -> void:
 
 	laser_state.projectile_scene = preload("res://projectiles/laser_projectile.tscn")  #  path
 
+func check_alignment() -> void:
+	# Hide all sprites first
+	normal_sprite.visible = false
+	good_sprite.visible = false
+	evil_sprite.visible = false
+	
+	# Determine which sprite to use based on alignment
+	if ReferenceStash.alignment.evil_score >= 3:
+		active_sprite = evil_sprite
+		active_sprite.modulate = Color(0.6, 0.6, 0.6)  # Your existing evil tint
+	# Add condition for good alignment when implemented
+	# elif ReferenceStash.alignment.good_score >= 3:
+	#     active_sprite = good_sprite
+	else:
+		active_sprite = normal_sprite
+		active_sprite.modulate = Color.WHITE  # Reset tint for normal sprite
+	
+	# Show the active sprite
+	active_sprite.visible = true
+	
+	# Update flasher and blinker targets
+	flasher.set_target(active_sprite)
+	blinker.set_target(active_sprite)
 
+func get_facing_vector() -> Vector2:
+	return facing_direction
 
 func _physics_process(delta: float) -> void:
 	fsm.state.physics_process(delta)
-func check_alignment() -> void:
-	if ReferenceStash.alignment.evil_score  >= 3:
-		sprite_2d.modulate = Color(0.6,0.6,0.6)
-func get_facing_vector() -> Vector2:
-	return facing_direction
 
 func _unhandled_input(event: InputEvent) -> void:
 	fsm.state.unhandled_input(event)
@@ -173,14 +206,45 @@ func take_hit(other_hitbox: Hitbox) -> void:
 	Events.request_camera_screenshake.emit(4, 0.3)
 	Events.hero_hurt.emit()
 	Sound.play(Sound.hurt, 1.0, -5.0)
+	
+	# Update flasher target in case it changed
+	flasher.set_target(active_sprite)
 	await flasher.flash(0.2)
+	
+	# Update blinker target in case it changed
+	blinker.set_target(active_sprite)
 	await blinker.blink()
+	
 	hurtbox.is_invincible = false
 
-# Plays an animation variant based on current facing direction
+# Plays an animation variant based on current facing direction and alignment
+# Plays an animation variant based on current facing direction and alignment
 func play_animation(animation: String) -> void:
-	var animation_name: = animation + "_" + get_direction_string()
-	animation_player.play(animation_name)
+	var alignment_prefix := ""
+	
+	# Determine animation prefix based on alignment
+	if ReferenceStash.alignment.evil_score >= 3:
+		alignment_prefix = "evil_"
+	# Add condition for good alignment when implemented
+	# elif ReferenceStash.alignment.good_score >= 3:
+	#     alignment_prefix = "good_"
+	else:
+		alignment_prefix = "normal_"
+	
+	# Explicitly declare the type as String
+	var animation_name: String = alignment_prefix + animation + "_" + get_direction_string()
+	
+	# Ensure the animation exists before trying to play it
+	if animation_player.has_animation(animation_name):
+		animation_player.play(animation_name)
+	else:
+		# Fallback to normal animation if alignment-specific doesn't exist
+		var fallback_name: String = "normal_" + animation + "_" + get_direction_string()
+		if animation_player.has_animation(fallback_name):
+			animation_player.play(fallback_name)
+		else:
+			push_error("Animation not found: " + animation_name)
+
 func play_dusted():
 	var anim_player := $AnimationPlayer
 	if anim_player and anim_player.has_animation("Dusted"):
@@ -199,7 +263,6 @@ func play_dusted():
 	else:
 		print("⚠️ No stats reference available.")
 
-
 # Converts facing direction into string for animation naming
 func get_direction_string() -> String:
 	var direction_string: = ""
@@ -211,6 +274,14 @@ func get_direction_string() -> String:
 	else:
 		direction_string = "side"
 	return direction_string
+
+# Add this function to update alignment when it changes
+func update_alignment() -> void:
+	check_alignment()
+	
+	# Also update any ongoing animations
+	if fsm.state is HeroMoveState:
+		play_animation("idle")  # Refresh the idle animation with correct alignment
 
 # Serializes hero state to dictionary (used by SaveManager)
 func serialize() -> Dictionary:

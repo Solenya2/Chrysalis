@@ -420,19 +420,19 @@ position = Vector2(24, -4)
 texture = ExtResource("8_mqogm")
 hframes = 2
 
-[node name="Trees3" type="Sprite2D" parent="CabinTilesLayer" index="7"]
-position = Vector2(1153.25, 287)
-texture = ExtResource("8_mqogm")
-hframes = 2
-frame = 1
-
-[node name="Trees5" type="Sprite2D" parent="CabinTilesLayer" index="8"]
+[node name="Trees5" type="Sprite2D" parent="CabinTilesLayer" index="7"]
 position = Vector2(1168.25, 288)
 texture = ExtResource("8_mqogm")
 hframes = 2
 frame = 1
 
-[node name="DimensionalHole" parent="CabinTilesLayer" index="9" instance=ExtResource("11_guiaw")]
+[node name="Trees3" type="Sprite2D" parent="CabinTilesLayer/Trees5" index="0"]
+position = Vector2(-15, -1)
+texture = ExtResource("8_mqogm")
+hframes = 2
+frame = 1
+
+[node name="DimensionalHole" parent="CabinTilesLayer" index="8" instance=ExtResource("11_guiaw")]
 position = Vector2(1237.25, 153)
 
 [node name="House" type="Sprite2D" parent="." index="4"]

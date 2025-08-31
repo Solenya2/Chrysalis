@@ -106,3 +106,5 @@ offset_right = -29.0
 offset_bottom = -6.0
 
 [node name="TestWebSocket" parent="." instance=ExtResource("11_bi8hs")]
+rap_trigger_radius = 160.0
+rap_scene_path = "res://rap/RapBattleScene.tscn"

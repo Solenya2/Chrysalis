@@ -14,7 +14,11 @@ const PLAY_MOZART_ALIASES := [
 	"soita mozartia",   # Finnish
 	"chohpa mozart"     # Sámi phonetic
 ]
-
+const LOVE_ALIASES := [
+	"i love you",
+	"jeg elsker deg",   # Norwegian Bokmål
+	"eg elskar deg"     # Nynorsk
+]
 # --- Rap battle protocol state ---
 var mode: String = "command"
 var battle_active: bool = false
@@ -28,6 +32,7 @@ var pending_round_idx: int = -1
 
 @onready var explosion_scene := preload("res://effects/explosion.tscn")
 
+@onready var love_scene := preload("res://blush_scene.tscn")
 func _ready() -> void:
 	var err := ws.connect_to_url(SPEECH_URL)
 	if err != OK:
@@ -96,6 +101,9 @@ func _handle_command_final(text_raw: String) -> void:
 	elif "boom boom" in text:
 		print("💥 BOMB DETONATED!")
 		_on_bomb()
+	elif "i love you" in text:
+		print("oh my (;")
+		_on_love()
 	elif "bad game" in text or "this game sucks" in text:
 		print("dusted")
 		_on_dusted()
@@ -268,6 +276,32 @@ func _on_bomb() -> void:
 	get_tree().get_root().add_child(explosion)
 	_trigger_nuke_flash(0.06, 0.35, 2.0, 0.25)
 
+func _on_love() -> void:
+	print("oh my (;")
+	
+	var love := love_scene.instantiate()
+	
+	# Add to canvas layer to ensure it's always on top
+	var canvas_layer := CanvasLayer.new()
+	canvas_layer.layer = 100  # High layer number to ensure it's on top
+	get_tree().root.add_child(canvas_layer)
+	canvas_layer.add_child(love)
+	
+	# Center on screen
+	var viewport_size := get_viewport().get_visible_rect().size
+	love.position = viewport_size / 2
+	
+	# Play animation
+	var anim_player: AnimationPlayer = love.find_child("AnimationPlayer")
+	if anim_player:
+		anim_player.play("blush")
+		anim_player.animation_finished.connect(func(_anim_name):
+			canvas_layer.queue_free()  # Remove both the layer and blush
+		)
+	else:
+		print("Warning: No AnimationPlayer found in blush scene")
+		await get_tree().create_timer(2.0).timeout
+		canvas_layer.queue_free()
 func _trigger_nuke_flash(
 	peak_time: float = 0.05,
 	hold_time: float = 0.10,

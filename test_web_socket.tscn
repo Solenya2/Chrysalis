@@ -4,5 +4,3 @@
 
 [node name="TestWebSocket" type="Node"]
 script = ExtResource("1_lr0ia")
-rap_trigger_radius = null
-rap_scene_path = null

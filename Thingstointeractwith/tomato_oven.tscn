@@ -8,7 +8,7 @@
 size = Vector2(5.75, 9.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(15, 17)
+size = Vector2(21, 43)
 
 [node name="TomatoOven" type="StaticBody2D" groups=["navigation"]]
 script = ExtResource("1_7wxfa")

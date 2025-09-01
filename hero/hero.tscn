@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://qlkp2isw2f12"]
+[gd_scene load_steps=47 format=3 uid="uid://qlkp2isw2f12"]
 
 [ext_resource type="Script" uid="uid://ce38tp8dmfsk" path="res://hero/hero.gd" id="1_k24sg"]
 [ext_resource type="Resource" uid="uid://c33dxflshfsr3" path="res://hero/basic_hero_movement_stats.tres" id="2_lxb44"]
@@ -623,6 +623,34 @@ tracks/0/keys = {
 "values": [10]
 }
 
+[sub_resource type="Animation" id="Animation_qbt0e"]
+resource_name = "normal_sword_down"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/Hitbox/CollisionPolygon2D:polygon")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.137788, 0.233333, 0.266667, 0.4, 0.411195, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(9, 2, 12, 2, 12, 0, 13, 0, 13, -2, 12, -2, 12, -4, 9, -4, 9, -3, -2, -3, -2, -4, -4, -4, -4, -2, -5, -2, -5, 0, 1, 0, 1, 1, 9, 1), PackedVector2Array(9, 2, 12, 2, 12, 0, 13, 0, 13, -2, 12, -2, 12, -4, 9, -4, 9, -3, -2, -3, -2, -4, -4, -4, -4, -2, -5, -2, -5, 0, 1, 0, 1, 1, 9, 1), PackedVector2Array(14, -9, 13, -8, 0, 6, -6, 9, -7, 6, -9, 6, -9, 5, -11, 5, -11, 6, -12, 6, -12, 9, -11, 9, -11, 20, -12, 20, -12, 22, -11, 22, -11, 23, -10, 23, -10, 24, -8, 24, -8, 23, -7, 23, -7, 22, -6, 22, -6, 20, -3, 20, -3, 19, -1, 19, -1, 18, 1, 18, 1, 17, 3, 17, 3, 16, 4, 15, 4, 16, 6, 15, 8, 13, 12, 8, 13, 5, 15, -5, 15, -9), PackedVector2Array(14, -9, 13, -8, 0, 6, -6, 9, -7, 6, -9, 6, -9, 5, -11, 5, -11, 6, -12, 6, -12, 9, -11, 9, -11, 20, -12, 20, -12, 22, -11, 22, -11, 23, -10, 23, -10, 24, -8, 24, -8, 23, -7, 23, -7, 22, -6, 22, -6, 20, -3, 20, -3, 19, -1, 19, -1, 18, 1, 18, 1, 17, 3, 17, 3, 16, 4, 15, 4, 16, 6, 15, 8, 13, 12, 8, 13, 5, 15, -5, 15, -9), PackedVector2Array(-31, 7, -31, 3, -28, 3, -28, 2, -22, 1, -18, -3, -15, 0, -15, 1, -18, 2, -18, 3, -14, 7, -10, 9, -7, 10, -5, 11, -2, 11, -2, 12, 0, 12, 0, 14, -2, 15, -3, 16, -6, 17, -18, 17), PackedVector2Array(-31, 7, -31, 3, -28, 3, -28, 2, -22, 1, -18, -3, -15, 0, -15, 1, -18, 2, -18, 3, -14, 7, -10, 9, -7, 10, -5, 11, -2, 11, -2, 12, 0, 12, 0, 14, -2, 15, -3, 16, -6, 17, -18, 17), PackedVector2Array(-30, 10, -30, 2, -29, 2, -25, -4, -24, -4, -18, -4, -18, -7, -19, -8, -30, -8, -30, -9, -33, -9, -33, -7, -34, -7, -34, 5, -31, 10), PackedVector2Array()]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.137421, 0.27632, 0.419651),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [28, 29, 30, 31]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yoq1m"]
 _data = {
 &"Dusted": SubResource("Animation_eu2wf"),
@@ -654,6 +682,7 @@ _data = {
 &"normal_run_down": SubResource("Animation_33f78"),
 &"normal_run_side": SubResource("Animation_ylc5j"),
 &"normal_run_up": SubResource("Animation_cxmd6"),
+&"normal_sword_down": SubResource("Animation_qbt0e"),
 &"normal_sword_side": SubResource("Animation_s3u2y"),
 &"normal_sword_up": SubResource("Animation_femmg"),
 &"shoot_sunbeam": SubResource("Animation_siiaj")

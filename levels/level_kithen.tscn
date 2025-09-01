@@ -124,9 +124,6 @@ frame = 0
 [node name="CollisionShape2D" parent="CabinetMilk" index="1"]
 visible = false
 
-[node name="CollisionShape2D" parent="CabinetMilk/Interaction" index="0"]
-visible = false
-
 [node name="CabinetMilk" parent="CabinetMilk" index="4" instance=ExtResource("17_30mia")]
 position = Vector2(100, 61)
 
@@ -138,7 +135,6 @@ frame = 0
 visible = false
 
 [node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk/Interaction" index="0"]
-visible = false
 position = Vector2(31, -31)
 
 [node name="CabinetMilk2" parent="CabinetMilk" index="5" instance=ExtResource("17_30mia")]
@@ -149,9 +145,6 @@ position = Vector2(-73, -67)
 frame = 0
 
 [node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2" index="1"]
-visible = false
-
-[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/Interaction" index="0"]
 visible = false
 
 [node name="CabinetMilk" parent="CabinetMilk/CabinetMilk2" index="4" instance=ExtResource("17_30mia")]
@@ -165,7 +158,6 @@ frame = 0
 visible = false
 
 [node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/CabinetMilk/Interaction" index="0"]
-visible = false
 position = Vector2(31, -31)
 
 [node name="FlowerDanedlion" parent="." index="13" instance=ExtResource("18_racdh")]
@@ -174,17 +166,14 @@ position = Vector2(61, 133)
 [node name="CollisionShape2D" parent="FlowerDanedlion" index="1"]
 visible = false
 
-[node name="CollisionShape2D" parent="FlowerDanedlion/Interaction" index="0"]
-visible = false
-
 [node name="Fridge" parent="." index="14" instance=ExtResource("19_trtw3")]
 position = Vector2(202, 51)
 
 [node name="CollisionShape2D" parent="Fridge/Interaction" index="0"]
-visible = false
+position = Vector2(1.5, 9.75)
 
 [node name="CollisionShape2D" parent="Fridge" index="2"]
-visible = false
+position = Vector2(-1, 3)
 
 [node name="Sprite2D" parent="Fridge" index="3"]
 position = Vector2(0, -5)
@@ -201,8 +190,7 @@ visible = false
 position = Vector2(-10, -53)
 
 [node name="CollisionShape2D" parent="Sink/Interaction" index="0"]
-visible = false
-position = Vector2(-8, -52)
+position = Vector2(-26.5, -53.5)
 
 [node name="TomatoOven" parent="." index="16" instance=ExtResource("21_dfdcm")]
 position = Vector2(180, 63)
@@ -211,10 +199,10 @@ position = Vector2(180, 63)
 visible = false
 
 [node name="CollisionShape2D" parent="TomatoOven/Interaction" index="0"]
-visible = false
+position = Vector2(1.5, -3.5)
 
 [node name="Tablewithcuttlery" parent="." index="17" instance=ExtResource("19_koa1n")]
-position = Vector2(121, 109)
+position = Vector2(245, 60)
 
 [node name="CabinetMilk2" parent="." index="18" instance=ExtResource("17_30mia")]
 position = Vector2(100, 61)

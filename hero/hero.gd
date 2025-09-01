@@ -158,7 +158,7 @@ func check_alignment() -> void:
 	evil_sprite.visible = false
 	
 	# Determine which sprite to use based on alignment
-	if ReferenceStash.alignment.evil_score >= 3:
+	if ReferenceStash.alignment.evil_score >= 1:
 		active_sprite = evil_sprite
 		active_sprite.modulate = Color(0.6, 0.6, 0.6)  # Your existing evil tint
 	# Add condition for good alignment when implemented

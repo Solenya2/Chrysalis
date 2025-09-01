@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://jy7vonm05o14" path="res://corupted_levels/forest tiles/forest-palette01-day.png" id="4_bx5c1"]
 [ext_resource type="Texture2D" uid="uid://dck06yimwrx5j" path="res://Assetsforleveldesign/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Grass.png" id="4_oeddt"]
 [ext_resource type="Texture2D" uid="uid://b23ln51yf5bhn" path="res://Assetsforleveldesign/uhblack.png" id="5_oeddt"]
-[ext_resource type="Texture2D" uid="uid://dqi733roux8wi" path="res://attempt7walls.png" id="5_t1mad"]
 [ext_resource type="Texture2D" uid="uid://bxt54piv8re0r" path="res://Assetsforleveldesign/dirtandflame.png" id="6_oeddt"]
 [ext_resource type="Texture2D" uid="uid://c88ono6377faw" path="res://Assetsforleveldesign/grasstilemap.png" id="7_tt4e5"]
 [ext_resource type="Texture2D" uid="uid://kvjcf3yaokjn" path="res://Assetsforleveldesign/grasstilemaocandy.png" id="8_c2mgc"]
@@ -349,8 +348,11 @@ texture = ExtResource("4_bx5c1")
 14:17/0 = 0
 15:17/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ptgjp"]
+load_path = "res://.godot/imported/attempt7walls.png-c8a687a78c109f205f72274de792f518.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5025r"]
-texture = ExtResource("5_t1mad")
+texture = SubResource("CompressedTexture2D_ptgjp")
 0:0/0 = 0
 2:0/0 = 0
 4:0/0 = 0

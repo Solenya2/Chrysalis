@@ -98,6 +98,10 @@ rotation = 1.56617
 [node name="Sprite2D" parent="BedPlayer" index="0"]
 frame = 1
 
+[node name="CollisionShape2D" parent="BedPlayer/Interaction" index="0"]
+position = Vector2(7.62939e-06, 2.74292)
+scale = Vector2(1, 1)
+
 [node name="TeddyBear" parent="." index="10" instance=ExtResource("15_uq5tj")]
 position = Vector2(153, 111)
 
@@ -113,9 +117,14 @@ position = Vector2(-73, -26)
 
 [node name="ColthingDesk" parent="." index="11" instance=ExtResource("16_64kag")]
 position = Vector2(132, 71)
+message_when_open = "unopen it? "
+
+[node name="CollisionShape2D" parent="ColthingDesk/Interaction" index="0"]
+position = Vector2(4.5, -3.625)
 
 [node name="desknormal" parent="." index="12" instance=ExtResource("17_2krk1")]
 position = Vector2(198, 85)
 
 [editable path="BedPlayer"]
 [editable path="TeddyBear"]
+[editable path="ColthingDesk"]

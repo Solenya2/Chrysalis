@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://bpwrh12ayrcwx"]
+[gd_scene load_steps=20 format=4 uid="uid://bpwrh12ayrcwx"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_melsn"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_vpjtj"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bavrt17fvtlbc" path="res://Assetsforleveldesign/mug.png" id="11_xgo7b"]
 [ext_resource type="Texture2D" uid="uid://c74f0lxrgprpj" path="res://Assetsforleveldesign/playstation.aesprite.png" id="12_bp1j4"]
 [ext_resource type="Texture2D" uid="uid://u2itynly01bj" path="res://Assetsforleveldesign/playstationcontoller.png" id="13_wmdfo"]
-[ext_resource type="Texture2D" uid="uid://bsypyxx8r3ljc" path="res://Assetsforleveldesign/tvonandoff-Sheet.png" id="14_qseb2"]
 [ext_resource type="Texture2D" uid="uid://dmeppx7oms42j" path="res://Assetsforleveldesign/tvback.png" id="15_j6kl0"]
 [ext_resource type="PackedScene" uid="uid://dpntjw76af21j" path="res://Thingstointeractwith/sofa.tscn" id="15_sfbck"]
 [ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="16_8gnww"]
@@ -76,16 +75,11 @@ texture = ExtResource("12_bp1j4")
 position = Vector2(141, 136)
 texture = ExtResource("13_wmdfo")
 
-[node name="Tvonandoff-sheet" type="Sprite2D" parent="." index="8"]
-position = Vector2(329, 87)
-rotation = -0.0203523
-texture = ExtResource("14_qseb2")
-
-[node name="Tvback" type="Sprite2D" parent="." index="9"]
+[node name="Tvback" type="Sprite2D" parent="." index="8"]
 position = Vector2(166, 149)
 texture = ExtResource("15_j6kl0")
 
-[node name="Door" type="Area2D" parent="." index="10"]
+[node name="Door" type="Area2D" parent="." index="9"]
 position = Vector2(295, 108)
 script = ExtResource("16_8gnww")
 exit_direction = 2
@@ -97,14 +91,14 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_xgo7b")
 
-[node name="Sofa2" parent="." index="11" instance=ExtResource("15_sfbck")]
+[node name="Sofa2" parent="." index="10" instance=ExtResource("15_sfbck")]
 position = Vector2(170, 55)
 
-[node name="Lamp" parent="." index="12" instance=ExtResource("16_xgo7b")]
+[node name="Lamp" parent="." index="11" instance=ExtResource("16_xgo7b")]
 position = Vector2(87, 65)
 
-[node name="FlowerDanedlion" parent="." index="13" instance=ExtResource("17_bp1j4")]
+[node name="FlowerDanedlion" parent="." index="12" instance=ExtResource("17_bp1j4")]
 position = Vector2(262, 61)
 
-[node name="Tv" parent="." index="14" instance=ExtResource("18_wmdfo")]
+[node name="Tv" parent="." index="13" instance=ExtResource("18_wmdfo")]
 position = Vector2(166, 151)

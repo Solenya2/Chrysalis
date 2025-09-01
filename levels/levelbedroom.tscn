@@ -122,7 +122,7 @@ hframes = 2
 frame = 1
 
 [node name="PictureOfFamily" parent="CabinTilesLayer" index="8" instance=ExtResource("11_plmko")]
-position = Vector2(236, 103)
+position = Vector2(333, 105)
 message = "what kinds photographer took this picture? "
 
 [node name="Sprite2D" parent="CabinTilesLayer/PictureOfFamily" index="0"]
@@ -130,10 +130,10 @@ position = Vector2(-137, -61)
 scale = Vector2(0.375, 0.34375)
 
 [node name="CollisionShape2D" parent="CabinTilesLayer/PictureOfFamily" index="1"]
-position = Vector2(-281, -34)
+position = Vector2(-320, -6)
 
 [node name="CollisionShape2D" parent="CabinTilesLayer/PictureOfFamily/Interaction" index="0"]
-position = Vector2(-138.5, -62.5)
+position = Vector2(-137, -62)
 
 [node name="BedPlayer" parent="CabinTilesLayer" index="9" instance=ExtResource("12_5xr1u")]
 position = Vector2(140, 76)
@@ -141,8 +141,12 @@ position = Vector2(140, 76)
 [node name="ColthingDesk" parent="CabinTilesLayer" index="10" instance=ExtResource("13_jpryc")]
 position = Vector2(77, 55)
 
+[node name="CollisionShape2D" parent="CabinTilesLayer/ColthingDesk/Interaction" index="0"]
+position = Vector2(0, -2.75)
+
 [node name="Chair3" parent="CabinTilesLayer" index="11" instance=ExtResource("13_qwwoi")]
 position = Vector2(174, 64)
+enable_toggle = false
 
 [node name="Door4" type="Area2D" parent="." index="4"]
 position = Vector2(295, 74)
@@ -173,6 +177,8 @@ position = Vector2(248, 50)
 
 [node name="Laptop2" parent="." index="7" instance=ExtResource("17_qwwoi")]
 position = Vector2(115, 63)
+message_when_open = "wanna open it"
+message_when_closed = "too bad its got parental controls "
 
 [node name="Sprite2D" parent="Laptop2" index="0"]
 position = Vector2(-1.5, -11.5)
@@ -187,4 +193,5 @@ position = Vector2(-1, -11)
 [editable path="CabinTilesLayer"]
 [editable path="CabinTilesLayer/walls"]
 [editable path="CabinTilesLayer/PictureOfFamily"]
+[editable path="CabinTilesLayer/ColthingDesk"]
 [editable path="Laptop2"]

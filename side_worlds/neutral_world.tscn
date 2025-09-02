@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://31h6pdvv55ee"]
+[gd_scene load_steps=13 format=4 uid="uid://31h6pdvv55ee"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_rqnqq"]
+[ext_resource type="Script" uid="uid://dy76n08sa3xq8" path="res://side_worlds/neutral_world.gd" id="2_bb5lx"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_o2imh"]
 [ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="3_bb5lx"]
 [ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="4_decul"]
@@ -25,6 +26,7 @@ texture = ExtResource("7_hkv2x")
 sources/0 = SubResource("TileSetAtlasSource_23lg8")
 
 [node name="neutral_world" instance=ExtResource("1_rqnqq")]
+script = ExtResource("2_bb5lx")
 
 [node name="CameraLimits" type="Control" parent="." index="0"]
 layout_mode = 3

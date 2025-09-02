@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://biejg0lcgkcc3"]
+[gd_scene load_steps=11 format=3 uid="uid://biejg0lcgkcc3"]
 
 [ext_resource type="Script" uid="uid://8vc68sqc5man" path="res://ui/ui.gd" id="1_sr0yi"]
 [ext_resource type="PackedScene" uid="uid://defwcwfjisq44" path="res://ui/hero_inventory_manager.tscn" id="2_ejqu0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bb81edcytansq" path="res://ui/actions_ui.tscn" id="6_oyjey"]
 [ext_resource type="PackedScene" uid="uid://dj6cjw6r764af" path="res://ui/dialogbox.tscn" id="7_m16gv"]
 [ext_resource type="PackedScene" uid="uid://c8r3gbu1ws0n0" path="res://ui/shop_ui.tscn" id="9_pa1oa"]
+[ext_resource type="PackedScene" uid="uid://dcpptwsaivp70" path="res://ui/cutscene_dialogbox.tscn" id="10_ay4pc"]
 [ext_resource type="PackedScene" uid="uid://dysskyvwwn6qi" path="res://test_web_socket.tscn" id="11_bi8hs"]
 
 [node name="UI" type="CanvasLayer"]
@@ -82,6 +83,10 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Dialogbox" parent="VBoxContainer" instance=ExtResource("7_m16gv")]
+visible = false
+layout_mode = 2
+
+[node name="CutsceneDialogbox" parent="VBoxContainer" instance=ExtResource("10_ay4pc")]
 visible = false
 layout_mode = 2
 

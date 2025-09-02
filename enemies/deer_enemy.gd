@@ -135,8 +135,7 @@ func start_mutation_cutscene() -> void:
 	# Now begin behavior
 	_init_fsm()
 	
-	# Connect knockback finished like the bat does
-	knockback_state.finished.connect(_on_knockback_finished)
+ 
 	
 	print("🧠 FSM started — deer is now aggressive")
 

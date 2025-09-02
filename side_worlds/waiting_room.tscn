@@ -68,7 +68,7 @@ position = Vector2(-161.75, -33)
 tile_set = SubResource("TileSet_cepw4")
 
 [node name="Fallinganiamtion-sheet" type="Sprite2D" parent="CabinTilesLayer" index="3"]
-position = Vector2(41.25, 75)
+position = Vector2(-161.75, -33)
 texture = ExtResource("8_507wt")
 hframes = 8
 frame = 3
@@ -85,7 +85,7 @@ position = Vector2(-6.5, 0)
 shape = SubResource("RectangleShape2D_wisjs")
 
 [node name="Mori" parent="." index="5" instance=ExtResource("12_cmkqd")]
-position = Vector2(228, 131)
+position = Vector2(65, 45)
 
 [node name="CameraRemote" type="RemoteTransform2D" parent="." index="6"]
 remote_path = NodePath("../CabinTilesLayer/Fallinganiamtion-sheet")

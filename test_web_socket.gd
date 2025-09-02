@@ -113,6 +113,10 @@ func _handle_command_final(text_raw: String) -> void:
 		Utils.load_level("res://enemies/sami_boss_level.tscn")
 	elif "corruption level" in text:
 		Utils.load_level("res://corupted_levels/corupted_outside.tscn")
+	elif "slime world" in text:
+		Utils.load_level("res://side_worlds/slime_world.tscn")
+	elif "neutral world" in text:
+		Utils.load_level("res://side_worlds/slime_world.tscn")
 	elif text in PLAY_MOZART_ALIASES:
 		print("🎼 PLAY MOZART")
 		if Music.play_track_by_key("mozart"):

@@ -29,3 +29,11 @@ theme_override_fonts/normal_font = ExtResource("2_3ylb0")
 text = "sldkjf
 sdfs"
 fit_content = true
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="ButtonTemplate" type="Button" parent="MarginContainer/ChoicesContainer"]
+visible = false
+layout_mode = 2
+flat = true

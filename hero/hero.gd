@@ -223,7 +223,7 @@ func play_animation(animation: String) -> void:
 	var alignment_prefix := ""
 	
 	# Determine animation prefix based on alignment
-	if ReferenceStash.alignment.evil_score >= 3:
+	if ReferenceStash.alignment.evil_score >= 1:
 		alignment_prefix = "evil_"
 	# Add condition for good alignment when implemented
 	# elif ReferenceStash.alignment.good_score >= 3:

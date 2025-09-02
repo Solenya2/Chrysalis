@@ -1,5 +1,5 @@
 class_name CutsceneDialogbox
-extends Dialogbox
+extends DialogBox
 
 func _ready() -> void:
 	super._ready()  # Call parent ready so rich_text_label is assigned properly.

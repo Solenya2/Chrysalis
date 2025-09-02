@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://btwi2c5qye0ds"]
+[gd_scene load_steps=38 format=4 uid="uid://btwi2c5qye0ds"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_rmgsb"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_i11tg"]
@@ -317,6 +317,11 @@ script = ExtResource("16_3bi1c")
 max_health = 1.0
 metadata/_custom_type_script = "uid://05i5kvcdbtva"
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v2o42"]
+vertices = PackedVector2Array(1140.33, 150.859, 1131.4, 416.953, 851.523, 362.844, 878.406, -68.2969, 1139, 95.0703, 1139, -76.6719, 1694, 91.0703, 1694, 158.852)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(3, 5, 4), PackedInt32Array(0, 4, 6, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(869, -78, 1149, -87, 1149, 85, 1704, 81, 1704, 169, 1150, 161, 1141, 429, 841, 371)])
+
 [node name="corupted_outside" instance=ExtResource("1_rmgsb")]
 
 [node name="CameraLimits" type="Control" parent="." index="0"]
@@ -519,5 +524,9 @@ position = Vector2(1395, 783)
 charge_cooldown = 777777.0
 movement_stats = SubResource("Resource_guiaw")
 stats = SubResource("Resource_fwrkl")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="19"]
+position = Vector2(-1, 0)
+navigation_polygon = SubResource("NavigationPolygon_v2o42")
 
 [editable path="DeerMutateTrigger"]

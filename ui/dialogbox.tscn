@@ -34,6 +34,5 @@ fit_content = true
 layout_mode = 2
 
 [node name="ButtonTemplate" type="Button" parent="MarginContainer/ChoicesContainer"]
-visible = false
 layout_mode = 2
 flat = true

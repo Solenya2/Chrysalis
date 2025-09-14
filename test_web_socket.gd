@@ -96,12 +96,13 @@ func _handle_command_final(text_raw: String) -> void:
 
 	# Your existing triggers
 	if "pizza" in text or "sup" in text:
+		Utils.load_level("res://levels/level_1.tscn")
 		print("🍕 PIZZA DETECTED!")
 		_on_pizza()
 	elif "boom boom" in text:
 		print("💥 BOMB DETONATED!")
 		_on_bomb()
-	elif "i love you" in text:
+	elif "i love you" in text or "eg elsker deg" in text :
 		print("oh my (;")
 		_on_love()
 	elif "bad game" in text or "this game sucks" in text:
@@ -116,7 +117,12 @@ func _handle_command_final(text_raw: String) -> void:
 	elif "slime world" in text:
 		Utils.load_level("res://side_worlds/slime_world.tscn")
 	elif "neutral world" in text:
-		Utils.load_level("res://side_worlds/slime_world.tscn")
+		Utils.load_level("res://side_worlds/neutral_world.tscn")
+	elif "candy world" in text:
+		Utils.load_level("res://side_worlds/candy_world.tscn")
+	elif "pizza" in text: 
+		Utils.load_level("res://levels/level_1.tscn")
+
 	elif text in PLAY_MOZART_ALIASES:
 		print("🎼 PLAY MOZART")
 		if Music.play_track_by_key("mozart"):

@@ -14,7 +14,7 @@ extends Enemy
 var ghost_scene: PackedScene = preload("res://enemies/ghost_deer_enemy.tscn")
 
 # ────────────────────────────────────────────────
-# FSM and States
+# FSM and Statesa
 # ────────────────────────────────────────────────
 var fsm: FSM
 var decision_state: BossDecisionState

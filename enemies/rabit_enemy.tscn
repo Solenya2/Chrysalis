@@ -1,22 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://2gqkr10vlng4"]
+[gd_scene load_steps=12 format=3 uid="uid://2gqkr10vlng4"]
 
 [ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_5kkbt"]
 [ext_resource type="Script" uid="uid://mgx0c63q4ixt" path="res://enemies/rabit_enemy.gd" id="2_v8f6y"]
 [ext_resource type="Texture2D" uid="uid://be8h76v7aafem" path="res://Temporaryassets/bummy.png" id="3_pfu5e"]
-[ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="3_xo1it"]
-[ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="4_u5r33"]
-
-[sub_resource type="Resource" id="Resource_7d5bi"]
-script = ExtResource("3_xo1it")
-max_speed = 80.0
-acceleration = 1000.0
-friction = 1000.0
-metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
-
-[sub_resource type="Resource" id="Resource_l2lgu"]
-script = ExtResource("4_u5r33")
-max_health = 30.0
-metadata/_custom_type_script = "uid://05i5kvcdbtva"
 
 [sub_resource type="Animation" id="Animation_l2lgu"]
 length = 0.001
@@ -112,8 +98,6 @@ height = 26.0
 [node name="RabitEnemy" instance=ExtResource("1_5kkbt")]
 script = ExtResource("2_v8f6y")
 dodge_cooldown = 0.0
-movement_stats = SubResource("Resource_7d5bi")
-stats = SubResource("Resource_l2lgu")
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(3, -25)

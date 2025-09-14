@@ -70,12 +70,13 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
 visible = false
+top_level = true
 position = Vector2(4.3579, 17.1186)
 shape = SubResource("RectangleShape2D_vjtdm")
 
 [node name="Tablewithcutlery" type="Sprite2D" parent="." index="5"]
 top_level = true
-position = Vector2(125, 96)
+position = Vector2(123, 86)
 texture = ExtResource("9_trtw3")
 hframes = 2
 frame = 1
@@ -91,24 +92,24 @@ texture = ExtResource("12_viv43")
 
 [node name="Chair" type="Sprite2D" parent="." index="8"]
 top_level = true
-position = Vector2(121, 104)
+position = Vector2(119, 94)
 texture = ExtResource("14_kowj8")
 hframes = 3
 frame = 1
 
 [node name="Chair2" type="Sprite2D" parent="." index="9"]
-position = Vector2(107, 96)
+position = Vector2(105, 86)
 texture = ExtResource("14_kowj8")
 hframes = 3
 frame = 2
 
 [node name="Chair3" type="Sprite2D" parent="." index="10"]
-position = Vector2(122, 84)
+position = Vector2(120, 74)
 texture = ExtResource("14_kowj8")
 hframes = 3
 
 [node name="Chair4" type="Sprite2D" parent="." index="11"]
-position = Vector2(138, 95)
+position = Vector2(136, 85)
 texture = ExtResource("14_kowj8")
 flip_h = true
 hframes = 3
@@ -124,20 +125,7 @@ frame = 0
 [node name="CollisionShape2D" parent="CabinetMilk" index="1"]
 visible = false
 
-[node name="CabinetMilk" parent="CabinetMilk" index="4" instance=ExtResource("17_30mia")]
-position = Vector2(100, 61)
-
-[node name="Sprite2D" parent="CabinetMilk/CabinetMilk" index="0"]
-position = Vector2(116, 16)
-frame = 0
-
-[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk" index="1"]
-visible = false
-
-[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk/Interaction" index="0"]
-position = Vector2(31, -31)
-
-[node name="CabinetMilk2" parent="CabinetMilk" index="5" instance=ExtResource("17_30mia")]
+[node name="CabinetMilk2" parent="CabinetMilk" index="4" instance=ExtResource("17_30mia")]
 position = Vector2(100, 61)
 
 [node name="Sprite2D" parent="CabinetMilk/CabinetMilk2" index="0"]
@@ -147,18 +135,8 @@ frame = 0
 [node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2" index="1"]
 visible = false
 
-[node name="CabinetMilk" parent="CabinetMilk/CabinetMilk2" index="4" instance=ExtResource("17_30mia")]
-position = Vector2(100, 61)
-
-[node name="Sprite2D" parent="CabinetMilk/CabinetMilk2/CabinetMilk" index="0"]
-position = Vector2(116, 16)
-frame = 0
-
-[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/CabinetMilk" index="1"]
-visible = false
-
-[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/CabinetMilk/Interaction" index="0"]
-position = Vector2(31, -31)
+[node name="CollisionShape2D" parent="CabinetMilk/CabinetMilk2/Interaction" index="0"]
+position = Vector2(216, -52)
 
 [node name="FlowerDanedlion" parent="." index="13" instance=ExtResource("18_racdh")]
 position = Vector2(61, 133)
@@ -168,6 +146,7 @@ visible = false
 
 [node name="Fridge" parent="." index="14" instance=ExtResource("19_trtw3")]
 position = Vector2(202, 51)
+start_open = true
 
 [node name="CollisionShape2D" parent="Fridge/Interaction" index="0"]
 position = Vector2(1.5, 9.75)
@@ -202,7 +181,8 @@ visible = false
 position = Vector2(1.5, -3.5)
 
 [node name="Tablewithcuttlery" parent="." index="17" instance=ExtResource("19_koa1n")]
-position = Vector2(245, 60)
+visible = false
+position = Vector2(422, 34)
 
 [node name="CabinetMilk2" parent="." index="18" instance=ExtResource("17_30mia")]
 position = Vector2(100, 61)
@@ -217,27 +197,10 @@ visible = false
 [node name="CollisionShape2D" parent="CabinetMilk2/Interaction" index="0"]
 visible = false
 
-[node name="CabinetMilk" parent="CabinetMilk2" index="4" instance=ExtResource("17_30mia")]
-position = Vector2(100, 61)
-
-[node name="Sprite2D" parent="CabinetMilk2/CabinetMilk" index="0"]
-position = Vector2(116, 16)
-frame = 0
-
-[node name="CollisionShape2D" parent="CabinetMilk2/CabinetMilk" index="1"]
-visible = false
-
-[node name="CollisionShape2D" parent="CabinetMilk2/CabinetMilk/Interaction" index="0"]
-visible = false
-position = Vector2(31, -31)
-
 [editable path="CabinetMilk"]
-[editable path="CabinetMilk/CabinetMilk"]
 [editable path="CabinetMilk/CabinetMilk2"]
-[editable path="CabinetMilk/CabinetMilk2/CabinetMilk"]
 [editable path="FlowerDanedlion"]
 [editable path="Fridge"]
 [editable path="Sink"]
 [editable path="TomatoOven"]
 [editable path="CabinetMilk2"]
-[editable path="CabinetMilk2/CabinetMilk"]

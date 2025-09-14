@@ -12,7 +12,7 @@ signal request_roll()
 signal request_weapon()
 signal request_sunbeam()
 signal request_misc()
-
+signal request_centipede
 func physics_process(delta: float) -> void:
 	var hero := actor as Hero
 
@@ -60,3 +60,6 @@ func unhandled_input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("shoot_sunbeam"):
 		request_sunbeam.emit()
+		
+	if event.is_action_pressed("centipede_attack"):
+		request_centipede

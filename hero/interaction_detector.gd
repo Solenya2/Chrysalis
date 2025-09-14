@@ -1,5 +1,5 @@
 # InteractionDetector.gd — Detects and triggers nearby interactable areas (Interaction nodes).
-# Attach to the player or a directional ray to handle "press button to interact" mechanics.
+# Attach to the player or a directional ray to handle "press button to interactxz"x mechanics.
 
 class_name InteractionDetector
 extends Area2D

@@ -14,4 +14,4 @@ extends Item
 
 # Animation to play when this weapon is used (must exist in hero's AnimationPlayer).
 # Currently only "sword", but enum allows future expansion (e.g., "spear", "axe").
-@export_enum("sword") var animation: String = "sword"
+@export_enum("sword", "centipede", "stick") var animation: String = "sword"  # Add "centipede" here

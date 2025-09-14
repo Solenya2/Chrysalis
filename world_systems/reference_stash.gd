@@ -9,9 +9,12 @@ var inventory: Inventory = (
 	.set_size(16)
 	.add_item(load("res://items/apple_item.tres"), 5)
 	.add_item(load("res://items/apple_item.tres"), 5)
+	.add_item(load("res://items/SunbeamItem.tres"), 1)
 	.add_item(load("res://items/roll_ring_item.tres"), 3)
 	.add_item(load("res://items/bomb_item.tres"), 9)
 	.add_item(load("res://items/gold_item.tres"), 50)
+	.add_item(load("res://items/CentipedeItem.tres"))
+	
 )
 
 # --- Minimal additions for routing ---

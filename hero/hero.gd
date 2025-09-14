@@ -59,7 +59,7 @@ var active_sprite: Sprite2D
 @onready var heal_state: = HeroHealState.new().set_actor(self)
 @onready var place_state: = HeroPlaceState.new().set_actor(self)
 @onready var laser_state := HeroLaserState.new().set_actor(self)
-
+@onready var centipede_state: HeroCentipedeState = HeroCentipedeState.new().set_actor(self).set_item(load("res://items/CentipedeItem.tres"))
 @onready var cutscene_pause_state: = CutscenePauseState.new().set_actor(self)
 
 # Finite State Machine controller
@@ -138,7 +138,7 @@ func _ready() -> void:
 					
 
 		connect_action(state_signal, state)
-)
+	)
 
 
 	# Initialize default roll item in slot 0
@@ -148,8 +148,11 @@ func _ready() -> void:
 		inventory.add_item(sunbeam_item)
 	set_action_from_item(sunbeam_item, 2)
 
-
 	laser_state.projectile_scene = preload("res://projectiles/laser_projectile.tscn")  #  path
+	
+	# Centipede attack setup
+	move_state.request_centipede.connect(fsm.change_state.bind(centipede_state))
+	centipede_state.finished.connect(fsm.change_state.bind(move_state))
 
 func check_alignment() -> void:
 	# Hide all sprites first

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://b7y1fytnfvw7u"]
+
+[ext_resource type="Script" uid="uid://col3mye8bmwqm" path="res://items/weapon_item.gd" id="1_h5qdc"]
+[ext_resource type="Texture2D" uid="uid://bs1hyd3ix6enh" path="res://items/mutationicon.png" id="1_xbqkh"]
+
+[resource]
+script = ExtResource("1_h5qdc")
+damage = 1.0
+knockback = 175.0
+animation = "centipede"
+name = "centepideattakc"
+plural_name = ""
+icon = ExtResource("1_xbqkh")
+description = ""
+is_equipment = false
+metadata/_custom_type_script = "uid://col3mye8bmwqm"

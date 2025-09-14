@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://bpwrh12ayrcwx"]
+[gd_scene load_steps=21 format=4 uid="uid://bpwrh12ayrcwx"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_melsn"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_vpjtj"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://4xecpxdxvi07" path="res://Thingstointeractwith/lamp.tscn" id="16_xgo7b"]
 [ext_resource type="PackedScene" uid="uid://cq7eefb3ne0ta" path="res://Thingstointeractwith/flower_danedlion.tscn" id="17_bp1j4"]
 [ext_resource type="Resource" uid="uid://vfsxeextups8" path="res://level_connections/main_room_to_staircase.tres" id="17_sfbck"]
+[ext_resource type="Texture2D" uid="uid://p56jtedfff3h" path="res://levels/tvonandoff-Sheet.png" id="18_sfbck"]
 [ext_resource type="PackedScene" uid="uid://hjm5e56d0nbc" path="res://Thingstointeractwith/tv.tscn" id="18_wmdfo"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
@@ -102,3 +103,10 @@ position = Vector2(262, 61)
 
 [node name="Tv" parent="." index="13" instance=ExtResource("18_wmdfo")]
 position = Vector2(166, 151)
+start_open = true
+
+[node name="Sprite2D" parent="Tv" index="0"]
+texture = ExtResource("18_sfbck")
+frame = 0
+
+[editable path="Tv"]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=3 format=3 uid="uid://c2es3ru7al2fv"]
+
+[ext_resource type="Script" uid="uid://col3mye8bmwqm" path="res://items/weapon_item.gd" id="1_ehwmq"]
+[ext_resource type="Texture2D" uid="uid://brtdadu7qkfqs" path="res://hero/stick.png" id="1_kxcwm"]
+
+[resource]
+script = ExtResource("1_ehwmq")
+damage = 1.0
+knockback = 175.0
+animation = "stick"
+name = "Stick"
+plural_name = ""
+icon = ExtResource("1_kxcwm")
+description = ""
+is_equipment = true
+metadata/_custom_type_script = "uid://col3mye8bmwqm"

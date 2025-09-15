@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_ehwmq")
 damage = 1.0
+non_lethal = true
 knockback = 175.0
 animation = "stick"
 name = "Stick"

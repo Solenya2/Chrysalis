@@ -5,8 +5,8 @@
 
 [resource]
 script = ExtResource("1_h5qdc")
-damage = 1.0
-knockback = 175.0
+damage = 2.0
+knockback = 500.0
 animation = "centipede"
 name = "centepideattakc"
 plural_name = ""

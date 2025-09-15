@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://burvhv42pe1q6"]
+[gd_scene load_steps=27 format=4 uid="uid://burvhv42pe1q6"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_7yyhx"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="3_mlspe"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="13_nmsli"]
 [ext_resource type="PackedScene" uid="uid://2gqkr10vlng4" path="res://enemies/rabit_enemy.tscn" id="15_bgw3c"]
 [ext_resource type="Resource" uid="uid://bdtfkix1ed3c1" path="res://level_connections/level_1_to_sami_boss.tres" id="15_vjtdm"]
+[ext_resource type="PackedScene" uid="uid://dvcibbp7hlqsx" path="res://world/stick_on_ground.tscn" id="16_bgw3c"]
+[ext_resource type="PackedScene" uid="uid://cshan1q4mqji5" path="res://enemies/paul.tscn" id="17_lrvbd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gjyxd"]
 vertices = PackedVector2Array(184, 120, 307, 98, 334, 98, 216, 120, 248, 88, 307, 73, 216, 88, 248, 152, 296, 184, 8, 184, 216, 152, 360, 120, 296, 120, 216, 56, 184, 88, 200, 8, 360, -8, 334, 73, 248, 120, 312, -8, 312, 8, 248, 56, 8, -8, 200, -8, 152, 88, 152, 120)
@@ -48,6 +50,18 @@ metadata/_custom_type_script = "uid://05i5kvcdbtva"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmsli"]
 
+[sub_resource type="Resource" id="Resource_7nvrk"]
+script = ExtResource("12_vjtdm")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_jkxa6"]
+script = ExtResource("13_bgw3c")
+max_health = 1.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
 [node name="Level1" instance=ExtResource("1_7yyhx")]
 
 [node name="CameraLimits" type="Control" parent="." index="0"]
@@ -71,7 +85,6 @@ offset_bottom = 208.0
 color = Color(0.258824, 0.643137, 0.34902, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="3"]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_gjyxd")
 metadata/_edit_lock_ = true
 
@@ -124,3 +137,11 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 shape = SubResource("RectangleShape2D_nmsli")
 
 [node name="CabinTilesLayer" parent="." index="11" instance=ExtResource("13_nmsli")]
+
+[node name="StickOnGround" parent="." index="12" instance=ExtResource("16_bgw3c")]
+position = Vector2(189, 73)
+
+[node name="Paul" parent="." index="13" instance=ExtResource("17_lrvbd")]
+position = Vector2(251, 86)
+movement_stats = SubResource("Resource_7nvrk")
+stats = SubResource("Resource_jkxa6")

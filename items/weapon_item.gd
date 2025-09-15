@@ -7,6 +7,7 @@ extends Item
 # Damage dealt by this weapon when it hits a target.
 # NOTE: Will likely vary between 0.5 for fast daggers and 10+ for heavy weapons.
 @export var damage := 1.0  # ← Tweakable per weapon type
+@export var is_knockout: bool = false
 
 # Knockback force applied to the enemy upon hit.
 # NOTE: Works with enemy knockback states and hitbox logic.

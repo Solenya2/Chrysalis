@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://csv512cg3trq7"]
 
 [ext_resource type="Script" uid="uid://c1skvdpx7qhke" path="res://Npc/npc_base.gd" id="1_s6gr2"]
-[ext_resource type="Texture2D" uid="uid://mxr8ybdd8oo" path="res://Npc/paul-Sheet.png" id="2_0y6bd"]
+[ext_resource type="Texture2D" uid="uid://dyy2uwwu5otsw" path="res://Npc/paul-Sheetbzzzzzzzzzzzzzzzz-Sheet.png" id="2_0y6bd"]
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_0y6bd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxd7"]
@@ -15,7 +15,7 @@ script = ExtResource("1_s6gr2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_0y6bd")
-hframes = 2
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)

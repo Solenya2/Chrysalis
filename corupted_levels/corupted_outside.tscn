@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://btwi2c5qye0ds"]
+[gd_scene load_steps=38 format=4 uid="uid://btwi2c5qye0ds"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_rmgsb"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_i11tg"]
@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://2j4vmge77smk" path="res://world_systems/deer_mutate_trigger.tscn" id="15_u8vgx"]
 [ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="16_3bi1c"]
 [ext_resource type="Texture2D" uid="uid://cn4kmtgpwneax" path="res://Assetsforleveldesign/roads.png" id="19_h75xp"]
-[ext_resource type="PackedScene" uid="uid://csv512cg3trq7" path="res://Npc/npc_base.tscn" id="20_c2xw1"]
+[ext_resource type="PackedScene" uid="uid://cshan1q4mqji5" path="res://enemies/paul.tscn" id="22_c2xw1"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
 shuffle = true
@@ -296,6 +296,42 @@ vertices = PackedVector2Array(1140.33, 150.859, 1131.4, 416.953, 851.523, 362.84
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(3, 5, 4), PackedInt32Array(0, 4, 6, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(869, -78, 1149, -87, 1149, 85, 1704, 81, 1704, 169, 1150, 161, 1141, 429, 841, 371)])
 
+[sub_resource type="Resource" id="Resource_sder4"]
+script = ExtResource("15_0sks5")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_v2o42"]
+script = ExtResource("16_3bi1c")
+max_health = 1.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="Resource" id="Resource_guiaw"]
+script = ExtResource("15_0sks5")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_fwrkl"]
+script = ExtResource("16_3bi1c")
+max_health = 1.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="Resource" id="Resource_iijem"]
+script = ExtResource("15_0sks5")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_11ycv"]
+script = ExtResource("16_3bi1c")
+max_health = 1.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
 [node name="corupted_outside" instance=ExtResource("1_rmgsb")]
 
 [node name="CameraLimits" type="Control" parent="." index="0"]
@@ -470,28 +506,23 @@ texture = ExtResource("19_h75xp")
 hframes = 19
 frame = 4
 
-[node name="npc_base" parent="." index="12" instance=ExtResource("20_c2xw1")]
-top_level = true
-position = Vector2(1740.75, 195)
-
-[node name="Sprite2D" parent="npc_base" index="0"]
-frame = 1
-
-[node name="npc_base2" parent="." index="13" instance=ExtResource("20_c2xw1")]
-top_level = true
-position = Vector2(1771.75, 160)
-
-[node name="Sprite2D" parent="npc_base2" index="0"]
-frame = 1
-
-[node name="npc_base3" parent="." index="14" instance=ExtResource("20_c2xw1")]
-top_level = true
-position = Vector2(1772.75, 181)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="15"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="12"]
 position = Vector2(-1, 0)
 navigation_polygon = SubResource("NavigationPolygon_v2o42")
 
+[node name="Paul" parent="." index="13" instance=ExtResource("22_c2xw1")]
+position = Vector2(1730, 188)
+movement_stats = SubResource("Resource_sder4")
+stats = SubResource("Resource_v2o42")
+
+[node name="Paul2" parent="." index="14" instance=ExtResource("22_c2xw1")]
+position = Vector2(1762, 159)
+movement_stats = SubResource("Resource_guiaw")
+stats = SubResource("Resource_fwrkl")
+
+[node name="Paul3" parent="." index="15" instance=ExtResource("22_c2xw1")]
+position = Vector2(1780, 195)
+movement_stats = SubResource("Resource_iijem")
+stats = SubResource("Resource_11ycv")
+
 [editable path="DeerMutateTrigger"]
-[editable path="npc_base"]
-[editable path="npc_base2"]

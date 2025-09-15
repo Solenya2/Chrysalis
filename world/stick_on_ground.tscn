@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvcibbp7hlqsx"]
+[gd_scene load_steps=6 format=3 uid="uid://dvcibbp7hlqsx"]
 
-[ext_resource type="Texture2D" uid="uid://5lsvnsoqnqmx" path="res://world/sword_in_the_stone.png" id="1_gnkje"]
+[ext_resource type="Script" uid="uid://cksgy0b27x5ex" path="res://world/stick_on_ground.gd" id="1_b5lkn"]
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="2_b5lkn"]
+[ext_resource type="Texture2D" uid="uid://brtdadu7qkfqs" path="res://hero/stick.png" id="2_kwa7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
 size = Vector2(11, 9)
@@ -10,12 +11,11 @@ size = Vector2(11, 9)
 size = Vector2(17, 13)
 
 [node name="StickOnGround" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_b5lkn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
-texture = ExtResource("1_gnkje")
-hframes = 2
-frame = 1
+texture = ExtResource("2_kwa7v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -2.5)

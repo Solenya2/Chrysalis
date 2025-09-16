@@ -101,8 +101,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rm2u3"]
 size = Vector2(12, 15)
 
-[node name="Paul" instance=ExtResource("1_dgs7f")]
+[node name="Paul" groups=["Paul"] instance=ExtResource("1_dgs7f")]
 script = ExtResource("2_82n8s")
+start_active = false
+activation_distance = 0.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_1vg8x")

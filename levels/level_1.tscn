@@ -143,5 +143,7 @@ position = Vector2(189, 73)
 
 [node name="Paul" parent="." index="13" instance=ExtResource("17_lrvbd")]
 position = Vector2(251, 86)
+start_active = false
+activation_distance = 0.0
 movement_stats = SubResource("Resource_7nvrk")
 stats = SubResource("Resource_jkxa6")

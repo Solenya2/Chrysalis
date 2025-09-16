@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8xrgowr0f6ga"]
+
+[ext_resource type="PackedScene" uid="uid://cj7yxmug1db04" path="res://world_systems/cutscene_trigger.tscn" id="1_l703g"]
+[ext_resource type="Script" uid="uid://clg1jlvq5eynu" path="res://world/paul_trigger.gd" id="2_omv0y"]
+
+[node name="paul_trigger" instance=ExtResource("1_l703g")]
+visible = false
+script = ExtResource("2_omv0y")
+car_anchor_path = NodePath("")
+car_focus_path = NodePath("")
+car_zoom = Vector2(1.35, 1.35)
+pan_time = 0.8
+shot_hold = 5.0

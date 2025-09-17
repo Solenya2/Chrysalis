@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://d3h2roo2r0pvx"]
 
 [ext_resource type="Script" uid="uid://da38o4pivrx0n" path="res://side_worlds/mori.gd" id="1_n8p6d"]
-[ext_resource type="Texture2D" uid="uid://phmw02er5a57" path="res://Npc/tempmori.png" id="2_caqrk"]
+[ext_resource type="Texture2D" uid="uid://tosjx6clob8w" path="res://side_worlds/moridesign-Sheet.png" id="2_n8p6d"]
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_5r3l3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxd7"]
@@ -14,9 +14,9 @@ size = Vector2(17, 10)
 script = ExtResource("1_n8p6d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_caqrk")
-hframes = 20
-frame = 1
+texture = ExtResource("2_n8p6d")
+hframes = 6
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

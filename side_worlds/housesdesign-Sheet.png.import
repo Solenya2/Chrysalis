@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvl1whc2nulu4"
-path="res://.godot/imported/Free_Chicken_House.png-b187e4f2637daad68449913926dad91c.ctex"
+uid="uid://dhshhg8lnys8r"
+path="res://.godot/imported/housesdesign-Sheet.png-1a352466acf05080bb97169a7a6f2d69.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assetsforleveldesign/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Objects/Free_Chicken_House.png"
-dest_files=["res://.godot/imported/Free_Chicken_House.png-b187e4f2637daad68449913926dad91c.ctex"]
+source_file="res://side_worlds/housesdesign-Sheet.png"
+dest_files=["res://.godot/imported/housesdesign-Sheet.png-1a352466acf05080bb97169a7a6f2d69.ctex"]
 
 [params]
 

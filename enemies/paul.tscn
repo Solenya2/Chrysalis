@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cshan1q4mqji5"]
 
 [ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_dgs7f"]
-[ext_resource type="Texture2D" uid="uid://dyy2uwwu5otsw" path="res://Npc/paul-Sheetbzzzzzzzzzzzzzzzz-Sheet.png" id="2_1vg8x"]
 [ext_resource type="Script" uid="uid://dioolcdfwot57" path="res://enemies/paul.gd" id="2_82n8s"]
+[ext_resource type="Texture2D" uid="uid://6b2cq4l0gt58" path="res://Npc/paul-Sheetbutmore.png" id="3_1vg8x"]
 
 [sub_resource type="Animation" id="Animation_gmsj3"]
 length = 0.001
@@ -107,8 +107,9 @@ start_active = false
 activation_distance = 0.0
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_1vg8x")
-hframes = 4
+position = Vector2(7, 7)
+texture = ExtResource("3_1vg8x")
+hframes = 41
 frame = 3
 
 [node name="AnimationPlayer" parent="." index="1"]

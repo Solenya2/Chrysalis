@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://cssn2p6qykud0"]
+[gd_scene load_steps=19 format=4 uid="uid://cssn2p6qykud0"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_mt21t"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_ipin4"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://d0ad3evw340q5" path="res://level_connections/outside_to_lower_sgaircase.tres" id="9_cpj8t"]
 [ext_resource type="PackedScene" uid="uid://ccdi5p211g5xr" path="res://side_worlds/candy_deer_enemy.tscn" id="9_ujvw0"]
 [ext_resource type="Texture2D" uid="uid://dhshhg8lnys8r" path="res://side_worlds/housesdesign-Sheet.png" id="12_ujvw0"]
+[ext_resource type="Resource" uid="uid://ctcr1etnaemmw" path="res://level_connections/candy_level_to_shopkeep_level.tres" id="13_jr7uy"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
 shuffle = true
@@ -30,6 +31,9 @@ sources/0 = SubResource("TileSetAtlasSource_23lg8")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wisjs"]
 size = Vector2(7, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d6tyk"]
+size = Vector2(20, 27)
 
 [node name="Candy_world" instance=ExtResource("1_mt21t")]
 
@@ -124,3 +128,14 @@ scale = Vector2(1.40601, 1.35849)
 texture = ExtResource("12_ujvw0")
 hframes = 5
 frame = 3
+
+[node name="Door2" type="Area2D" parent="." index="9"]
+position = Vector2(324, 109)
+script = ExtResource("8_kd0ol")
+connection = ExtResource("13_jr7uy")
+next_level_path = "uid://c1d2y38c4ecni"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
+position = Vector2(3, -3.5)
+shape = SubResource("RectangleShape2D_d6tyk")

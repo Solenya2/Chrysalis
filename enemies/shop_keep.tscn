@@ -1,0 +1,141 @@
+[gd_scene load_steps=18 format=3 uid="uid://bxh2spnb1sdrq"]
+
+[ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_alow1"]
+[ext_resource type="Script" uid="uid://dfc31el4afmhh" path="res://Npc/shop_keep.gd" id="2_8uord"]
+[ext_resource type="Script" uid="uid://4maqk666i4fc" path="res://ui/ShopItem.gd" id="3_cpj7j"]
+[ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="4_qtbgh"]
+[ext_resource type="Texture2D" uid="uid://c2tjmxlev6ofr" path="res://Npc/sirgingerbread-Sheet.png" id="4_wqlmn"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="5_8uord"]
+[ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="5_ibeps"]
+
+[sub_resource type="Resource" id="Resource_dopoa"]
+script = ExtResource("4_qtbgh")
+max_speed = 40.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_03bja"]
+script = ExtResource("5_ibeps")
+max_health = 3.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="Animation" id="Animation_qtbgh"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.454845, 0.763878),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_ibeps"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_8uord"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_wqlmn"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dopoa"]
+_data = {
+&"RESET": SubResource("Animation_ibeps"),
+&"idle": SubResource("Animation_wqlmn"),
+&"move": SubResource("Animation_8uord"),
+&"shoot": SubResource("Animation_qtbgh")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_03bja"]
+size = Vector2(20, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yuui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpj7j"]
+size = Vector2(61, 58)
+
+[node name="ShopKeep" instance=ExtResource("1_alow1")]
+script = ExtResource("2_8uord")
+greeting = "want some of the good stuff?"
+shop_items = Array[ExtResource("3_cpj7j")]([])
+anger_line = "HEY! You pay for that."
+farewell_line = "well fuck you too then"
+buy_choice_text = "yea i wanna buy"
+no_choice_text = "no thanks you capatlist pig"
+movement_stats = SubResource("Resource_dopoa")
+stats = SubResource("Resource_03bja")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("4_wqlmn")
+hframes = 4
+frame = 1
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_dopoa")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_03bja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_2yuui")
+
+[node name="NavigationAgentOffset2D" type="Node2D" parent="." index="5"]
+position = Vector2(0, -5)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="NavigationAgentOffset2D" index="0"]
+unique_name_in_owner = true
+path_desired_distance = 8.0
+target_desired_distance = 8.0
+
+[node name="Interaction" type="Area2D" parent="." index="6"]
+script = ExtResource("5_8uord")
+metadata/_custom_type_script = "uid://c4b5s7nqfdlvm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction" index="0"]
+position = Vector2(1.5, 19)
+shape = SubResource("RectangleShape2D_cpj7j")

@@ -7,6 +7,7 @@
 [sub_resource type="Resource" id="Resource_tat58"]
 script = ExtResource("2_fqu57")
 damage = 5.0
+is_knockout = false
 knockback = 500.0
 animation = "sword"
 name = "BigSword"

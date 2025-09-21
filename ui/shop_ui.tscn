@@ -14,6 +14,10 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_w63dr")
 script = ExtResource("1_h5uvh")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
 [node name="TitleLabel" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4

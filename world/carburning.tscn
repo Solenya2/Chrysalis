@@ -10,6 +10,21 @@ size = Vector2(16, 16.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
 size = Vector2(17, 16.5)
 
+[sub_resource type="Animation" id="Animation_judpu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
 [sub_resource type="Animation" id="Animation_5wyta"]
 resource_name = "burning"
 loop_mode = 1
@@ -24,21 +39,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [1, 2, 3, 4]
-}
-
-[sub_resource type="Animation" id="Animation_judpu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4vb6y"]

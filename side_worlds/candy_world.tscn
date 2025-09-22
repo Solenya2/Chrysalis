@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cssn2p6qykud0"]
+[gd_scene load_steps=28 format=4 uid="uid://cssn2p6qykud0"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_mt21t"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_ipin4"]
@@ -13,6 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://ccdi5p211g5xr" path="res://side_worlds/candy_deer_enemy.tscn" id="9_ujvw0"]
 [ext_resource type="Texture2D" uid="uid://dhshhg8lnys8r" path="res://side_worlds/housesdesign-Sheet.png" id="12_ujvw0"]
 [ext_resource type="Resource" uid="uid://ctcr1etnaemmw" path="res://level_connections/candy_level_to_shopkeep_level.tres" id="13_jr7uy"]
+[ext_resource type="PackedScene" uid="uid://cmadlpleloe3j" path="res://enemies/bimblo.tscn" id="14_d6tyk"]
+[ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="15_kd0ol"]
+[ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="16_cpj8t"]
+[ext_resource type="PackedScene" uid="uid://bcsxvvsrq58ra" path="res://ui/boss_health_bar_ui.tscn" id="17_xo7bh"]
+[ext_resource type="PackedScene" uid="uid://dknwm3kyydwph" path="res://world_systems/cutscene_player.tscn" id="18_t2mmg"]
+[ext_resource type="PackedScene" uid="uid://dcpptwsaivp70" path="res://ui/cutscene_dialogbox.tscn" id="19_6atce"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
 shuffle = true
@@ -34,6 +40,26 @@ size = Vector2(7, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d6tyk"]
 size = Vector2(20, 27)
+
+[sub_resource type="Resource" id="Resource_yorpo"]
+script = ExtResource("15_kd0ol")
+max_speed = 80.0
+acceleration = 1000.0
+friction = 1000.0
+metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
+
+[sub_resource type="Resource" id="Resource_xo7bh"]
+script = ExtResource("16_cpj8t")
+max_health = 8.0
+metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_xo7bh"]
+vertices = PackedVector2Array(926.633, 341.078, -86.0938, 350.922, -91.8984, -145.07, 904.352, -154.922)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -32, 384, -32, 384, 136, 320, 144, 313.456, 208, -16, 208), PackedVector2Array(-100, -153, 912, -163, 935, 349, -94, 359)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
+agent_radius = 8.0
 
 [node name="Candy_world" instance=ExtResource("1_mt21t")]
 
@@ -139,3 +165,24 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
 position = Vector2(3, -3.5)
 shape = SubResource("RectangleShape2D_d6tyk")
+
+[node name="Bimblo" parent="." index="10" instance=ExtResource("14_d6tyk")]
+position = Vector2(328, 150)
+movement_stats = SubResource("Resource_yorpo")
+stats = SubResource("Resource_xo7bh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." index="11"]
+
+[node name="BossHealthBarUI" parent="CanvasLayer" index="0" instance=ExtResource("17_xo7bh")]
+offset_left = 177.0
+offset_top = 28.0
+offset_right = 177.0
+offset_bottom = 56.0
+
+[node name="CutscenePlayer" parent="." index="12" instance=ExtResource("18_t2mmg")]
+
+[node name="CutsceneDialogbox" parent="." index="13" instance=ExtResource("19_6atce")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="14"]
+navigation_polygon = SubResource("NavigationPolygon_xo7bh")
+metadata/_edit_lock_ = true

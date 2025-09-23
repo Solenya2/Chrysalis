@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckhkrlw2boi0"]
+
+[ext_resource type="Texture2D" uid="uid://ctuoeb64s2tlv" path="res://corupted_levels/mapitem.png" id="1_skd2g"]
+[ext_resource type="Script" uid="uid://onlast1y338e" path="res://corupted_levels/map_on_ground.gd" id="1_xgwcx"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="2_xgwcx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
+size = Vector2(10.5, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
+size = Vector2(16.5, 15.5)
+
+[node name="map_on_ground" type="StaticBody2D" groups=["navigation"]]
+script = ExtResource("1_xgwcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+texture = ExtResource("1_skd2g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, -8)
+shape = SubResource("RectangleShape2D_jor8q")
+disabled = true
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("2_xgwcx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(0.75, -8.25)
+shape = SubResource("RectangleShape2D_my5cn")

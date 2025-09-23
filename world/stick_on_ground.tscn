@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://brtdadu7qkfqs" path="res://hero/stick.png" id="2_kwa7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
-size = Vector2(11, 9)
+size = Vector2(10.5, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(17, 13)
+size = Vector2(16.5, 15.5)
 
 [node name="StickOnGround" type="StaticBody2D" groups=["navigation"]]
 script = ExtResource("1_b5lkn")

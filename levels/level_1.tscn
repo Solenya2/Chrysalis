@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://burvhv42pe1q6"]
+[gd_scene load_steps=29 format=4 uid="uid://burvhv42pe1q6"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_7yyhx"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="3_mlspe"]
@@ -17,6 +17,7 @@
 [ext_resource type="Resource" uid="uid://bdtfkix1ed3c1" path="res://level_connections/level_1_to_sami_boss.tres" id="15_vjtdm"]
 [ext_resource type="PackedScene" uid="uid://dvcibbp7hlqsx" path="res://world/stick_on_ground.tscn" id="16_bgw3c"]
 [ext_resource type="PackedScene" uid="uid://cshan1q4mqji5" path="res://enemies/paul.tscn" id="17_lrvbd"]
+[ext_resource type="Resource" uid="uid://cncg32mhdxmvi" path="res://level_connections/boss_level_bimblo_to_level_one.tres" id="18_oqlok"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gjyxd"]
 vertices = PackedVector2Array(184, 120, 307, 98, 334, 98, 216, 120, 248, 88, 307, 73, 216, 88, 248, 152, 296, 184, 8, 184, 216, 152, 360, 120, 296, 120, 216, 56, 184, 88, 200, 8, 360, -8, 334, 73, 248, 120, 312, -8, 312, 8, 248, 56, 8, -8, 200, -8, 152, 88, 152, 120)
@@ -61,6 +62,8 @@ metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
 script = ExtResource("13_bgw3c")
 max_health = 1.0
 metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nvrk"]
 
 [node name="Level1" instance=ExtResource("1_7yyhx")]
 
@@ -145,3 +148,15 @@ position = Vector2(189, 73)
 position = Vector2(251, 86)
 movement_stats = SubResource("Resource_7nvrk")
 stats = SubResource("Resource_jkxa6")
+
+[node name="Door4" type="Area2D" parent="." index="14"]
+position = Vector2(184, -2)
+script = ExtResource("6_2prqv")
+exit_direction = 3
+connection = ExtResource("18_oqlok")
+next_level_path = "uid://ca31wha6yfq52"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door4" index="0"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_7nvrk")

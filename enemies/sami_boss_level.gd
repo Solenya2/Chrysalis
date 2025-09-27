@@ -19,7 +19,7 @@ func _ready():
 	shaman.set_boss_health_bar(boss_health_bar)
 
 	# Bind stats to the bar
-	boss_health_bar.bind_to_boss(shaman.stats, "Shaman")
+	boss_health_bar.bind_to_boss(shaman.stats, "Noaidi")
 
 	# (Optional) Still track death if you want to hide UI externally
 	shaman.stats.health_changed.connect(_on_boss_health_changed)

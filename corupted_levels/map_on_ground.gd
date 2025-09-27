@@ -1,44 +1,30 @@
-# SwordInTheStone.gd — A one-time interactable that gives the player a sword and shows a dialog.
-# Uses Stasher for persistence, Interaction for triggering, and Inventory to add the item.
-
 extends StaticBody2D
 
-# Child nodes
 @onready var interaction: Interaction = $Interaction
 @onready var sprite_2d: Sprite2D = $Sprite2D
-
-# Used to persist collection state across sessions
 @onready var stasher := Stasher.new().set_target(self)
 
 func _ready() -> void:
-	# If the sword was already collected, update state visually and disable interaction
 	if stasher.retrieve_property("collected"):
 		set_collected()
+		return
+	interaction.interacted.connect(_collect_map)
 
-	# Connect interaction event to collect logic
-	interaction.interacted.connect(collect_sword)
-
-func collect_sword() -> void:
-	var stick := load("res://items/StickItem.tres")
+func _collect_map() -> void:
+	var map_item: Item = load("res://items/MapItem.tres")
 	var inventory := ReferenceStash.inventory as Inventory
+	inventory.add_item(map_item)
 
-	# Add the thing to inventory
-	inventory.add_item(stick)
-	var stick_index := inventory.get_item_index(stick)
+	# Confirm it landed in inventory (optional guard)
+	if inventory.get_item_index(map_item) == -1:
+		return
 
-	# If something went wrong, abort
-	if stick_index == -1: return
-
-	# Mark this interaction as completed
 	stasher.stash_property("collected", true)
 	set_collected()
-
-	# Show dialog with item name
-	Events.request_show_dialog.emit("a map? how awfually convient")
+	Events.request_show_dialog.emit("You found a " + map_item.name + ".")
 
 func set_collected() -> void:
-	# Visually mark thing as collected (e.g. switch to empty sprite)
-	sprite_2d.frame = 0
-
-	# Disable further interaction
+	# Optional: swap sprite/frame to “empty”
+	if "frame" in sprite_2d:
+		sprite_2d.frame = 0
 	interaction.queue_free()

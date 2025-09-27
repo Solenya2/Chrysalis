@@ -320,14 +320,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/1/path = NodePath("FlipAnchor/EvilSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.149242, 0.283708, 0.419651),
+"times": PackedFloat32Array(0.00217629, 0.147988, 0.285094, 0.4222),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [28, 29, 30, 31]
+"values": [27, 28, 29, 30]
 }
 
 [sub_resource type="Animation" id="Animation_kglky"]
@@ -904,6 +904,7 @@ is_storing_targets = true
 position = Vector2(8, 0)
 
 [node name="NormalSprite2D" type="Sprite2D" parent="FlipAnchor"]
+visible = false
 position = Vector2(0, -10)
 texture = ExtResource("5_vrtht")
 hframes = 91
@@ -913,7 +914,6 @@ frame = 1
 visible = false
 
 [node name="EvilSprite2D" type="Sprite2D" parent="FlipAnchor"]
-visible = false
 position = Vector2(0, -1)
 texture = ExtResource("4_siiaj")
 offset = Vector2(0, -9)

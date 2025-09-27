@@ -142,7 +142,7 @@ shape = SubResource("RectangleShape2D_nmsli")
 [node name="CabinTilesLayer" parent="." index="11" instance=ExtResource("13_nmsli")]
 
 [node name="StickOnGround" parent="." index="12" instance=ExtResource("16_bgw3c")]
-position = Vector2(189, 73)
+position = Vector2(185, 77)
 
 [node name="Paul" parent="." index="13" instance=ExtResource("17_lrvbd")]
 position = Vector2(251, 86)

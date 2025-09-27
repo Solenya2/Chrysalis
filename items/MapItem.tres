@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://bkrwy4okunlgu"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bkrwy4okunlgu"]
 
+[ext_resource type="Texture2D" uid="uid://ctuoeb64s2tlv" path="res://corupted_levels/mapitem.png" id="1_apsl1"]
 [ext_resource type="Script" uid="uid://bo1xqm82vhed0" path="res://items/item.gd" id="1_kafeo"]
 
 [resource]
 script = ExtResource("1_kafeo")
-name = ""
-plural_name = ""
-description = ""
-is_equipment = false
+name = "dwa"
+plural_name = "dad"
+icon = ExtResource("1_apsl1")
+description = "sdad"
+is_equipment = true
 metadata/_custom_type_script = "uid://bo1xqm82vhed0"

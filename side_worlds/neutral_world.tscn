@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://31h6pdvv55ee"]
+[gd_scene load_steps=18 format=4 uid="uid://31h6pdvv55ee"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_rqnqq"]
 [ext_resource type="Script" uid="uid://dy76n08sa3xq8" path="res://side_worlds/neutral_world.gd" id="2_bb5lx"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="6_dr6c1"]
 [ext_resource type="Texture2D" uid="uid://bxt54piv8re0r" path="res://Assetsforleveldesign/dirtandflame.png" id="7_hkv2x"]
 [ext_resource type="PackedScene" uid="uid://ct7uw2n228wbl" path="res://enemies/ghost_deer_enemy.tscn" id="8_fpuhe"]
+[ext_resource type="Texture2D" uid="uid://bj31koddoldj6" path="res://side_worlds/purgotrytrees.png" id="9_decul"]
+[ext_resource type="Texture2D" uid="uid://c5sjwm3vwoe7i" path="res://side_worlds/housepurgotry.png" id="11_thwlb"]
+[ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="12_dr6c1"]
+[ext_resource type="Resource" uid="uid://4eta43sdxky5" path="res://level_connections/neutral_world_to_neutral_world_shop.tres" id="13_hkv2x"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
 shuffle = true
@@ -24,6 +28,9 @@ texture = ExtResource("7_hkv2x")
 
 [sub_resource type="TileSet" id="TileSet_cepw4"]
 sources/0 = SubResource("TileSetAtlasSource_23lg8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpuhe"]
+size = Vector2(19, 22)
 
 [node name="neutral_world" instance=ExtResource("1_rqnqq")]
 script = ExtResource("2_bb5lx")
@@ -60,6 +67,54 @@ tile_map_data = PackedByteArray("AADm//P/CgADAAIAAADm//T/CgAAAAEAAADm//X/CgAAAAE
 position = Vector2(-161.75, -33)
 tile_set = SubResource("TileSet_cepw4")
 
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer" index="3"]
+position = Vector2(242.25, 85)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer/Purgotrytrees" index="0"]
+position = Vector2(-328, -127)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer/Purgotrytrees/Purgotrytrees" index="0"]
+position = Vector2(121, 39)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer/Purgotrytrees/Purgotrytrees/Purgotrytrees" index="0"]
+position = Vector2(-263, 55)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees" index="0"]
+position = Vector2(122, 82)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees" index="0"]
+position = Vector2(166, -13)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees" index="0"]
+position = Vector2(127, -173)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
+[node name="Purgotrytrees" type="Sprite2D" parent="CabinTilesLayer/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees/Purgotrytrees" index="0"]
+position = Vector2(-198, 279)
+texture = ExtResource("9_decul")
+hframes = 8
+frame = 5
+
 [node name="GhostDeerEnemy" parent="." index="4" instance=ExtResource("8_fpuhe")]
 position = Vector2(82, 139)
 
@@ -72,5 +127,53 @@ position = Vector2(53, 107)
 [node name="Sprite2D" parent="GhostDeerEnemy3" index="0"]
 modulate = Color(1, 1, 1, 0.67451)
 position = Vector2(-84, -13)
+
+[node name="Housepurgotry" type="Sprite2D" parent="." index="7"]
+position = Vector2(154, 140)
+texture = ExtResource("11_thwlb")
+hframes = 8
+frame = 2
+
+[node name="Door" type="Area2D" parent="Housepurgotry" index="0"]
+position = Vector2(-11, 30)
+script = ExtResource("12_dr6c1")
+exit_direction = 3
+connection = ExtResource("13_hkv2x")
+next_level_path = "uid://x3jhqpwg3chx"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Housepurgotry/Door" index="0"]
+position = Vector2(0.5, -13)
+shape = SubResource("RectangleShape2D_fpuhe")
+
+[node name="Housepurgotry2" type="Sprite2D" parent="." index="8"]
+position = Vector2(295, 22)
+texture = ExtResource("11_thwlb")
+hframes = 8
+frame = 2
+
+[node name="Housepurgotry" type="Sprite2D" parent="Housepurgotry2" index="0"]
+position = Vector2(-274, -17)
+texture = ExtResource("11_thwlb")
+hframes = 8
+frame = 2
+
+[node name="Housepurgotry" type="Sprite2D" parent="Housepurgotry2/Housepurgotry" index="0"]
+position = Vector2(-24, 192)
+texture = ExtResource("11_thwlb")
+hframes = 8
+frame = 2
+
+[node name="Housepurgotry" type="Sprite2D" parent="Housepurgotry2/Housepurgotry/Housepurgotry" index="0"]
+position = Vector2(151, -231)
+texture = ExtResource("11_thwlb")
+hframes = 8
+frame = 2
+
+[node name="Housepurgotry" type="Sprite2D" parent="Housepurgotry2/Housepurgotry/Housepurgotry/Housepurgotry" index="0"]
+position = Vector2(147, 243)
+texture = ExtResource("11_thwlb")
+hframes = 8
+frame = 2
 
 [editable path="GhostDeerEnemy3"]

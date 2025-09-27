@@ -25,6 +25,7 @@ stream_count = 1
 stream_0 = ExtResource("8_qwwoi")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nmsli"]
+size = Vector2(49, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yx28"]
 size = Vector2(15, 11)

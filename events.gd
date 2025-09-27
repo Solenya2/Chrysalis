@@ -88,3 +88,6 @@ signal rap_player_scored(round_idx: int, judge: Dictionary)
 
 # Final outcome after all rounds. You can put totals/rank/rewards in result.
 signal rap_battle_ended(npc: Node, result: Dictionary)
+
+signal request_open_map
+signal request_close_map

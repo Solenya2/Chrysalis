@@ -135,7 +135,7 @@ hframes = 8
 frame = 2
 
 [node name="Door" type="Area2D" parent="Housepurgotry" index="0"]
-position = Vector2(-11, 30)
+position = Vector2(-13, 30)
 script = ExtResource("12_dr6c1")
 exit_direction = 3
 connection = ExtResource("13_hkv2x")

@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://c33dxflshfsr3" path="res://hero/basic_hero_movement_stats.tres" id="2_lxb44"]
 [ext_resource type="Resource" uid="uid://b8rcwlo72naue" path="res://hero/roll_hero_movement_stats.tres" id="3_pwfgj"]
 [ext_resource type="Texture2D" uid="uid://csoat7qn35g5f" path="res://hero/dustplayerspritesheet.png" id="4_siiaj"]
-[ext_resource type="Texture2D" uid="uid://cpl0cuvbi6i6e" path="res://hero/usenowpalyercharather.png" id="5_vrtht"]
+[ext_resource type="Texture2D" uid="uid://50q2dpa4b1f8" path="res://hero/workingusrthissheet.png" id="5_vrtht"]
 [ext_resource type="Script" uid="uid://dmiuhk3kcqvuj" path="res://damage_boxes/hurtbox.gd" id="5_yy3pp"]
 [ext_resource type="Script" uid="uid://pwiuea2ti8co" path="res://damage_boxes/hitbox.gd" id="6_qgw05"]
 [ext_resource type="Script" uid="uid://yhre5qbbhhq3" path="res://hero/interaction_detector.gd" id="7_263ev"]
@@ -904,10 +904,9 @@ is_storing_targets = true
 position = Vector2(8, 0)
 
 [node name="NormalSprite2D" type="Sprite2D" parent="FlipAnchor"]
-visible = false
 position = Vector2(0, -10)
 texture = ExtResource("5_vrtht")
-hframes = 91
+hframes = 122
 frame = 1
 
 [node name="GoodSprite2D" type="Sprite2D" parent="FlipAnchor"]

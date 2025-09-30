@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ca4jwbr7e33r5"]
 
 [ext_resource type="Script" uid="uid://c1yf6u3gn1xxx" path="res://levelspecifcscenes/meteor.gd" id="1_r1qlu"]
-[ext_resource type="Texture2D" uid="uid://cah2bquw00cky" path="res://levelspecifcscenes/metorwithidle.png" id="2_r1qlu"]
+[ext_resource type="Texture2D" uid="uid://cfk6uspmwlxiv" path="res://levels/metorite-Sheet.png" id="2_r1qlu"]
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_4anio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
@@ -70,7 +70,7 @@ script = ExtResource("1_r1qlu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -8)
 texture = ExtResource("2_r1qlu")
-hframes = 9
+hframes = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6.25)

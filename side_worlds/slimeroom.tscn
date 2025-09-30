@@ -82,7 +82,7 @@ hframes = 3
 frame = 1
 
 [node name="Gingerbreadmanslimyandsad" type="Sprite2D" parent="." index="6"]
-position = Vector2(60, 52)
+position = Vector2(114, 27)
 texture = ExtResource("10_qifdj")
 hframes = 7
 frame = 1

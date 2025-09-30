@@ -8,3 +8,4 @@ extends Item
 # NOTE: This can be tuned per item (e.g., potion = 25, mega_potion = 100).
 @export var heal_amount := 1.0  # ← Placeholder, adjust for real values
 @export var is_candy: bool = true   # <-- toggle this on the candy item
+@export_enum("eat") var animation: String = "eat" 

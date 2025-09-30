@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_3hdo3")
 damage = 1.5
+is_knockout = false
 knockback = 190.0
 animation = "sword"
 name = "Big Sword"

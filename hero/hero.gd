@@ -61,6 +61,7 @@ var active_sprite: Sprite2D
 @onready var laser_state := HeroLaserState.new().set_actor(self)
 @onready var centipede_state: HeroCentipedeState = HeroCentipedeState.new().set_actor(self).set_item(load("res://items/CentipedeItem.tres"))
 @onready var cutscene_pause_state: = CutscenePauseState.new().set_actor(self)
+@onready var clap_state: = HeroClapState.new().set_actor(self)  # Add this line
 
 # Finite State Machine controller
 @onready var fsm: = FSM.new().set_state(move_state)
@@ -83,6 +84,7 @@ func _exit_tree() -> void:
 	MainInstances.hero = null
 
 func _ready() -> void:
+	clap_state.finished.connect(fsm.change_state.bind(move_state))
 	# Initialize alignment system
 	check_alignment()
 	
@@ -185,6 +187,12 @@ func _physics_process(delta: float) -> void:
 	fsm.state.physics_process(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Check for clap input first
+	if event.is_action_pressed("clap"):
+		fsm.change_state(clap_state)
+		return
+	
+	# Process other inputs through the current state
 	fsm.state.unhandled_input(event)
 
 # Helper to assign an item to a specific action slot
@@ -219,9 +227,8 @@ func take_hit(other_hitbox: Hitbox) -> void:
 	await blinker.blink()
 	
 	hurtbox.is_invincible = false
+# In Hero.gd - add to _unhandled_input
 
-# Plays an animation variant based on current facing direction and alignment
-# Plays an animation variant based on current facing direction and alignment
 func play_animation(animation: String) -> void:
 	var alignment_prefix := ""
 	

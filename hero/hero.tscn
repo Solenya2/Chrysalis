@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://qlkp2isw2f12"]
+[gd_scene load_steps=57 format=3 uid="uid://qlkp2isw2f12"]
 
 [ext_resource type="Script" uid="uid://ce38tp8dmfsk" path="res://hero/hero.gd" id="1_k24sg"]
 [ext_resource type="Resource" uid="uid://c33dxflshfsr3" path="res://hero/basic_hero_movement_stats.tres" id="2_lxb44"]
@@ -60,7 +60,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [1]
 }
 
@@ -312,7 +312,7 @@ tracks/0/path = NodePath("FlipAnchor/Hitbox/CollisionPolygon2D:polygon")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.137788, 0.233333, 0.266667, 0.4, 0.411195, 0.5),
+"times": PackedFloat32Array(0, 0.133333, 0.137788, 0.233333, 0.266667, 0.397824, 0.409019, 0.497824),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [PackedVector2Array(9, 2, 12, 2, 12, 0, 13, 0, 13, -2, 12, -2, 12, -4, 9, -4, 9, -3, -2, -3, -2, -4, -4, -4, -4, -2, -5, -2, -5, 0, 1, 0, 1, 1, 9, 1), PackedVector2Array(9, 2, 12, 2, 12, 0, 13, 0, 13, -2, 12, -2, 12, -4, 9, -4, 9, -3, -2, -3, -2, -4, -4, -4, -4, -2, -5, -2, -5, 0, 1, 0, 1, 1, 9, 1), PackedVector2Array(14, -9, 13, -8, 0, 6, -6, 9, -7, 6, -9, 6, -9, 5, -11, 5, -11, 6, -12, 6, -12, 9, -11, 9, -11, 20, -12, 20, -12, 22, -11, 22, -11, 23, -10, 23, -10, 24, -8, 24, -8, 23, -7, 23, -7, 22, -6, 22, -6, 20, -3, 20, -3, 19, -1, 19, -1, 18, 1, 18, 1, 17, 3, 17, 3, 16, 4, 15, 4, 16, 6, 15, 8, 13, 12, 8, 13, 5, 15, -5, 15, -9), PackedVector2Array(14, -9, 13, -8, 0, 6, -6, 9, -7, 6, -9, 6, -9, 5, -11, 5, -11, 6, -12, 6, -12, 9, -11, 9, -11, 20, -12, 20, -12, 22, -11, 22, -11, 23, -10, 23, -10, 24, -8, 24, -8, 23, -7, 23, -7, 22, -6, 22, -6, 20, -3, 20, -3, 19, -1, 19, -1, 18, 1, 18, 1, 17, 3, 17, 3, 16, 4, 15, 4, 16, 6, 15, 8, 13, 12, 8, 13, 5, 15, -5, 15, -9), PackedVector2Array(-31, 7, -31, 3, -28, 3, -28, 2, -22, 1, -18, -3, -15, 0, -15, 1, -18, 2, -18, 3, -14, 7, -10, 9, -7, 10, -5, 11, -2, 11, -2, 12, 0, 12, 0, 14, -2, 15, -3, 16, -6, 17, -18, 17), PackedVector2Array(-31, 7, -31, 3, -28, 3, -28, 2, -22, 1, -18, -3, -15, 0, -15, 1, -18, 2, -18, 3, -14, 7, -10, 9, -7, 10, -5, 11, -2, 11, -2, 12, 0, 12, 0, 14, -2, 15, -3, 16, -6, 17, -18, 17), PackedVector2Array(-30, 10, -30, 2, -29, 2, -25, -4, -24, -4, -18, -4, -18, -7, -19, -8, -30, -8, -30, -9, -33, -9, -33, -7, -34, -7, -34, 5, -31, 10), PackedVector2Array()]
@@ -388,12 +388,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_b5fwp"]
 resource_name = "normal_attack_down"
-
-[sub_resource type="Animation" id="Animation_uy2is"]
-resource_name = "normal_attack_side"
-
-[sub_resource type="Animation" id="Animation_iyby7"]
-resource_name = "normal_attack_up"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -401,10 +396,78 @@ tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0945693),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [27, 28, 29, 30]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipAnchor/Hitbox/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.104462, 0.204571, 0.319915, 0.378675),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [23, 24]
+"values": [PackedVector2Array(13, 1, -3, 1, -4, 0, -4, -4, -2, -4, -2, -5, 0, -5, 0, -6, 5, -6, 5, -5, 11, -5, 11, -4, 12, -4, 12, -3, 13, -3, 13, -2, 14, -2, 14, 0, 13, 0), PackedVector2Array(-14, 24, -14, 26, -8, 26, -3, 21, 0, 19, 4, 19, 4, 20, 5, 20, 6, 19, 6, 17, 7, 17, 7, 15, 8, 15, 12, 13, 14, 11, 15, 10, 16, 9, 17, 8, 17, 6, 17, -2, 18, -2, 18, -8, 17, -10, 16, -11, 14, -11, 13, -9, 12, -7, 11, -6, 9, -4, -5, 6, -8, 5, -11, 4, -12, 7, -12, 10, -11, 10, -12, 11, -12, 15, -16, 17, -16, 21, -15, 21, -11, 17, -11, 18, -10, 18), PackedVector2Array(-39, -4, -40, -1, -39, 2, -33, 7, -32, 9, -32, 10, -31, 12, -21, 18, -16, 19, -3, 19, 3, 17, 3, 13, 2, 12, -4, 11, -10, 8, -15, 5, -13, 1, -15, -2, -18, -1, -21, -5, -27, -8, -31, -8, -31, -7, -20, -2, -20, 1, -36, 2, -38, -4), PackedVector2Array(-24, -12, -30, -11, -31, -9, -33, 4, -30, 14, -28, 15, -28, 7, -21, 2, -16, 1, -16, -2, -21, -12, -22, -12), PackedVector2Array()]
+}
+
+[sub_resource type="Animation" id="Animation_uy2is"]
+resource_name = "normal_attack_side"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [18, 19, 20, 21]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipAnchor/Hitbox/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.141459, 0.274213, 0.409143, 0.496194),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-6, -21, -6, -26, -5, -26, -4, -27, -4, -33, -8, -33, -10, -31, -10, -25, -11, -25, -11, -22, -10, -21), PackedVector2Array(-2, -3, 2, -2, 9, -1, 10, -1, 11, -5, 12, -7, 13, -9, 14, -13, 14, -15, 11, -19, 11, -21, 8, -22, 5, -25, -6, -37, -9, -37, -12, -36, -12, -35, 0, -18, -2, -7), PackedVector2Array(-9, -35, 4, -13, 0, -1, -6, -2, -7, 0, 0, 14, 8, 14, 18, 1, 20, -10, 15, -26, -3, -37, -9, -36), PackedVector2Array(-11, 1, -11, 11, -8, 14, -2, 14, -2, 15, 0, 15, 0, 13, 6, 11, 8, 9, 8, 6, 6, 5, 2, 6, -4, 7, -6, 0, -10, 0), PackedVector2Array()]
+}
+
+[sub_resource type="Animation" id="Animation_iyby7"]
+resource_name = "normal_attack_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [22, 23, 24, 25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlipAnchor/Hitbox/CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.00870516, 0.115343, 0.256802, 0.367793, 0.485313),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [PackedVector2Array(-14, -7, -16, -5, -19, -4, -22, -3, -25, -3, -27, -5, -31, -5, -32, -6, -32, -8, -31, -9, -25, -9, -25, -10, -19, -10, -19, -9, -17, -9, -16, -10, -15, -10, -14, -9), PackedVector2Array(0, -20, -12, -19, -15, -17, -19, -16, -28, -9, -30, -9, -30, -17, -20, -29, -10, -31, -4, -33, 2, -33, 4, -27, -2, -31, -5, -30, -6, -27, -3, -24, 1, -22), PackedVector2Array(12, 1, 6, 0, -1, -8, -6, -21, -14, -24, -25, -19, -29, -18, -23, -27, -9, -34, 2, -33, 10, -24, 19, -8, 19, -1, 16, -2, 15, -9, 11, -12, 11, -8, 9, -7, 7, -9, 3, -9), PackedVector2Array(9, -19, 0, -6, 4, 3, 14, 3, 15, -7, 11, -19), PackedVector2Array()]
 }
 
 [sub_resource type="Animation" id="Animation_4aeav"]
@@ -419,7 +482,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1, 1.16667, 1.33333, 1.5, 1.66667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74]
 }
 tracks/1/type = "value"
@@ -447,7 +510,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5, 0.7, 0.9, 1.1, 1.3, 1.46667, 1.66667, 1.86667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]
 }
 tracks/1/type = "value"
@@ -475,7 +538,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.3, 0.466667, 0.6, 0.733333, 0.9, 1.03333, 1.16667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [75, 76, 77, 78, 79, 80, 81, 82, 83]
 }
 tracks/1/type = "value"
@@ -503,8 +566,8 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [37]
+"update": 0,
+"values": [38]
 }
 
 [sub_resource type="Animation" id="Animation_r7kp3"]
@@ -518,7 +581,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [9]
 }
 
@@ -533,7 +596,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [15]
 }
 
@@ -549,7 +612,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [38, 39, 40, 41, 42, 44]
 }
 
@@ -565,7 +628,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0.0333333, 0.133333, 0.233333, 0.333333, 0.433333, 0.533333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [31, 32, 33, 34, 35, 36]
 }
 
@@ -581,7 +644,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [45, 46, 47, 48, 49, 50]
 }
 
@@ -597,7 +660,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [0, 1, 2, 3, 4, 5]
 }
 
@@ -613,7 +676,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [6, 7, 8, 9, 10, 11]
 }
 
@@ -629,7 +692,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.433333, 0.533333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [12, 13, 14, 15, 16, 17]
 }
 
@@ -645,7 +708,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [89]
 }
 tracks/1/type = "value"
@@ -673,7 +736,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
-"update": 1,
+"update": 0,
 "values": [85, 86]
 }
 tracks/1/type = "value"
@@ -701,7 +764,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
+"update": 0,
 "values": [87]
 }
 tracks/1/type = "value"
@@ -741,7 +804,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [26, 27, 28, 29]
 }
 
@@ -769,7 +832,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.133333, 0.266667, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [18, 19, 20, 21]
 }
 
@@ -797,7 +860,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.266667, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
+"update": 0,
 "values": [22, 23, 24, 25]
 }
 
@@ -818,6 +881,69 @@ tracks/0/keys = {
 "values": [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
 }
 
+[sub_resource type="Animation" id="Animation_i58rg"]
+resource_name = "clap"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [66, 67]
+}
+
+[sub_resource type="Animation" id="Animation_g4575"]
+resource_name = "normal_eat_down"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.2, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [92, 93, 94, 95, 96, 97, 98]
+}
+
+[sub_resource type="Animation" id="Animation_4esg5"]
+resource_name = "normal_eat_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0718176, 0.1, 0.178784, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [113, 114, 115, 118, 119, 120]
+}
+
+[sub_resource type="Animation" id="Animation_e71oa"]
+resource_name = "normal_eat_side"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.266667, 0.366667, 0.466667, 0.566667, 0.666667, 0.766667, 0.833333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yoq1m"]
 _data = {
 &"Dusted": SubResource("Animation_eu2wf"),
@@ -825,6 +951,7 @@ _data = {
 &"centipede_attack": SubResource("Animation_vrtht"),
 &"centipede_attack_down": SubResource("Animation_h2ti2"),
 &"centipede_attack_up": SubResource("Animation_ahpkd"),
+&"clap": SubResource("Animation_i58rg"),
 &"evil_idle_down": SubResource("Animation_08cww"),
 &"evil_idle_side": SubResource("Animation_wqgsa"),
 &"evil_idle_up": SubResource("Animation_puevu"),
@@ -843,6 +970,9 @@ _data = {
 &"normal_centipede_down": SubResource("Animation_4aeav"),
 &"normal_centipede_side": SubResource("Animation_av6kc"),
 &"normal_centipede_up": SubResource("Animation_sie0t"),
+&"normal_eat_down": SubResource("Animation_g4575"),
+&"normal_eat_side": SubResource("Animation_e71oa"),
+&"normal_eat_up": SubResource("Animation_4esg5"),
 &"normal_idle_down": SubResource("Animation_8amgs"),
 &"normal_idle_side": SubResource("Animation_r7kp3"),
 &"normal_idle_up": SubResource("Animation_uas8y"),
@@ -913,6 +1043,7 @@ frame = 1
 visible = false
 
 [node name="EvilSprite2D" type="Sprite2D" parent="FlipAnchor"]
+visible = false
 position = Vector2(0, -1)
 texture = ExtResource("4_siiaj")
 offset = Vector2(0, -9)
@@ -927,6 +1058,7 @@ libraries = {
 visible = false
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("5_yy3pp")

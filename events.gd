@@ -91,3 +91,5 @@ signal rap_battle_ended(npc: Node, result: Dictionary)
 
 signal request_open_map
 signal request_close_map
+
+signal start_cutscene_one

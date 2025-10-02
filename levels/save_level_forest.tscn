@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://cxli8pm8fvde8"]
+[gd_scene load_steps=16 format=4 uid="uid://cxli8pm8fvde8"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_s1i31"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_ks5ty"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="7_olqtw"]
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="8_leybt"]
 [ext_resource type="PackedScene" uid="uid://dgihdtsm4fxst" path="res://world/save_station.tscn" id="9_ifcxx"]
+[ext_resource type="Resource" uid="uid://dcnysug4avegu" path="res://level_connections/save_level_to_trash_level.tres" id="11_1wo1i"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gjyxd"]
 vertices = PackedVector2Array(184, 120, 307, 98, 334, 98, 216, 120, 248, 88, 307, 73, 216, 88, 248, 152, 296, 184, 8, 184, 216, 152, 360, 120, 296, 120, 216, 56, 184, 88, 200, 8, 360, -8, 334, 73, 248, 120, 312, -8, 312, 8, 248, 56, 8, -8, 200, -8, 152, 88, 152, 120)
@@ -20,12 +21,15 @@ source_geometry_group_name = &"navigation"
 agent_radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4sbmk"]
-size = Vector2(16, 32)
+size = Vector2(17, 50)
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
 shuffle = true
 stream_count = 1
 stream_0 = ExtResource("7_olqtw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jn1vu"]
+size = Vector2(52, 20)
 
 [node name="save_level_forest" instance=ExtResource("1_s1i31")]
 
@@ -54,7 +58,7 @@ navigation_polygon = SubResource("NavigationPolygon_gjyxd")
 metadata/_edit_lock_ = true
 
 [node name="Door3" type="Area2D" parent="." index="4"]
-position = Vector2(376, 120)
+position = Vector2(393, 121)
 script = ExtResource("4_jn1vu")
 exit_direction = 2
 exit_distance = 23
@@ -62,6 +66,7 @@ connection = ExtResource("5_ks5ty")
 next_level_path = "uid://bwb160jh1wh8d"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door3" index="0"]
+position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_4sbmk")
 
 [node name="LevelMusicPlaylist" type="Node" parent="." index="5"]
@@ -71,14 +76,33 @@ song_list = SubResource("AudioStreamPlaylist_2lxy0")
 [node name="CabinTilesLayer" parent="." index="6" instance=ExtResource("8_leybt")]
 
 [node name="Door2" type="Area2D" parent="." index="7"]
-position = Vector2(-10, 163)
+position = Vector2(17, 160)
 script = ExtResource("4_jn1vu")
 exit_distance = 23
 connection = ExtResource("5_7w5jq")
 next_level_path = "uid://dkq7noji1g0qy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
+position = Vector2(-8.75, 9.5)
 shape = SubResource("RectangleShape2D_4sbmk")
 
 [node name="SaveStation" parent="." index="8" instance=ExtResource("9_ifcxx")]
 position = Vector2(167, 56)
+
+[node name="CollisionShape2D" parent="SaveStation/Interaction" index="0"]
+position = Vector2(1.5, -3)
+
+[node name="Door" type="Area2D" parent="." index="9"]
+position = Vector2(165, -25)
+script = ExtResource("4_jn1vu")
+exit_direction = 3
+exit_distance = 27
+connection = ExtResource("11_1wo1i")
+next_level_path = "uid://bvmwtjsfon8qo"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" index="0"]
+position = Vector2(5, 0)
+shape = SubResource("RectangleShape2D_jn1vu")
+
+[editable path="SaveStation"]

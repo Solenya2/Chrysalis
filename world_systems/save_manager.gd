@@ -30,7 +30,11 @@ func save_game() -> void:
 	save_data.inventory = inventory.serialize()
 	save_data.actions_ui = actions_ui.serialize()
 	save_data.level_path = world.current_level.scene_file_path
-	save_data.alignment = ReferenceStash.alignment.bat_kills
+	save_data.alignment = ReferenceStash.alignment.evil_score  # Save evil_score instead
+# In save_game():
+
+
+# In load_game():
 
 	var save_file = FileAccess.open(save_path, FileAccess.WRITE)
 	var data_string := JSON.stringify(save_data)
@@ -46,11 +50,11 @@ func load_game() -> void:
 	save_data = JSON.parse_string(save_file.get_line())
 	
 	# Restore shared resources
-	ReferenceStash.alignment.bat_kills = int(save_data.alignment)
+
 
 	ReferenceStash.inventory = Inventory.new().deserialize(save_data.inventory)
 	ReferenceStash.hero_stats = Stats.new().deserialize(save_data.hero_stats)
-	
+	ReferenceStash.alignment.evil_score = int(save_data.alignment)  # Load evil_score instead
 	# Load world base scene and prepare it
 	var tree = get_tree() as SceneTree
 	var world = load("res://world.tscn").instantiate() as World

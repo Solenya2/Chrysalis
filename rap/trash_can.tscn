@@ -13,7 +13,7 @@ size = Vector2(17, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y6bd"]
 size = Vector2(245, 150.5)
 
-[node name="TrashCan" type="Node2D"]
+[node name="TrashCan" type="Node2D" groups=["RapBattle"]]
 script = ExtResource("1_s2onw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

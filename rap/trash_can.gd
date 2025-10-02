@@ -10,7 +10,7 @@ class_name RapEligibleNPC
 @export var rap_instrumental: AudioStream
 
 # Availability gates
-@export var rap_available: bool = false   # set by RapProximity enter/exit
+@export var rap_available: bool = true   # set by RapProximity enter/exit
 @export var allow_voice_trigger: bool = true  # quick on/off if you need it
 
 var _busy := false

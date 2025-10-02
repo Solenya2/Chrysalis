@@ -1,4 +1,4 @@
-extends Node2D
+extends Level
 class_name RapBattleManager
 
 # ────────────────────────────────────────────────
@@ -19,6 +19,7 @@ class_name RapBattleManager
 @onready var music                     = $Instrumental            # AudioStreamPlayer or AudioStreamPlayer2D (no strict type)
 @onready var npc_song: AudioStreamPlayer = ($NpcSong if has_node("NpcSong") else null)   # optional: dedicated NPC vocal/long track
 @onready var hud: CanvasLayer          = $RapHUD
+@onready var camera_focus: RemoteTransform2D = $CameraFocus  # Add this node to your scene
 
 @onready var count_label: Label = $RapHUD/CountLabel
 @onready var turn_label: Label = $RapHUD/TurnLabel
@@ -32,6 +33,10 @@ var npc_total: float = 0.0
 var listen_window_ms: int = 0
 var battle_running: bool = false
 var waiting_for_judge: bool = false
+
+# Player/camera control
+var original_camera_target: RemoteTransform2D
+var player_disabled: bool = false
 
 # ────────────────────────────────────────────────
 # Lifecycle
@@ -77,6 +82,10 @@ func _ready() -> void:
 # Flow
 # ────────────────────────────────────────────────
 func _start_battle() -> void:
+	# Disable player and take camera control
+	_disable_player()
+	_take_camera_control()
+	
 	battle_running = true
 	round_idx = 0
 	player_total = 0.0
@@ -245,6 +254,10 @@ func _end_battle() -> void:
 	if music and music.playing:
 		music.stop()
 
+	# Re-enable player and return camera control
+	_enable_player()
+	_return_camera_control()
+
 	var result := {
 		"player_total": player_total,
 		"npc_total": npc_total,
@@ -258,3 +271,37 @@ func _end_battle() -> void:
 			Utils.load_level(return_scene_path)
 		else:
 			get_tree().change_scene_to_file(return_scene_path)
+
+# ────────────────────────────────────────────────
+# Player and Camera Control
+# ────────────────────────────────────────────────
+func _disable_player() -> void:
+	var player = get_tree().get_first_node_in_group("Player")
+	if player:
+		player.set_process(false)
+		player.set_physics_process(false)
+		player.hide()  # Hide the player sprite
+		player_disabled = true
+
+func _enable_player() -> void:
+	if player_disabled:
+		var player = get_tree().get_first_node_in_group("Player")
+		if player:
+			player.set_process(true)
+			player.set_physics_process(true)
+			player.show()
+		player_disabled = false
+
+func _take_camera_control() -> void:
+	# Store the original camera target
+	var player = get_tree().get_first_node_in_group("Player")
+	if player and player.has_node("RemoteTransform2D"):
+		original_camera_target = player.get_node("RemoteTransform2D")
+	
+	# Use the RemoteTransform2D in your rap battle scene
+	if camera_focus:
+		Events.request_camera_target.emit(camera_focus)
+
+func _return_camera_control() -> void:
+	if original_camera_target:
+		Events.request_camera_target.emit(original_camera_target)

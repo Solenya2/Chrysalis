@@ -28,7 +28,7 @@ var pending_round_idx: int = -1
 @export var rap_trigger_radius: float = 160.0
 
 # Where to load the rap scene
-@export var rap_scene_path: String = "res://rap/RapBattleScene.tscn"
+@export var rap_scene_path: String = "res://rapattle_scene.tscn"
 
 @onready var explosion_scene := preload("res://effects/explosion.tscn")
 

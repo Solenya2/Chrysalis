@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bsv3a5k0jgeal"]
+[gd_scene load_steps=10 format=4 uid="uid://bsv3a5k0jgeal"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_wpfvb"]
 [ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="2_f7njj"]
@@ -7,7 +7,6 @@
 [ext_resource type="Resource" uid="uid://crywp0j3xgx6i" path="res://level_connections/level_2_to_level_3_connection.tres" id="5_b5ecr"]
 [ext_resource type="Resource" uid="uid://ypceaaufc68k" path="res://level_connections/level_3_to_boss_1_level.tres" id="6_gh7ea"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="7_wlwn5"]
-[ext_resource type="PackedScene" uid="uid://duriju5h8aciy" path="res://Npc/shop_keep.tscn" id="8_qd1d0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdas2"]
 size = Vector2(32, 16)
@@ -56,6 +55,3 @@ offset_right = 320.0
 offset_bottom = 192.0
 script = ExtResource("7_wlwn5")
 metadata/_edit_lock_ = true
-
-[node name="ShopKeep" parent="." index="6" instance=ExtResource("8_qd1d0")]
-position = Vector2(124, 112)

@@ -1,18 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://cu7uksfrgsb50"]
+[gd_scene load_steps=17 format=3 uid="uid://cu7uksfrgsb50"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_oiwbr"]
 [ext_resource type="Script" uid="uid://daq6yw5cju6ft" path="res://rap/rap_battle_manager.gd" id="2_jupdb"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_mjgf0"]
-[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="3_0s5rw"]
-[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="4_ccwuj"]
 [ext_resource type="Texture2D" uid="uid://blvjem8k7qqb4" path="res://rap/backgroundfigh.jpg" id="5_jupdb"]
 [ext_resource type="Texture2D" uid="uid://d0i0eh0grk83y" path="res://rap/rapbattletransutin-Sheet.png" id="6_fk1ld"]
 [ext_resource type="Texture2D" uid="uid://dnbi21w70e60i" path="res://rap/rapscene-Sheet.png" id="7_lvyu4"]
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
-shuffle = true
-stream_count = 1
-stream_0 = ExtResource("4_ccwuj")
+[ext_resource type="AudioStream" uid="uid://ck1fp1tw6keod" path="res://rap/2025-08-18 05-12-08.mp3" id="9_fk1ld"]
 
 [sub_resource type="Animation" id="Animation_ggmdm"]
 resource_name = "Intro"
@@ -79,10 +73,12 @@ _data = {
 script = ExtResource("2_jupdb")
 bpm = 92.0
 bars_per_turn = 2
-rounds_total = 3
+rounds_total = 1
 npc_goes_first = true
 instrumental = null
-return_scene_path = ""
+npc_turn_seconds = -1.0
+player_turn_seconds = 60.0
+fallback_turn_seconds = 60.0
 
 [node name="CameraLimits" type="Control" parent="." index="0"]
 layout_mode = 3
@@ -100,11 +96,7 @@ offset_top = -32.0
 offset_right = 384.0
 offset_bottom = 208.0
 
-[node name="LevelMusicPlaylist" type="Node" parent="." index="2"]
-script = ExtResource("3_0s5rw")
-song_list = SubResource("AudioStreamPlaylist_2lxy0")
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="3"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="2"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
 
@@ -113,32 +105,32 @@ position = Vector2(161, 90)
 scale = Vector2(0.209014, 0.184439)
 texture = ExtResource("5_jupdb")
 
-[node name="Rapbattletransutin-sheet" type="Sprite2D" parent="." index="4"]
+[node name="Rapbattletransutin-sheet" type="Sprite2D" parent="." index="3"]
 position = Vector2(-30, 239)
 scale = Vector2(2.35156, 2.60938)
 texture = ExtResource("6_fk1ld")
 hframes = 9
 frame = 8
 
-[node name="Stage" type="Sprite2D" parent="." index="5"]
+[node name="Stage" type="Sprite2D" parent="." index="4"]
 position = Vector2(173.5, 89)
 scale = Vector2(2.66406, 2.8125)
 texture = ExtResource("7_lvyu4")
 hframes = 24
 
-[node name="Instrumental" type="AudioStreamPlayer2D" parent="." index="6"]
+[node name="Instrumental" type="AudioStreamPlayer2D" parent="." index="5"]
 bus = &"Music"
 
-[node name="Label" type="Label" parent="." index="7"]
+[node name="Label" type="Label" parent="." index="6"]
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="8"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 libraries = {
 &"": SubResource("AnimationLibrary_ppe3v")
 }
 
-[node name="RapHUD" type="CanvasLayer" parent="." index="9"]
+[node name="RapHUD" type="CanvasLayer" parent="." index="8"]
 
 [node name="CountLabel" type="Label" parent="RapHUD" index="0"]
 offset_left = 16.0
@@ -153,6 +145,10 @@ offset_right = 310.0
 offset_bottom = 83.0
 metadata/_edit_use_anchors_ = true
 
-[node name="CameraFocus" type="RemoteTransform2D" parent="." index="10"]
+[node name="CameraFocus" type="RemoteTransform2D" parent="." index="9"]
 position = Vector2(161, 101)
 remote_path = NodePath("..")
+
+[node name="NpcSong" type="AudioStreamPlayer2D" parent="." index="10"]
+stream = ExtResource("9_fk1ld")
+volume_db = 10.895

@@ -1,13 +1,17 @@
 extends Node
 class_name VoiceReceiver
 
+# -------------------------------------------------
+# Config
+# -------------------------------------------------
 const SPEECH_URL := "ws://localhost:8765"
 var ws := WebSocketPeer.new()
 
-# --- Command-mode cooldowns ---
-var last_trigger_time := {}
-const COOLDOWN := 1.5  # seconds per word
-# --- Voice aliases (exact phrases from Python server) ---
+# Command-mode cooldowns (per exact phrase)
+var last_trigger_time: Dictionary = {}
+const COOLDOWN := 1.5 # seconds per word/phrase
+
+# Voice aliases (exact phrases from Python server)
 const PLAY_MOZART_ALIASES := [
 	"play mozart",
 	"spill mozart",     # Norwegian
@@ -16,10 +20,11 @@ const PLAY_MOZART_ALIASES := [
 ]
 const LOVE_ALIASES := [
 	"i love you",
-	"jeg elsker deg",   # Norwegian Bokmål
+	"jeg elsker deg",   # Bokmål
 	"eg elskar deg"     # Nynorsk
 ]
-# --- Rap battle protocol state ---
+
+# Rap battle protocol state
 var mode: String = "command"
 var battle_active: bool = false
 var pending_round_idx: int = -1
@@ -27,19 +32,27 @@ var pending_round_idx: int = -1
 # Distance gate for hotphrase → NPC
 @export var rap_trigger_radius: float = 160.0
 
-# Where to load the rap scene
+# Where to load the rap scene (you said this is correct)
 @export var rap_scene_path: String = "res://rapattle_scene.tscn"
 
+# Assets / helpers
 @onready var explosion_scene := preload("res://effects/explosion.tscn")
-
 @onready var love_scene := preload("res://blush_scene.tscn")
+
+# -------------------------------------------------
+# Lifecycle
+# -------------------------------------------------
 func _ready() -> void:
+	# Put the singleton in a group so other scenes can find it robustly
+	add_to_group("VoiceReceiver")
+
 	var err := ws.connect_to_url(SPEECH_URL)
 	if err != OK:
 		push_error("Failed to connect to speech server: %s" % err)
 		set_process(false)
 		return
-	print("🟢 Connecting to ", SPEECH_URL)
+
+	print("🟢 VoiceReceiver connecting to ", SPEECH_URL)
 	set_process(true)
 
 func _process(_delta: float) -> void:
@@ -52,12 +65,14 @@ func _process(_delta: float) -> void:
 				if not ws.was_string_packet():
 					continue
 				var raw := pkt.get_string_from_utf8()
+
 				var data: Dictionary = {}
 				var parsed: Variant = JSON.parse_string(raw)
 				if typeof(parsed) == TYPE_DICTIONARY:
 					data = parsed
 				else:
-					data = {"type":"final", "text": raw} # back-compat
+					# Back-compat: treat plain text as a final command
+					data = {"type":"final", "text": raw}
 
 				_handle_message(data)
 
@@ -78,6 +93,7 @@ func _handle_message(data: Dictionary) -> void:
 		"freestyle_final":
 			_handle_freestyle_final(data)
 		_:
+			# Unknown message type → ignore quietly
 			pass
 
 # -------------------------------------------------
@@ -94,39 +110,48 @@ func _handle_command_final(text_raw: String) -> void:
 		return
 	last_trigger_time[text] = now
 
-	# Your existing triggers
+	# Triggers
 	if "pizza" in text or "sup" in text:
 		Utils.load_level("res://levels/level_1.tscn")
 		print("🍕 PIZZA DETECTED!")
 		_on_pizza()
+
 	elif "boom boom" in text:
 		print("💥 BOMB DETONATED!")
 		_on_bomb()
-	elif "i love you" in text or "eg elsker deg" in text :
+
+	elif "i love you" in text or "eg elsker deg" in text:
 		print("oh my (;")
 		_on_love()
+
 	elif "bad game" in text or "this game sucks" in text:
 		print("dusted")
 		_on_dusted()
+
 	elif "bedroom player" in text:
 		Utils.load_level("res://levels/levelbedroom.tscn")
+
 	elif "boss level one" in text:
 		Utils.load_level("res://enemies/sami_boss_level.tscn")
+
 	elif "corruption level" in text:
 		Utils.load_level("res://corupted_levels/corupted_outside.tscn")
+
 	elif "slime world" in text:
 		Utils.load_level("res://side_worlds/slime_world.tscn")
+
 	elif "neutral world" in text:
 		Utils.load_level("res://side_worlds/neutral_world.tscn")
+
 	elif "candy world" in text:
 		Utils.load_level("res://side_worlds/candy_world.tscn")
-	elif "pizza" in text: 
+
+	elif "pizza" in text:
 		Utils.load_level("res://levels/level_1.tscn")
 
 	elif text in PLAY_MOZART_ALIASES:
 		print("🎼 PLAY MOZART")
 		if Music.play_track_by_key("mozart"):
-			# Optional: add UI feedback / toast / sfx here
 			pass
 		else:
 			print("⚠️ 'mozart' not found in Music.track_map")
@@ -143,15 +168,13 @@ func _try_emit_rap_battle_requested() -> void:
 	var npc := _find_nearest_rap_npc(rap_trigger_radius)
 	if npc:
 		print("🎤 Rap battle requested near: ", npc.name)
-		# notify listeners (optional)
 		Events.rap_battle_requested.emit(npc)
-		# stash per-NPC params on the SceneTree and warp to the battle scene
 		_start_rap_battle_with_npc(npc)
 	else:
 		print("⚠️ No RapEligible NPC in range (", rap_trigger_radius, " px ).")
 
 func _start_rap_battle_with_npc(npc: Node2D) -> void:
-	# Pull optional NPC data if provided
+	# Optional per-NPC data
 	var bpm: float = 92.0
 	if npc.has_method("get_rap_bpm"):
 		bpm = float(npc.call("get_rap_bpm"))
@@ -160,7 +183,7 @@ func _start_rap_battle_with_npc(npc: Node2D) -> void:
 	if npc.has_method("get_rap_instrumental"):
 		instrumental = npc.call("get_rap_instrumental")
 
-	# Stash into SceneTree metadata so the battle scene can read it on _ready()
+	# Stash into SceneTree meta for RapBattleManager to read
 	var tree := get_tree()
 	tree.set_meta("rap_bpm", bpm)
 	tree.set_meta("rap_instrumental", instrumental)
@@ -169,9 +192,7 @@ func _start_rap_battle_with_npc(npc: Node2D) -> void:
 	else:
 		tree.set_meta("rap_return_path", "")
 
-	# Optional: brief fade / lock inputs could go here
-
-	# Load the rap battle scene directly
+	# Go to battle scene
 	Utils.load_level(rap_scene_path)
 
 func _find_nearest_rap_npc(max_dist: float) -> Node2D:
@@ -197,22 +218,17 @@ func _find_nearest_rap_npc(max_dist: float) -> Node2D:
 	return best
 
 func _is_npc_available_for_rap(npc: Node2D) -> bool:
-	# Must be in current scene & visible
 	if not npc.is_inside_tree():
 		return false
 	if not npc.is_visible_in_tree():
 		return false
-
-	# Opt-in group
 	if not npc.is_in_group("RapEligible"):
 		return false
 
-	# Optional per-NPC flag (exported on NPC script)
 	var available := true
 	if "rap_available" in npc and typeof(npc.get("rap_available")) == TYPE_BOOL:
 		available = bool(npc.get("rap_available"))
 
-	# Optional global busy gate (PauseManager autoload with method `is_cinematic`)
 	var busy_globally := false
 	var pm := get_node_or_null("/root/PauseManager")
 	if pm and pm.has_method("is_cinematic"):
@@ -223,40 +239,48 @@ func _is_npc_available_for_rap(npc: Node2D) -> bool:
 # -------------------------------------------------
 # Freestyle window path (battle turns)
 # -------------------------------------------------
-# Called by RapBattleManager when your 2-bar turn starts.
-# Server should answer with one "freestyle_final" message.
+# Called by RapBattleManager when your turn starts.
+# The Python server will return one "freestyle_final".
 func start_listen_window(ms: int, bpm: float, bars: int, round_idx: int = -1) -> void:
 	pending_round_idx = round_idx
 	battle_active = true
 	set_mode("freestyle")
+
 	var payload := {
 		"type":"listen_window",
 		"ms": ms,
 		"bpm": bpm,
 		"bars": bars,
-		"grid": "eighth"
+		"grid": "eighth" # purely informational right now
 	}
 	_send_json(payload)
+	print("[VoiceReceiver] listen_window sent ms=%d bpm=%.2f bars=%d round=%d" % [ms, bpm, bars, round_idx])
 
 func set_mode(new_mode: String) -> void:
 	if mode == new_mode:
 		return
 	mode = new_mode
 	_send_json({"type":"set_mode", "mode": new_mode})
+	print("[VoiceReceiver] mode -> ", new_mode)
 
 func _handle_freestyle_final(data: Dictionary) -> void:
 	# Expected: { type:"freestyle_final", text:String, words:Array, judge:Dictionary }
 	battle_active = false
+
 	var judge: Dictionary = {}
 	if data.has("judge") and typeof(data["judge"]) == TYPE_DICTIONARY:
 		judge = data["judge"]
+
 	if judge.is_empty():
+		# Safety default if server didn't include it
 		judge = {"rhyme":0.2,"onbeat":0.2,"variety":0.2,"complete":0.2,"total":0.2,"rank":"D"}
 
-	# Emit to battle manager via Events (direct – autoload)
 	var r_idx := pending_round_idx
 	pending_round_idx = -1
+
+	# Emit to RapBattleManager
 	Events.rap_player_scored.emit(r_idx, judge)
+	print("[VoiceReceiver] freestyle_final → judge: ", judge)
 
 	# Return to command mode after each window
 	set_mode("command")
@@ -266,12 +290,12 @@ func _handle_freestyle_final(data: Dictionary) -> void:
 # -------------------------------------------------
 func _send_json(obj: Dictionary) -> void:
 	if ws.get_ready_state() != WebSocketPeer.STATE_OPEN:
+		print("[VoiceReceiver] WS not open; dropping:", obj)
 		return
-	var txt := JSON.stringify(obj)
-	ws.send_text(txt)
+	ws.send_text(JSON.stringify(obj))
 
 # -------------------------------------------------
-# Existing helpers
+# Fun helpers (unchanged)
 # -------------------------------------------------
 func _on_pizza() -> void:
 	get_tree().call_group("Player", "eat_pizza")
@@ -288,30 +312,27 @@ func _on_bomb() -> void:
 
 func _on_love() -> void:
 	print("oh my (;")
-	
+
 	var love := love_scene.instantiate()
-	
-	# Add to canvas layer to ensure it's always on top
 	var canvas_layer := CanvasLayer.new()
-	canvas_layer.layer = 100  # High layer number to ensure it's on top
+	canvas_layer.layer = 100
 	get_tree().root.add_child(canvas_layer)
 	canvas_layer.add_child(love)
-	
-	# Center on screen
+
 	var viewport_size := get_viewport().get_visible_rect().size
 	love.position = viewport_size / 2
-	
-	# Play animation
+
 	var anim_player: AnimationPlayer = love.find_child("AnimationPlayer")
 	if anim_player:
 		anim_player.play("blush")
 		anim_player.animation_finished.connect(func(_anim_name):
-			canvas_layer.queue_free()  # Remove both the layer and blush
+			canvas_layer.queue_free()
 		)
 	else:
 		print("Warning: No AnimationPlayer found in blush scene")
 		await get_tree().create_timer(2.0).timeout
 		canvas_layer.queue_free()
+
 func _trigger_nuke_flash(
 	peak_time: float = 0.05,
 	hold_time: float = 0.10,

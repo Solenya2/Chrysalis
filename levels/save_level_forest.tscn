@@ -58,7 +58,7 @@ navigation_polygon = SubResource("NavigationPolygon_gjyxd")
 metadata/_edit_lock_ = true
 
 [node name="Door3" type="Area2D" parent="." index="4"]
-position = Vector2(393, 121)
+position = Vector2(357, 122)
 script = ExtResource("4_jn1vu")
 exit_direction = 2
 exit_distance = 23

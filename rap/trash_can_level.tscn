@@ -1,12 +1,10 @@
-[gd_scene load_steps=14 format=4 uid="uid://bvmwtjsfon8qo"]
+[gd_scene load_steps=11 format=4 uid="uid://bvmwtjsfon8qo"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_u3u6k"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_lhktl"]
 [ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="3_idu1v"]
 [ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="4_454pa"]
 [ext_resource type="Resource" uid="uid://dcnysug4avegu" path="res://level_connections/save_level_to_trash_level.tres" id="5_u3u6k"]
-[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="6_1ckik"]
-[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="7_fruec"]
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="8_8j4kw"]
 [ext_resource type="PackedScene" uid="uid://cxdbtpnnarxdu" path="res://rap/trash_can.tscn" id="9_14ben"]
 [ext_resource type="Texture2D" uid="uid://d6qr1u8qwulu" path="res://rap/trash-Sheet.png" id="10_f5lsr"]
@@ -21,11 +19,6 @@ agent_radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4sbmk"]
 size = Vector2(17, 50)
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2lxy0"]
-shuffle = true
-stream_count = 1
-stream_0 = ExtResource("7_fruec")
 
 [node name="trash_can_level" instance=ExtResource("1_u3u6k")]
 
@@ -65,13 +58,9 @@ next_level_path = "uid://cxli8pm8fvde8"
 position = Vector2(11.5, 1)
 shape = SubResource("RectangleShape2D_4sbmk")
 
-[node name="LevelMusicPlaylist" type="Node" parent="." index="5"]
-script = ExtResource("6_1ckik")
-song_list = SubResource("AudioStreamPlaylist_2lxy0")
+[node name="CabinTilesLayer" parent="." index="5" instance=ExtResource("8_8j4kw")]
 
-[node name="CabinTilesLayer" parent="." index="6" instance=ExtResource("8_8j4kw")]
-
-[node name="TrashCan" parent="." index="7" instance=ExtResource("9_14ben")]
+[node name="TrashCan" parent="." index="6" instance=ExtResource("9_14ben")]
 position = Vector2(164, -9)
 
 [node name="Sprite2D" parent="TrashCan" index="0"]

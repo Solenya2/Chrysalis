@@ -34,10 +34,10 @@ stream_0 = ExtResource("7_m0qql")
 [node name="CameraLimits" type="Control" parent="." index="0"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -17.0
-offset_top = -15.0
-offset_right = 400.0
-offset_bottom = 223.0
+offset_left = -20.0
+offset_top = -32.0
+offset_right = 397.0
+offset_bottom = 206.0
 script = ExtResource("2_3qjus")
 
 [node name="ForestTilesLayer" parent="." index="1" instance=ExtResource("3_e03nc")]

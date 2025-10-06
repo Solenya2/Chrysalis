@@ -1,28 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://csv512cg3trq7"]
+[gd_scene load_steps=6 format=3 uid="uid://d2vx1vneh18dg"]
 
-[ext_resource type="Script" uid="uid://c1skvdpx7qhke" path="res://Npc/npc_base.gd" id="1_s6gr2"]
-[ext_resource type="Texture2D" uid="uid://dyy2uwwu5otsw" path="res://Npc/paul-Sheetbzzzzzzzzzzzzzzzz-Sheet.png" id="2_0y6bd"]
-[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_0y6bd"]
+[ext_resource type="Script" uid="uid://c1skvdpx7qhke" path="res://Npc/npc_base.gd" id="1_qkov5"]
+[ext_resource type="Texture2D" uid="uid://emvln636dvo8" path="res://Npc/kevin-Sheet.png" id="2_d3jaa"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_5sufj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxd7"]
 size = Vector2(12, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyul"]
-size = Vector2(25, 28)
+size = Vector2(17, 10)
 
 [node name="npc_base" type="CharacterBody2D"]
-script = ExtResource("1_s6gr2")
+script = ExtResource("1_qkov5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_0y6bd")
+texture = ExtResource("2_d3jaa")
 hframes = 4
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_gcxd7")
 
 [node name="Interaction" type="Area2D" parent="."]
-script = ExtResource("3_0y6bd")
+script = ExtResource("3_5sufj")
 metadata/_custom_type_script = "uid://c4b5s7nqfdlvm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]

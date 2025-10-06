@@ -1,0 +1,73 @@
+[gd_scene load_steps=13 format=4 uid="uid://drv28yoqycc8r"]
+
+[ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_q5e6u"]
+[ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_hk4b1"]
+[ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="3_4m3ji"]
+[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="4_k3sma"]
+[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="5_b1vua"]
+[ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="6_j6wwj"]
+[ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="7_kupjg"]
+[ext_resource type="Resource" uid="uid://cr7m8uedoqj0v" path="res://levelspecifcscenes/batlevel_4_to_nunnypath_5.tres" id="8_q5e6u"]
+[ext_resource type="Resource" uid="uid://dmmg1680ts5qd" path="res://levelspecifcscenes/path_to_bunny_to_bunny_level_6.tres" id="9_hk4b1"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jo6yk"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("5_b1vua")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_24xsf"]
+size = Vector2(19, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75q36"]
+size = Vector2(56, 20)
+
+[node name="path_tp_bunny_5" instance=ExtResource("1_q5e6u")]
+
+[node name="CameraLimits" type="Control" parent="." index="0"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -23.0
+offset_top = 31.0
+offset_right = 385.0
+offset_bottom = 205.0
+script = ExtResource("2_hk4b1")
+
+[node name="ForestTilesLayer" parent="." index="1" instance=ExtResource("3_4m3ji")]
+tile_map_data = PackedByteArray("AAD+/wUAAAAGAAEAAAD//wUAAAAEAAEAAAD//wYAAAAEAAEAAAD//wwAAAAGAAEAAAAAAAEADwADAAIAAAAAAAYADwADAAIAAAAAAAcADwADAAIAAAAAAAgADwADAAIAAAAAAAkADwADAAIAAAAAAAoADwADAAIAAAAAAAsADwADAAIAAAAAAAwAAAACAAEAAAABAAEADwADAAIAAAABAAYADwADAAIAAAABAAcADwADAAIAAAABAAgAAAAEAAAAAAABAAkADwADAAIAAAABAAoADwAAAAMAAAABAAsAAAAFAAAAAAABAAwAAAAEAAEAAAACAAMADwADAAIAAAACAAYADwADAAIAAAACAAcADwADAAIAAAACAAgADwADAAIAAAACAAkADwADAAIAAAACAAoADwADAAIAAAACAAsADwADAAIAAAACAAwAAAABAAEAAAADAAMADwADAAIAAAADAAYADwADAAIAAAADAAcADwADAAIAAAADAAgADwADAAIAAAADAAkADwADAAIAAAADAAoADwADAAIAAAADAAsADwADAAIAAAADAAwAAAADAAEAAAAEAAYADwADAAIAAAAEAAcADwADAAIAAAAEAAgADwADAAIAAAAEAAkADwADAAIAAAAEAAoAAAACAAEAAAAEAAsADwADAAIAAAAEAAwAAAACAAEAAAAFAAEADwADAAIAAAAFAAYADwADAAIAAAAFAAcADwADAAIAAAAFAAgADwADAAIAAAAFAAkAAAABAAEAAAAFAAoAAAAGAAEAAAAFAAsADwADAAIAAAAFAAwAAAAEAAEAAAAGAAAADwADAAIAAAAGAAYADwADAAIAAAAGAAcADwADAAIAAAAGAAgADwADAAIAAAAGAAkADwADAAIAAAAGAAoADwADAAIAAAAGAAsADwADAAIAAAAGAAwAAAACAAEAAAAHAAAADwADAAIAAAAHAAYADwADAAIAAAAHAAcADwADAAIAAAAHAAgADwADAAIAAAAHAAkADwADAAIAAAAHAAoADwADAAIAAAAHAAsADwADAAIAAAAHAAwAAAABAAEAAAAIAAAADwADAAIAAAAIAAEADwADAAIAAAAIAAcADwADAAIAAAAIAAgADwADAAIAAAAIAAkADwADAAIAAAAIAAoADwADAAIAAAAIAAsADwADAAIAAAAIAAwAAAADAAEAAAAJAAAADwADAAIAAAAJAAEADwADAAIAAAAJAAgAAAABAAEAAAAJAAkAAAABAAEAAAAJAAoADwADAAIAAAAJAAsADwADAAIAAAAJAAwAAAACAAEAAAAKAP//DwADAAIAAAAKAAAADwADAAIAAAAKAAEADwADAAIAAAAKAAcAAAAEAAEAAAAKAAkADwADAAIAAAAKAAoADwADAAIAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAEAAAALAP//DwADAAIAAAALAAAADwADAAIAAAALAAEADwADAAIAAAALAAMADwADAAIAAAALAAUAAAAGAAEAAAALAAgADwADAAIAAAALAAoADwADAAIAAAALAAsAAAAEAAEAAAALAAwAAAADAAEAAAAMAAAADwADAAIAAAAMAAEADwADAAIAAAAMAAMADwADAAIAAAAMAAgADwADAAIAAAAMAAoADwADAAIAAAAMAAsADwADAAIAAAAMAAwAAAADAAEAAAANAAAADwADAAIAAAANAAMADwADAAIAAAANAAcADwADAAIAAAANAAkADwADAAIAAAANAAsAAAAAAAAAAAANAAwAAAAAAAEAAAAOAAAADwADAAIAAAAOAAMADwADAAIAAAAOAAgADwADAAIAAAAOAAsADwADAAIAAAAOAAwAAAAFAAEAAAAPAAAADwADAAIAAAAPAAEADwADAAIAAAAPAAYAAAADAAEAAAAPAAoADwADAAIAAAAPAAwAAAABAAEAAAAQAAAADwADAAIAAAAQAAEADwADAAIAAAAQAAMADwADAAIAAAAQAAkAAAABAAAAAAAQAAwAAAACAAEAAAARAAAADwADAAIAAAARAAEADwADAAIAAAARAAoADwADAAIAAAARAAwAAAAEAAEAAAASAP//DwADAAIAAAASAAsADwADAAIAAAASAAwAAAAAAAEAAAATAAAADwADAAIAAAATAAkADwADAAIAAAAUAAAADwADAAIAAAAVAAAADwADAAIAAAAVAAEADwADAAIAAAAVAAIAAAAFAAEAAAAVAAYADwADAAIAAAAVAAoADwADAAIAAAAVAAsADwADAAIAAAAWAAEADwADAAIAAAAWAAYADwADAAIAAAAWAAcADwADAAIAAAAWAAsADwADAAIAAAD//wsAAAAAAAEAAAD//woAAAAAAAEAAAAAAAUAAAABAAEAAAABAAUAAAAGAAEAAAACAAUAAAADAAEAAAADAAUAAAAGAAEAAAAEAAQAAAAFAAEAAAAFAAQAAAADAAEAAAAGAAQAAAADAAEAAAAGAAMAAAACAAEAAAAHAAMAAAABAAEAAAAIAAMAAAACAAEAAAAJAAMAAAAEAAEAAAAJAAQAAAABAAEAAAAKAAQAAAABAAEAAAALAAQAAAAAAAEAAAAMAAUAAAAAAAEAAAANAAUAAAAGAAEAAAAOAAUAAAAGAAEAAAAOAAYAAAACAAEAAAAQAAYAAAAFAAEAAAARAAYAAAAFAAEAAAASAAYAAAADAAEAAAATAAYAAAACAAEAAAATAAcAAAABAAEAAAAUAAcAAAAFAAEAAAAUAAgAAAABAAEAAAAVAAgAAAABAAEAAAAVAAkAAAABAAEAAAAWAAkAAAABAAEAAAAWAAoAAAAGAAEAAAAXAAoAAAAAAAEAAAAXAAsAAAAAAAEAAAAXAAwAAAACAAEAAAATAAwAAAABAAEAAAA=")
+
+[node name="ColorRect" parent="." index="2"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 384.0
+offset_bottom = 208.0
+color = Color(0.153047, 0.399552, 0.210139, 1)
+
+[node name="LevelMusicPlaylist" type="Node" parent="." index="3"]
+script = ExtResource("4_k3sma")
+song_list = SubResource("AudioStreamPlaylist_jo6yk")
+
+[node name="CabinTilesLayer" parent="." index="4" instance=ExtResource("6_j6wwj")]
+
+[node name="Door" type="Area2D" parent="." index="5"]
+position = Vector2(-5, 141)
+script = ExtResource("7_kupjg")
+connection = ExtResource("8_q5e6u")
+next_level_path = "uid://bwb160jh1wh8d"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" index="0"]
+position = Vector2(-10.5, -6)
+shape = SubResource("RectangleShape2D_24xsf")
+
+[node name="Door2" type="Area2D" parent="." index="6"]
+position = Vector2(334, 196)
+script = ExtResource("7_kupjg")
+exit_direction = 1
+exit_distance = 19
+connection = ExtResource("9_hk4b1")
+next_level_path = "uid://qwdnvxtvkgu"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
+position = Vector2(10, 9)
+shape = SubResource("RectangleShape2D_75q36")

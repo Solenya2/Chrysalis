@@ -149,6 +149,22 @@ tracks/1/keys = {
 "values": [PackedVector2Array(-2, -7, -17, -7, -15, -27, -7, -28, -3, -24, 0, -19, 1, -15), PackedVector2Array(-22, -33, -15, -34, -18, -39, -16, -48, -7, -40, -4, -31, -3, -22, 3, -11, 3, -7, 0, -11, -21, -13, -17, -19), PackedVector2Array(-2, -6, -17, -8, -21, -14, -17, -19, -13, -24, -16, -29, -22, -33, -17, -34, -18, -39, -14, -36, -14, -41, -13, -43, -13, -45, -17, -47, -15, -48, -6, -38, -4, -30, -3, -22, 0, -17, 3, -9, 3, -7), PackedVector2Array(-3, -6, -21, -14, -14, -24, -13, -33, -19, -38, -15, -50, -9, -48, -5, -49, 5, -52, 6, -44, 0, -38, -3, -36, 0, -31, 1, -29, 1, -27, -1, -23, -2, -22, -3, -21, -3, -18, 0, -17, 1, -15, 2, -13, 3, -9, 3, -8, 2, -7, 2, -7, -3, -7), PackedVector2Array(-3, -6, -22, -14, -14, -38, -11, -62, 2, -58, 5, -51, -2, -43, 0, -33, -1, -20, 3, -9, 3, -8)]
 }
 
+[sub_resource type="Animation" id="Animation_i58rg"]
+resource_name = "clap"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [66, 67]
+}
+
 [sub_resource type="Animation" id="Animation_08cww"]
 resource_name = "evil_idle_down"
 length = 0.1
@@ -554,6 +570,53 @@ tracks/1/keys = {
 "values": [PackedVector2Array(0, -8, -18, -7, -16, -16, -1, -16), PackedVector2Array(-14, -28, -17, -8, 0, -8, -5, -27), PackedVector2Array(-10, -36, -3, -32, -1, -9, -17, -8, -14, -35), PackedVector2Array(3, -7, -8, -45, -16, -48, -17, -46, -10, -43, -14, -40, -23, -33, -15, -25, -21, -13, -17, -12, -16, -6), PackedVector2Array(4, -7, -17, -7, -14, -16, -20, -13, -15, -22, -12, -35, -20, -37, -12, -38, -19, -46, -16, -51, 7, -52, 6, -40, -2, -37, 1, -29, -2, -23, 1, -16), PackedVector2Array(-12, -61, -15, -21, -21, -14, -15, -16, -17, -8, 0, -8, 4, -8, 1, -36, -2, -44, 6, -50, 0, -61), PackedVector2Array()]
 }
 
+[sub_resource type="Animation" id="Animation_g4575"]
+resource_name = "normal_eat_down"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.2, 0.266667, 0.333333, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [92, 93, 94, 95, 96, 97, 98]
+}
+
+[sub_resource type="Animation" id="Animation_e71oa"]
+resource_name = "normal_eat_side"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.166667, 0.266667, 0.366667, 0.466667, 0.566667, 0.666667, 0.766667, 0.833333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+}
+
+[sub_resource type="Animation" id="Animation_4esg5"]
+resource_name = "normal_eat_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0718176, 0.1, 0.178784, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [113, 114, 115, 118, 119, 120]
+}
+
 [sub_resource type="Animation" id="Animation_8amgs"]
 resource_name = "normal_idle_down"
 step = 0.1
@@ -734,10 +797,10 @@ tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0, 0.128401),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [85, 86]
+"values": [87, 88]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -881,69 +944,6 @@ tracks/0/keys = {
 "values": [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64]
 }
 
-[sub_resource type="Animation" id="Animation_i58rg"]
-resource_name = "clap"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [66, 67]
-}
-
-[sub_resource type="Animation" id="Animation_g4575"]
-resource_name = "normal_eat_down"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.2, 0.266667, 0.333333, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [92, 93, 94, 95, 96, 97, 98]
-}
-
-[sub_resource type="Animation" id="Animation_4esg5"]
-resource_name = "normal_eat_up"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0718176, 0.1, 0.178784, 0.2, 0.233333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [113, 114, 115, 118, 119, 120]
-}
-
-[sub_resource type="Animation" id="Animation_e71oa"]
-resource_name = "normal_eat_side"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("FlipAnchor/NormalSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.166667, 0.266667, 0.366667, 0.466667, 0.566667, 0.666667, 0.766667, 0.833333, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yoq1m"]
 _data = {
 &"Dusted": SubResource("Animation_eu2wf"),
@@ -999,7 +999,7 @@ height = 18.0
 size = Vector2(8.5, 6.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l3vl4"]
-size = Vector2(11, 18)
+size = Vector2(8.5, 7)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_siiaj"]
 animations = [{
@@ -1080,8 +1080,7 @@ position = Vector2(4, -4)
 shape = SubResource("RectangleShape2D_dg2di")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(-1, -5)
+position = Vector2(-1, -4)
 shape = SubResource("RectangleShape2D_l3vl4")
 
 [node name="SunbeamMuzzle" type="Marker2D" parent="."]

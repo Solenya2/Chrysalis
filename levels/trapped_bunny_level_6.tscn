@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=4 uid="uid://qwdnvxtvkgu"]
+
+[ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_pdsda"]
+[ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_t4hia"]
+[ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="3_pipvl"]
+[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="4_d0w46"]
+[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="5_bl1b4"]
+[ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="6_8srs8"]
+[ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="7_ep3ik"]
+[ext_resource type="Resource" uid="uid://dmmg1680ts5qd" path="res://levelspecifcscenes/path_to_bunny_to_bunny_level_6.tres" id="8_pdsda"]
+[ext_resource type="PackedScene" uid="uid://c8locvtggpgfw" path="res://levelspecifcscenes/trapped_rabbit.tscn" id="9_pdsda"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jo6yk"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("5_bl1b4")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75q36"]
+size = Vector2(27, 45)
+
+[node name="trapped_bunny_level_6" instance=ExtResource("1_pdsda")]
+
+[node name="CameraLimits" type="Control" parent="." index="0"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -23.0
+offset_top = 31.0
+offset_right = 385.0
+offset_bottom = 205.0
+script = ExtResource("2_t4hia")
+
+[node name="ForestTilesLayer" parent="." index="1" instance=ExtResource("3_pipvl")]
+tile_map_data = PackedByteArray("AAAAAAEAAAACAAEAAAABAAAADwADAAIAAAABAAEAAAADAAEAAAABAAcADwADAAIAAAABAAgAAAAEAAAAAAACAAAADwADAAIAAAACAAEAAAAAAAEAAAACAAcADwADAAIAAAADAAAAAAACAAEAAAADAAEAAAAEAAAAAAADAAcADwADAAIAAAAEAAAAAAAFAAEAAAAEAAEADwADAAIAAAAEAAYADwADAAIAAAAFAAAAAAACAAEAAAAFAAEADwADAAIAAAAFAAkAAAABAAEAAAAGAAAADwADAAIAAAAGAAEADwAAAAEAAAAGAAcADwADAAIAAAAHAAAADwADAAIAAAAHAAEADwADAAIAAAAHAAkADwADAAIAAAAIAAAADwADAAIAAAAIAAEADwADAAIAAAAIAAkADwADAAIAAAAJAAAADwADAAIAAAAJAAEADwADAAIAAAAKAP//AAABAAEAAAAKAAkAAAAGAAEAAAALAP//AAAFAAEAAAAMAAEADwADAAIAAAAMAAgAAAABAAEAAAANAAEADwADAAIAAAANAAgAAAAAAAEAAAAOAAgAAAAGAAEAAAAOAAoADwADAAIAAAAPAAcADwADAAIAAAAPAAoADwADAAIAAAAQAP//AAAGAAEAAAAQAAAADwADAAIAAAAQAAgAAAACAAEAAAAQAAoADwADAAIAAAARAP//AAAFAAEAAAARAAAADwADAAIAAAARAAgAAAAAAAEAAAARAAoADwADAAIAAAASAP//AAAFAAEAAAASAAAADwADAAIAAAASAAgAAAAAAAEAAAASAAoADwADAAIAAAATAAAAAAACAAEAAAATAAYAAAAGAAEAAAATAAgAAAAEAAEAAAATAAoADwADAAIAAAAUAAAAAAADAAEAAAAUAAYAAAAAAAAAAAAUAAkADwACAAMAAAAVAAAAAAAEAAEAAAAVAAkADwADAAIAAAAWAAcADwADAAIAAAAWAAkADwADAAIAAAD//wgAAAAEAAEAAAD//wkAAAADAAEAAAAAAAkAAAAAAAEAAAAAAAoAAAAFAAEAAAAAAAsAAAAEAAEAAAABAAsAAAAGAAEAAAACAAsAAAABAAEAAAADAAwAAAAEAAEAAAAEAAwAAAAAAAEAAAAEAAsAAAAEAAEAAAAFAAsAAAAFAAEAAAAGAAsAAAABAAEAAAAGAAoAAAACAAEAAAAHAAoAAAABAAEAAAAIAAoAAAACAAEAAAAJAAkAAAAFAAEAAAALAAkAAAAAAAEAAAALAAgAAAAGAAEAAAAPAAgAAAAAAAEAAAAUAAgAAAADAAEAAAAUAAcAAAAFAAEAAAAVAAcAAAAAAAEAAAAVAAYAAAAAAAEAAAAVAAUAAAAAAAEAAAAWAAUAAAABAAEAAAAXAAUAAAAAAAEAAAAYAAQAAAAGAAEAAAAZAAQAAAADAAEAAAAZAAMAAAAEAAEAAAAZAAIAAAACAAEAAAAYAAEAAAADAAEAAAAXAAEAAAAAAAEAAAAWAAEAAAADAAEAAAAVAAEAAAADAAEAAAAPAP//AAACAAEAAAAOAP//AAACAAEAAAANAP//AAAEAAEAAAAMAP//AAAAAAEAAAAJAP//AAAAAAEAAAAIAP//AAAEAAEAAAAHAP//AAAFAAEAAAAGAP//AAAEAAEAAAAFAP//AAADAAEAAAD//wEAAAACAAEAAAD//wIAAAAFAAEAAAD+/wIAAAABAAEAAAD+/wMAAAAAAAEAAAD+/wQAAAAGAAEAAAD//wQAAAABAAEAAAAEAAcAAAADAAAAAAAHAAIAAAABAAAAAAAIAAgAAAABAAAAAAAKAAUAAAABAAAAAAAJAAUAAAABAAAAAAAQAAIAAAABAAAAAAAQAAcAAAACAAAAAAACAAoAAAADAAAAAAAAAAIAAAADAAAAAAACAAMAAAAEAAAAAAALAAAAAAACAAAAAAA=")
+
+[node name="ColorRect" parent="." index="2"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 384.0
+offset_bottom = 208.0
+color = Color(0.153047, 0.399552, 0.210139, 1)
+
+[node name="LevelMusicPlaylist" type="Node" parent="." index="3"]
+script = ExtResource("4_d0w46")
+song_list = SubResource("AudioStreamPlaylist_jo6yk")
+
+[node name="CabinTilesLayer" parent="." index="4" instance=ExtResource("6_8srs8")]
+
+[node name="Door2" type="Area2D" parent="." index="5"]
+position = Vector2(0, 109)
+script = ExtResource("7_ep3ik")
+exit_distance = 25
+connection = ExtResource("8_pdsda")
+next_level_path = "uid://drv28yoqycc8r"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
+position = Vector2(-15, -2)
+shape = SubResource("RectangleShape2D_75q36")
+
+[node name="trapped_rabbit" parent="." index="6" instance=ExtResource("9_pdsda")]
+position = Vector2(193, 83)

@@ -9,12 +9,12 @@ extends Enemy
 @onready var summon_marker: Marker2D = %SummonMarker
 @onready var camera_focus: RemoteTransform2D = $CameraFocus
 @onready var cutscene_player: CutscenePlayer = $"../CutscenePlayer"
-@onready var cutscene_dialogbox: CutsceneDialogbox = $"/root/World/UI/VBoxContainer/CutsceneDialogbox"
+# Remove the old cutscene_dialogbox reference
 
 var ghost_scene: PackedScene = preload("res://enemies/ghost_deer_enemy.tscn")
 
 # ────────────────────────────────────────────────
-# FSM and Statesa
+# FSM and States
 # ────────────────────────────────────────────────
 var fsm: FSM
 var decision_state: BossDecisionState
@@ -33,8 +33,6 @@ var revived := false
 var is_cutscene := false
 var boss_health_bar: BossHealthBarUI
 
- 
- 
 var is_summoning := false
 var has_summoned := false
 var slam_timer := 999.0
@@ -55,6 +53,7 @@ func _ready() -> void:
 func set_boss_health_bar(bar: BossHealthBarUI) -> SamiBoss:
 	boss_health_bar = bar
 	return self
+
 func _init_fsm() -> void:
 	fsm = FSM.new()
 
@@ -96,7 +95,6 @@ func _init_fsm() -> void:
 	anim.animation_finished.connect(_on_animation_finished)
 	anim.animation_finished.connect(Callable(slam_attack_state, "on_slam_finished"))
 
-
 func _connect_hurtbox() -> void:
 	if hurtbox:
 		hurtbox.hurt.connect(func(other_hitbox: Hitbox):
@@ -129,7 +127,6 @@ func _physics_process(delta: float) -> void:
 	# Forward delta to current FSM state
 	if fsm.state:
 		fsm.state.physics_process(delta)
-
 
 # ────────────────────────────────────────────────
 # Animation Helpers (Fixed to prevent flicker)
@@ -181,7 +178,7 @@ func _spawn_ghost():
 		ghost.global_position = summon_marker.global_position
 
 # ────────────────────────────────────────────────
-# Phase Transitions & Cutscene
+# Phase Transitions & Cutscene - UPDATED TO USE NEW SYSTEM
 # ────────────────────────────────────────────────
 func _on_phase_end():
 	revived = true
@@ -203,7 +200,9 @@ func _on_phase_end():
 				await anim.animation_finished
 
 			var s2 = func():
-				await cutscene_dialogbox.type_dialog("[center]No...my friend...I REFUSE IT!")
+				# Use the new event system instead of direct dialogbox access
+				Events.request_show_dialog.emit("[center]No...my friend...I REFUSE IT!")
+				await Events.dialog_finished
 
 			var s3 = func():
 				var hero := MainInstances.hero
@@ -221,7 +220,9 @@ func _on_phase_end():
 				while anim.current_animation != "phase_one_collapse" or anim.current_animation_position < 15.5:
 					await tree.process_frame
 
-				await cutscene_dialogbox.type_dialog("[center]You will pay for your crimes.")
+				# Use the new event system
+				Events.request_show_dialog.emit("[center]You will pay for your crimes.")
+				await Events.dialog_finished
 
 				if boss_health_bar:
 					boss_health_bar.visible = true

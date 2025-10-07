@@ -110,7 +110,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_k68cx"]
 resource_name = "phase_one_collapse"
-length = 20.0
+length = 15.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

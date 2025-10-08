@@ -3,9 +3,8 @@
 [ext_resource type="Script" uid="uid://dd0d8kjcfo0bq" path="res://world_systems/cutscene_player.gd" id="1_jivwq"]
 [ext_resource type="Script" uid="uid://bl5ss0vhb0jsm" path="res://world_systems/pause_manager.gd" id="2_t0dnf"]
 
-[node name="CutscenePlayer" type="Node" node_paths=PackedStringArray("pause_manager")]
+[node name="CutscenePlayer" type="Node"]
 script = ExtResource("1_jivwq")
-pause_manager = NodePath("PauseManager")
 
 [node name="PauseManager" type="Node" parent="."]
 script = ExtResource("2_t0dnf")

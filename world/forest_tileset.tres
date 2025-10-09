@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=37 format=3 uid="uid://b4uxsdo36kb7s"]
+[gd_resource type="TileSet" load_steps=41 format=3 uid="uid://b4uxsdo36kb7s"]
 
 [ext_resource type="Texture2D" uid="uid://s6phg86oh6ur" path="res://world/forest_tiles.png" id="1_vvalk"]
 [ext_resource type="Texture2D" uid="uid://bdocy82vse7ww" path="res://Assetsforleveldesign/Grass.png" id="2_cfhj8"]
@@ -12,8 +12,10 @@
 [ext_resource type="Texture2D" uid="uid://bxt54piv8re0r" path="res://Assetsforleveldesign/dirtandflame.png" id="6_oeddt"]
 [ext_resource type="Texture2D" uid="uid://dx40wp3vhau3u" path="res://levels/grasstilemap.png" id="7_k4fr6"]
 [ext_resource type="Texture2D" uid="uid://c88ono6377faw" path="res://Assetsforleveldesign/grasstilemap.png" id="7_tt4e5"]
+[ext_resource type="Texture2D" uid="uid://y6tyjxwwbt3g" path="res://Assetsforleveldesign/grassgreenforsttiles.png" id="8_7ia1h"]
 [ext_resource type="Texture2D" uid="uid://kvjcf3yaokjn" path="res://Assetsforleveldesign/grasstilemaocandy.png" id="8_c2mgc"]
 [ext_resource type="Texture2D" uid="uid://cbiqjpislmd4h" path="res://side_worlds/slimegrass.png" id="9_6v0a6"]
+[ext_resource type="Texture2D" uid="uid://tfp64iapi7v2" path="res://corupted_levels/greengrasscoruptedfprsttiles-Sheet.png" id="9_gko66"]
 [ext_resource type="Texture2D" uid="uid://cn4kmtgpwneax" path="res://Assetsforleveldesign/roads.png" id="10_8nodd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mm4u2"]
@@ -1017,6 +1019,47 @@ texture = ExtResource("7_k4fr6")
 2:3/0 = 0
 3:3/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ksxk4"]
+texture = ExtResource("8_7ia1h")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_flyoy"]
+texture = ExtResource("9_gko66")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2mgc"]
 texture = ExtResource("3_4kabu")
 0:0/0 = 0
@@ -1442,6 +1485,7 @@ texture = ExtResource("4_oeddt")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8nodd"]
 texture = ExtResource("5_oeddt")
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xj8b2"]
 texture = ExtResource("6_oeddt")
@@ -1833,3 +1877,5 @@ sources/12 = SubResource("TileSetAtlasSource_5025r")
 sources/13 = SubResource("TileSetAtlasSource_o8yub")
 sources/14 = SubResource("TileSetAtlasSource_pjrua")
 sources/15 = SubResource("TileSetAtlasSource_r754a")
+sources/16 = SubResource("TileSetAtlasSource_ksxk4")
+sources/17 = SubResource("TileSetAtlasSource_flyoy")

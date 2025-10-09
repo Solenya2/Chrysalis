@@ -19,7 +19,7 @@ stream_0 = ExtResource("5_b1vua")
 size = Vector2(19, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75q36"]
-size = Vector2(56, 20)
+size = Vector2(49, 16)
 
 [node name="path_tp_bunny_5" instance=ExtResource("1_q5e6u")]
 
@@ -69,5 +69,5 @@ next_level_path = "uid://qwdnvxtvkgu"
 metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
-position = Vector2(10, 9)
+position = Vector2(8.5, 11)
 shape = SubResource("RectangleShape2D_75q36")

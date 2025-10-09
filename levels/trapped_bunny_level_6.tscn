@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://qwdnvxtvkgu"]
+[gd_scene load_steps=14 format=4 uid="uid://qwdnvxtvkgu"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_pdsda"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_t4hia"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="7_ep3ik"]
 [ext_resource type="Resource" uid="uid://dmmg1680ts5qd" path="res://levelspecifcscenes/path_to_bunny_to_bunny_level_6.tres" id="8_pdsda"]
 [ext_resource type="PackedScene" uid="uid://c8locvtggpgfw" path="res://levelspecifcscenes/trapped_rabbit.tscn" id="9_pdsda"]
+[ext_resource type="Resource" uid="uid://y8pea8xw0ajs" path="res://level_connections/level_6_to_level_7.tres" id="10_t4hia"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jo6yk"]
 shuffle = true
@@ -18,14 +19,17 @@ stream_0 = ExtResource("5_bl1b4")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75q36"]
 size = Vector2(27, 45)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pipvl"]
+size = Vector2(30, 46)
+
 [node name="trapped_bunny_level_6" instance=ExtResource("1_pdsda")]
 
 [node name="CameraLimits" type="Control" parent="." index="0"]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -23.0
-offset_top = 31.0
-offset_right = 385.0
+offset_top = -21.0
+offset_right = 419.0
 offset_bottom = 205.0
 script = ExtResource("2_t4hia")
 
@@ -35,8 +39,8 @@ tile_map_data = PackedByteArray("AAAAAAEAAAACAAEAAAABAAAADwADAAIAAAABAAEAAAADAAE
 [node name="ColorRect" parent="." index="2"]
 offset_left = -32.0
 offset_top = -32.0
-offset_right = 384.0
-offset_bottom = 208.0
+offset_right = 425.0
+offset_bottom = 207.0
 color = Color(0.153047, 0.399552, 0.210139, 1)
 
 [node name="LevelMusicPlaylist" type="Node" parent="." index="3"]
@@ -59,3 +63,15 @@ shape = SubResource("RectangleShape2D_75q36")
 
 [node name="trapped_rabbit" parent="." index="6" instance=ExtResource("9_pdsda")]
 position = Vector2(193, 83)
+
+[node name="Door" type="Area2D" parent="." index="7"]
+position = Vector2(372, 57)
+script = ExtResource("7_ep3ik")
+exit_direction = 2
+connection = ExtResource("10_t4hia")
+next_level_path = "uid://dhhh7e738rtkh"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door" index="0"]
+position = Vector2(13, -1)
+shape = SubResource("RectangleShape2D_pipvl")

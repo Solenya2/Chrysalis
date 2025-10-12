@@ -15,7 +15,7 @@ class_name NPCMoralitySimple
 @export_multiline var evil_reply_a: String = "South. It's south—just leave me."
 @export_multiline var evil_reply_b: String = "Eek! I’ll do whatever you say!"
 
-# Final player choice (shown under reply1, no extra prompt)
+# Final player choice (buttons-only under reply1)
 @export_multiline var choice2_a: String = "Thanks. I’ll go now."
 @export_multiline var choice2_b: String = "Better do as I say."
 
@@ -38,7 +38,7 @@ func _ready() -> void:
 	interaction.interacted.connect(_on_interacted)
 
 func _on_interacted() -> void:
-	# Avoid double-trigger on the same input that closed the dialog
+	# Don’t start if UI is paused or we’re already running
 	if get_tree().paused:
 		return
 	if _running:
@@ -57,33 +57,27 @@ func _on_interacted() -> void:
 func _run_conversation_once() -> void:
 	_running = true
 
-	# Determine current tone from alignment (evil if >=3)
 	var a: AlignmentData = ReferenceStash.alignment
 	var is_evil := a.evil_score >= 3
 
-	# 1) Opening line
+	# 1) Opening line — staged (prompt -> skip -> buttons)
 	var opening := good_dialog
 	if is_evil:
 		opening = evil_dialog
-	Events.request_show_dialog.emit(opening)
+	Events.request_prompt_then_choices.emit(opening, [choice_a, choice_b])
 
-	# First choices while dialog is OPEN
-	Events.request_dialog_choices.emit([choice_a, choice_b])
-
-	# Wait for first pick (DialogBox closes itself after pick)
+	# Player picks A/B; DialogBox closes itself
 	var first_choice_index: int = await Events.dialog_choice_made
-	await get_tree().process_frame  # small debounce to prevent click-through
+	await get_tree().process_frame  # debounce to avoid click-through
 
-	# Apply alignment delta for first choice
+	# Update alignment from first pick
 	if first_choice_index == 0:
 		a.good_score += 1
 	else:
 		a.evil_score += 1
-
-	# Recompute tone after the change
 	is_evil = a.evil_score >= 3
 
-	# 2) NPC reply to first pick (RE-OPEN)
+	# 2) NPC reply to first pick (re-open)
 	var reply1 := ""
 	if is_evil:
 		if first_choice_index == 0:
@@ -97,22 +91,30 @@ func _run_conversation_once() -> void:
 			reply1 = good_reply_b
 	Events.request_show_dialog.emit(reply1)
 
-	# 3) Final player choice (shown under reply1)
+	# >>> IMPORTANT <<< 
+	# Wait for the player to close the reply (so their skip is fully consumed)
+	await Events.dialog_finished
+	# Small extra beat to avoid input bleed into the next open
+	await get_tree().create_timer(0.06).timeout
+
+	# 3) Final player choice — buttons-only (no extra skip, no race)
+	# Re-open with empty text so only the buttons show.
+	Events.request_show_dialog.emit("")                 # opens panel, no text
+	# Wait one frame so DialogBox is visible before attaching buttons
+	await get_tree().process_frame
 	Events.request_dialog_choices.emit([choice2_a, choice2_b])
 
 	var second_choice_index: int = await Events.dialog_choice_made
 	await get_tree().process_frame  # debounce
 
-	# Apply alignment delta for second choice
+	# Update alignment from second pick
 	if second_choice_index == 0:
 		a.good_score += 1
 	else:
 		a.evil_score += 1
-
-	# Recompute tone again
 	is_evil = a.evil_score >= 3
 
-	# 4) Final NPC reply (RE-OPEN), then wait for close
+	# 4) Final NPC reply (re-open), then wait for close
 	var reply2 := ""
 	if is_evil:
 		if second_choice_index == 0:
@@ -126,19 +128,14 @@ func _run_conversation_once() -> void:
 			reply2 = good_final_b
 
 	Events.request_show_dialog.emit(reply2)
-
-	# Let the player close the final line
 	await Events.dialog_finished
 
-	# --- Safety: guarantee the tree is unpaused, even if something swallowed the close ---
+	# Safety: guarantee unpause
 	if get_tree().paused:
-		# Ask the DialogBox to close (it will also emit dialog_finished + unpause)
 		Events.request_close_dialog.emit()
 		await get_tree().process_frame
-		# Absolute fallback if some other UI didn't honor the close:
 		if get_tree().paused:
 			get_tree().paused = false
-	# --- end safety ---
 
 	_completed = true
 	_running = false

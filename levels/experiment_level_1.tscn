@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cjc7gj4t84fm1"]
+[gd_scene load_steps=17 format=4 uid="uid://cjc7gj4t84fm1"]
 
 [ext_resource type="Script" uid="uid://b10n1bmsfr06b" path="res://levels/level.gd" id="1_6rtlg"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_xjdkb"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://srsdigvf6nxx" path="res://items/cahsmulamulababy.png" id="10_d2jl7"]
 [ext_resource type="Resource" uid="uid://qbb54nnm8ryd" path="res://level_connections/experiment_level_one_to_experiment_level_2.tres" id="10_xjdkb"]
 [ext_resource type="PackedScene" uid="uid://csteocmfklci7" path="res://enemies/bat_enemy.tscn" id="11_jrau6"]
+[ext_resource type="PackedScene" uid="uid://dgihdtsm4fxst" path="res://world/save_station.tscn" id="13_shabr"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jo6yk"]
 shuffle = true
@@ -70,6 +71,17 @@ shape = SubResource("RectangleShape2D_75q36")
 
 [node name="npc_base" parent="." instance=ExtResource("9_1xu70")]
 position = Vector2(270, -29)
+good_dialog = "hey wanna hear a joke?"
+evil_dialog = "u-uh hi uh wanna hear a joke? "
+choice_a = "sure go ahead funny boy "
+choice_b = "i dont have the time to waste "
+good_reply_a = "okay What do you call a magic dog"
+good_reply_b = "uh yea of course sorry "
+choice2_a = "uh i dont know a wizardo? "
+choice2_b = "didnt i tell you to shut up "
+good_final_a = "A labracadabrador!"
+good_final_b = "uh yea sorry "
+post_good = "hah sorry buddy ive told all my jokes "
 
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(670, 180)
@@ -93,3 +105,6 @@ position = Vector2(560, 316)
 
 [node name="BatEnemy2" parent="." instance=ExtResource("11_jrau6")]
 position = Vector2(498, 286)
+
+[node name="SaveStation" parent="." instance=ExtResource("13_shabr")]
+position = Vector2(224, 55)

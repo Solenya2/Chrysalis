@@ -93,3 +93,5 @@ signal request_open_map
 signal request_close_map
 
 signal start_cutscene_one
+# Staged flow: show text first, then (on skip) swap to choices-only
+signal request_prompt_then_choices(bbcode: String, options)  # options: Array[String] or Array

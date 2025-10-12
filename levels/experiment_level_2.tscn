@@ -80,7 +80,3 @@ position = Vector2(498, 286)
 
 [node name="Sign" parent="." instance=ExtResource("12_wmgj1")]
 position = Vector2(221, 110)
-enable_toggle = false
-start_open = false
-message_when_open = "Close the cabinet?"
-message_when_closed = "Open the cabinet?"

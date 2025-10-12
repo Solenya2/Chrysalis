@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=41 format=3 uid="uid://b4uxsdo36kb7s"]
+[gd_resource type="TileSet" load_steps=42 format=3 uid="uid://b4uxsdo36kb7s"]
 
 [ext_resource type="Texture2D" uid="uid://s6phg86oh6ur" path="res://world/forest_tiles.png" id="1_vvalk"]
 [ext_resource type="Texture2D" uid="uid://bdocy82vse7ww" path="res://Assetsforleveldesign/Grass.png" id="2_cfhj8"]
@@ -1060,6 +1060,23 @@ texture = ExtResource("9_gko66")
 5:1/0 = 0
 6:1/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cmr6y"]
+texture = ExtResource("1_vvalk")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2mgc"]
 texture = ExtResource("3_4kabu")
 0:0/0 = 0
@@ -1879,3 +1896,4 @@ sources/14 = SubResource("TileSetAtlasSource_pjrua")
 sources/15 = SubResource("TileSetAtlasSource_r754a")
 sources/16 = SubResource("TileSetAtlasSource_ksxk4")
 sources/17 = SubResource("TileSetAtlasSource_flyoy")
+sources/18 = SubResource("TileSetAtlasSource_cmr6y")

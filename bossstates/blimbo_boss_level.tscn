@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://ca31wha6yfq52"]
+[gd_scene load_steps=17 format=4 uid="uid://ca31wha6yfq52"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_1rtqt"]
 [ext_resource type="Script" uid="uid://dklxpevpe7f0l" path="res://bossstates/blimbo_boss_level.gd" id="2_nkh47"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://bcsxvvsrq58ra" path="res://ui/boss_health_bar_ui.tscn" id="5_miofd"]
 [ext_resource type="PackedScene" uid="uid://dknwm3kyydwph" path="res://world_systems/cutscene_player.tscn" id="6_nkh47"]
 [ext_resource type="PackedScene" uid="uid://dcpptwsaivp70" path="res://ui/cutscene_dialogbox.tscn" id="7_vet27"]
-[ext_resource type="Resource" uid="uid://cncg32mhdxmvi" path="res://level_connections/boss_level_bimblo_to_level_one.tres" id="9_ubb7d"]
 [ext_resource type="Texture2D" uid="uid://duccodycmvry5" path="res://bossstates/firechair-Sheet.png" id="9_vet27"]
 [ext_resource type="PackedScene" uid="uid://cmadlpleloe3j" path="res://enemies/bimblo.tscn" id="10_ubb7d"]
 [ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="11_6s8is"]
@@ -80,8 +79,6 @@ position = Vector2(144, 351)
 script = ExtResource("2_vyr6e")
 exit_direction = 1
 exit_distance = 32
-connection = ExtResource("9_ubb7d")
-next_level_path = "uid://burvhv42pe1q6"
 metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ForestTilesLayer2/Door" index="0"]

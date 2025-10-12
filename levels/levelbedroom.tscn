@@ -162,7 +162,7 @@ position = Vector2(-2, 11)
 shape = SubResource("RectangleShape2D_nmsli")
 
 [node name="Door" type="Area2D" parent="." index="5"]
-position = Vector2(136, 153)
+position = Vector2(136, 137)
 script = ExtResource("5_0gyys")
 exit_direction = 1
 connection = ExtResource("6_2yx28")

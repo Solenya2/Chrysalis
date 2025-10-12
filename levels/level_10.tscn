@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://hll334jyh4ok"]
+[gd_scene load_steps=18 format=4 uid="uid://hll334jyh4ok"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_gn8iv"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_enm3r"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="6_s88sk"]
 [ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="7_aoyam"]
 [ext_resource type="PackedScene" uid="uid://2j4vmge77smk" path="res://world_systems/deer_mutate_trigger.tscn" id="8_5r2q3"]
+[ext_resource type="Resource" uid="uid://bw4v5ndybkugj" path="res://level_connections/level_9_to_level_10.tres" id="8_enm3r"]
 [ext_resource type="PackedScene" uid="uid://bqq31shcf1t67" path="res://enemies/deer_enemy.tscn" id="9_b27ru"]
 [ext_resource type="Script" uid="uid://d2sxc7kksbq6k" path="res://character_systems/movement_stats.gd" id="10_tkuam"]
 [ext_resource type="Script" uid="uid://05i5kvcdbtva" path="res://character_systems/stats.gd" id="11_aqkyu"]
@@ -42,8 +43,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = -64.0
 offset_top = -112.0
-offset_right = 585.0
-offset_bottom = 173.0
+offset_right = 821.0
+offset_bottom = 228.0
 script = ExtResource("2_enm3r")
 
 [node name="ForestTilesLayer" parent="." index="1" instance=ExtResource("3_bfq0i")]
@@ -65,6 +66,8 @@ song_list = SubResource("AudioStreamPlaylist_jo6yk")
 [node name="Door" type="Area2D" parent="." index="5"]
 position = Vector2(-45, 17)
 script = ExtResource("7_aoyam")
+connection = ExtResource("8_enm3r")
+next_level_path = "uid://bx4jacs1ss1ev"
 metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door" index="0"]

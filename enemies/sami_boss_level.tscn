@@ -31,6 +31,7 @@ script = ExtResource("2_ppds0")
 [node name="ColorRect" parent="." index="0"]
 offset_right = 810.0
 offset_bottom = 435.0
+color = Color(0.164323, 0.405759, 0.234889, 1)
 
 [node name="Door" type="Area2D" parent="." index="1"]
 position = Vector2(359, 2)

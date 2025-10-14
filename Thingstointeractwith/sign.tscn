@@ -1,23 +1,30 @@
 [gd_scene load_steps=6 format=3 uid="uid://cph8f8arjq58u"]
 
-[ext_resource type="Script" uid="uid://w377eihkuup1" path="res://InteractionBasic.gd" id="1_driqb"]
+[ext_resource type="Script" uid="uid://dyhk18cmkcx5f" path="res://Thingstointeractwith/InteractSign.gd" id="1_driqb"]
 [ext_resource type="Texture2D" uid="uid://bxxb1px3jqokc" path="res://Assetsforleveldesign/sign.png" id="2_dygjg"]
 [ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_omgxq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jor8q"]
-size = Vector2(16.875, 11)
+size = Vector2(25.875, 15.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_my5cn"]
-size = Vector2(28, 26)
+size = Vector2(45, 32)
 
 [node name="Sign" type="StaticBody2D" groups=["navigation"]]
 script = ExtResource("1_driqb")
+text_block = "gfueeabuefbiaefjbaefuafbeakbufbakbfeukaefubfkabufu
+
+bdiabdwidwjabidbajbdjaibd
+
+
+wadadadaddwad"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, -7)
 texture = ExtResource("2_dygjg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(1.4375, -7)
 shape = SubResource("RectangleShape2D_jor8q")
 disabled = true
@@ -26,6 +33,7 @@ disabled = true
 script = ExtResource("3_omgxq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+visible = false
 position = Vector2(1, -6)
 shape = SubResource("RectangleShape2D_my5cn")
 

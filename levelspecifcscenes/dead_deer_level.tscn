@@ -76,10 +76,12 @@ position = Vector2(288, 152)
 texture = ExtResource("9_70k2j")
 
 [node name="Deerdead" type="Sprite2D" parent="." index="8"]
+top_level = true
 position = Vector2(242, 36)
 texture = ExtResource("10_48eop")
 
 [node name="Deerdead2" type="Sprite2D" parent="." index="9"]
+top_level = true
 position = Vector2(183, 136)
 texture = ExtResource("10_48eop")
 

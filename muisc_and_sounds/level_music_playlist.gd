@@ -15,3 +15,4 @@ func _ready() -> void:
 	if not Music.is_playing_playlist(song_list):
 		await Music.fade()   # Smooth fade out of current music
 		Music.play(song_list)
+ 

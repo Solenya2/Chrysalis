@@ -32,8 +32,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = -32.0
 offset_top = -31.0
-offset_right = 571.0
-offset_bottom = 205.0
+offset_right = 528.0
+offset_bottom = 192.0
 script = ExtResource("2_q3845")
 
 [node name="ForestTilesLayer" parent="." index="1" instance=ExtResource("3_cicrg")]

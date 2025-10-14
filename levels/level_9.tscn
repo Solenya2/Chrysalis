@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bx4jacs1ss1ev"]
+[gd_scene load_steps=15 format=4 uid="uid://bx4jacs1ss1ev"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_x8804"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_a72wi"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="7_sby73"]
 [ext_resource type="Texture2D" uid="uid://bxsdwr2j53e75" path="res://Assetsforleveldesign/deerdead.png" id="8_8ka2n"]
 [ext_resource type="Resource" uid="uid://dyte1b0jl1npf" path="res://level_connections/level_8to_level_9.tres" id="8_a72wi"]
+[ext_resource type="PackedScene" uid="uid://cph8f8arjq58u" path="res://Thingstointeractwith/sign.tscn" id="10_a4lof"]
 [ext_resource type="Resource" uid="uid://bw4v5ndybkugj" path="res://level_connections/level_9_to_level_10.tres" id="10_lh5ve"]
 
 [sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jo6yk"]
@@ -60,15 +61,7 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 position = Vector2(-11, -7)
 shape = SubResource("RectangleShape2D_nyknj")
 
-[node name="Deerdead2" type="Sprite2D" parent="." index="6"]
-position = Vector2(338, -34)
-texture = ExtResource("8_8ka2n")
-
-[node name="Deerdead" type="Sprite2D" parent="." index="7"]
-position = Vector2(188, 60)
-texture = ExtResource("8_8ka2n")
-
-[node name="Door2" type="Area2D" parent="." index="8"]
+[node name="Door2" type="Area2D" parent="." index="6"]
 position = Vector2(572, 4)
 script = ExtResource("7_sby73")
 exit_direction = 2
@@ -79,3 +72,48 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door2" index="0"]
 position = Vector2(15.5, 1.5)
 shape = SubResource("RectangleShape2D_a72wi")
+
+[node name="deaddear1" parent="." index="7" instance=ExtResource("10_a4lof")]
+position = Vector2(184, 68)
+text_block = "somthing is wrong "
+
+[node name="Sprite2D" parent="deaddear1" index="0"]
+texture = ExtResource("8_8ka2n")
+
+[node name="CollisionShape2D" parent="deaddear1" index="1"]
+position = Vector2(-3.0625, -4.75)
+disabled = false
+
+[node name="CollisionShape2D" parent="deaddear1/Interaction" index="0"]
+position = Vector2(-1.5, -6)
+
+[node name="deaddear2" parent="." index="8" instance=ExtResource("10_a4lof")]
+position = Vector2(184, 68)
+text_block = "i dont think its breathing "
+
+[node name="Sprite2D" parent="deaddear2" index="0"]
+texture = ExtResource("8_8ka2n")
+
+[node name="CollisionShape2D" parent="deaddear2" index="1"]
+position = Vector2(-3.0625, -4.75)
+disabled = false
+
+[node name="CollisionShape2D" parent="deaddear2/Interaction" index="0"]
+position = Vector2(-1.5, -6)
+
+[node name="deaddear3" parent="." index="9" instance=ExtResource("10_a4lof")]
+position = Vector2(337, -27)
+
+[node name="Sprite2D" parent="deaddear3" index="0"]
+texture = ExtResource("8_8ka2n")
+
+[node name="CollisionShape2D" parent="deaddear3" index="1"]
+position = Vector2(-3.0625, -4.75)
+disabled = false
+
+[node name="CollisionShape2D" parent="deaddear3/Interaction" index="0"]
+position = Vector2(-1.5, -6)
+
+[editable path="deaddear1"]
+[editable path="deaddear2"]
+[editable path="deaddear3"]

@@ -15,7 +15,8 @@ signal fade_completed()
 # --- Track lookup (voice-friendly keys) ---
 # Pre-fill with your Mozart track. Add more keys as needed.
 @export var track_map: Dictionary = {
-	"mozart": preload("res://muisc_and_sounds/requiem-mozart-remix-265907.mp3")
+	"mozart": preload("res://muisc_and_sounds/requiem-mozart-remix-265907.mp3"),
+	"dadsong": preload("res://muisc_and_sounds/dadsongpreapere.mp3") 
 }
 
 func _ready() -> void:

@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://dym26s4jov0mc"]
+
+[ext_resource type="Script" uid="uid://17jhikuxcssv" path="res://me_npc.gd" id="1_u57xs"]
+[ext_resource type="Texture2D" uid="uid://cyxoht7ngovhk" path="res://Npc/fullgitarsheet.png" id="2_hd3vf"]
+[ext_resource type="Script" uid="uid://c4b5s7nqfdlvm" path="res://world/interaction.gd" id="3_kfceg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcxd7"]
+size = Vector2(12, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qyul"]
+size = Vector2(25, 28)
+
+[sub_resource type="Animation" id="Animation_ggxlw"]
+resource_name = "guitar"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_wv5je"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ruumg"]
+_data = {
+&"RESET": SubResource("Animation_wv5je"),
+&"guitar": SubResource("Animation_ggxlw")
+}
+
+[node name="me_npc" type="CharacterBody2D"]
+script = ExtResource("1_u57xs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12, -14)
+texture = ExtResource("2_hd3vf")
+hframes = 9
+frame = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_gcxd7")
+
+[node name="Interaction" type="Area2D" parent="."]
+script = ExtResource("3_kfceg")
+metadata/_custom_type_script = "uid://c4b5s7nqfdlvm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_4qyul")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ruumg")
+}

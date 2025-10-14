@@ -10,10 +10,15 @@ var is_typing: bool = false
 var is_showing_choices: bool = false
 var signals_connected: bool = false
 
-# Staged prompt→choices mode
+# Staged prompt → choices mode
 var awaiting_prompt_dismiss: bool = false
 var staged_choices: Array = []
 @export var clear_text_on_choices: bool = true  # true = hide text when showing staged choices
+
+# Paged text mode (signs/books)
+var in_lines_mode: bool = false
+var lines_queue: Array[String] = []
+var line_index: int = 0
 
 # Bookkeeping for choices
 var current_choices: Array = []
@@ -52,6 +57,8 @@ func _exit_tree() -> void:
 			Events.request_close_dialog.disconnect(close_dialog)
 		if Events.request_prompt_then_choices.is_connected(show_prompt_then_choices):
 			Events.request_prompt_then_choices.disconnect(show_prompt_then_choices)
+		if Events.request_show_lines.is_connected(show_lines):
+			Events.request_show_lines.disconnect(show_lines)
 		signals_connected = false
 
 func _connect_signals() -> void:
@@ -67,12 +74,15 @@ func _connect_signals() -> void:
 		Events.request_close_dialog.disconnect(close_dialog)
 	if Events.request_prompt_then_choices.is_connected(show_prompt_then_choices):
 		Events.request_prompt_then_choices.disconnect(show_prompt_then_choices)
+	if Events.request_show_lines.is_connected(show_lines):
+		Events.request_show_lines.disconnect(show_lines)
 
+	# Connect
 	Events.request_show_dialog.connect(show_dialog)
 	Events.request_dialog_choices.connect(show_choices)
 	Events.request_close_dialog.connect(close_dialog)
-	# NEW: staged flow (prompt → skip → choices)
 	Events.request_prompt_then_choices.connect(show_prompt_then_choices)
+	Events.request_show_lines.connect(show_lines)
 
 	signals_connected = true
 
@@ -97,6 +107,12 @@ func _input(event: InputEvent) -> void:
 			rich_text_label.visible_ratio = 1.0
 			get_viewport().set_input_as_handled()
 		else:
+			# If we're paging text (signs), advance instead of closing
+			if in_lines_mode:
+				_advance_lines_or_close()
+				get_viewport().set_input_as_handled()
+				return
+
 			# If we're awaiting prompt dismissal, switch to choices instead of closing
 			if awaiting_prompt_dismiss:
 				_transition_prompt_to_choices()
@@ -144,13 +160,18 @@ func _transition_prompt_to_choices() -> void:
 	show_choices(staged_choices)
 	staged_choices.clear()
 
-# ── API: show a line of text (keeps dialog open) ─────────────────────────
+# ── API: show a single line (keeps dialog open) ──────────────────────────
 func show_dialog(bbcode: String) -> void:
+	# Reset any staged/paged states
+	in_lines_mode = false
+	lines_queue.clear()
+	line_index = 0
+	awaiting_prompt_dismiss = false
+	staged_choices.clear()
+
 	clear_choices()
 	rich_text_label.text = ""
 	rich_text_label.visible_characters = 0
-	awaiting_prompt_dismiss = false
-	staged_choices.clear()
 
 	is_typing = true
 	get_tree().paused = true
@@ -198,6 +219,52 @@ func show_choices(options: Array) -> void:
 	if choice_buttons.size() > 0:
 		choice_buttons[0].grab_focus()
 
+# ── API: paged text (signs/books) ────────────────────────────────────────
+func show_lines(lines: Array) -> void:
+	# Enter paged-text mode (no choices)
+	in_lines_mode = true
+	lines_queue = []
+	for l in lines:
+		var s := String(l)
+		if s.strip_edges() != "":
+			lines_queue.append(s)
+	line_index = 0
+
+	if lines_queue.is_empty():
+		return
+
+	_show_current_line()
+
+func _show_current_line() -> void:
+	# Reset staged/choices and open the dialog with the current page
+	awaiting_prompt_dismiss = false
+	staged_choices.clear()
+	clear_choices()
+
+	is_typing = true
+	get_tree().paused = true
+	show()
+
+	rich_text_label.text = lines_queue[line_index]
+	rich_text_label.visible_characters = 0
+
+	var total_characters: int = rich_text_label.get_total_character_count()
+	var duration: float = total_characters * CHARACTER_DISPLAY_DURATION
+	typer = create_tween()
+	typer.tween_method(set_visible_characters, 0, total_characters, duration)
+	await typer.finished
+	is_typing = false
+
+func _advance_lines_or_close() -> void:
+	line_index += 1
+	if line_index < lines_queue.size():
+		_show_current_line()
+	else:
+		in_lines_mode = false
+		lines_queue.clear()
+		line_index = 0
+		close_dialog()
+
 # ── Choice plumbing ──────────────────────────────────────────────────────
 func _on_choice_pressed(choice_index: int) -> void:
 	Events.dialog_choice_made.emit(choice_index)
@@ -223,8 +290,13 @@ func close_dialog() -> void:
 	if is_typing and typer is Tween:
 		typer.kill()
 	is_typing = false
+
+	# Reset staging/paged states
 	awaiting_prompt_dismiss = false
 	staged_choices.clear()
+	in_lines_mode = false
+	lines_queue.clear()
+	line_index = 0
 
 	clear_choices()
 	hide()

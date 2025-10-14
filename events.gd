@@ -95,3 +95,8 @@ signal request_close_map
 signal start_cutscene_one
 # Staged flow: show text first, then (on skip) swap to choices-only
 signal request_prompt_then_choices(bbcode: String, options)  # options: Array[String] or Array
+# Paged text (signs, books, plaques): show lines and advance with skip
+signal request_show_lines(lines)  # lines: Array[String]
+# Add to your existing Events.gd autoload script
+signal guitar_song_started()
+signal guitar_song_ended()

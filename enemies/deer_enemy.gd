@@ -185,39 +185,44 @@ func _trigger_near_death_event() -> void:
 	_start_moral_choice_process()
 
 func _start_moral_choice_process() -> void:
-	# Pause gameplay
+	# Start cutscene & focus camera
 	Events.cutscene_started.emit()
-	
-	# Focus camera on the deer
 	var deer_focus := get_node_or_null("RemoteTransform2D")
 	if deer_focus is RemoteTransform2D:
 		Events.request_camera_target.emit(deer_focus)
-	
-	# Show dialog asking the moral question
-	Events.request_show_dialog.emit("[center]The deer is wounded and helpless...\nWhat will you do?")
-	
-	# Show choice options using your existing system
-	Events.request_dialog_choices.emit(["Spare the deer", "Finish it"])
-	
-	# Set flag to indicate we're waiting for a choice
+
+	# STAGED: show prompt, player presses skip, then only buttons appear
+	var prompt := "[center]The deer is wounded and helpless...\nWhat will you do?"
+	Events.request_prompt_then_choices.emit(prompt, ["Spare the deer", "Finish it"])
+
 	awaiting_choice = true
+
 
 # Handle the dialog choice result
 func _on_dialog_choice_made(choice_idx: int) -> void:
 	if not awaiting_choice:
 		return
-		
 	awaiting_choice = false
-	
-	# Handle the choice (0 = first option, 1 = second option)
+
+	# Debounce a frame so the click that chose the option
+	# doesn’t immediately close anything we open next.
+	await get_tree().process_frame
+
 	handle_moral_choice(choice_idx == 0)
-	
-	# Return camera to player
+
+	# Return camera
 	if MainInstances.hero and is_instance_valid(MainInstances.hero):
 		Events.request_camera_target.emit(MainInstances.hero.remote_transform_2d)
-	
-	# Resume gameplay
+
+	# Make sure gameplay isn’t left paused by the dialog
+	if get_tree().paused:
+		Events.request_close_dialog.emit()
+		await get_tree().process_frame
+		if get_tree().paused:
+			get_tree().paused = false
+
 	Events.cutscene_finished.emit()
+
 
 # Handle the moral choice result
 func handle_moral_choice(spare: bool) -> void:

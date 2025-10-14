@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://hll334jyh4ok"]
+[gd_scene load_steps=19 format=4 uid="uid://hll334jyh4ok"]
 
 [ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_gn8iv"]
 [ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_enm3r"]
@@ -35,6 +35,14 @@ metadata/_custom_type_script = "uid://d2sxc7kksbq6k"
 script = ExtResource("11_aqkyu")
 max_health = 1.0
 metadata/_custom_type_script = "uid://05i5kvcdbtva"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_enm3r"]
+vertices = PackedVector2Array(456, 8.11719, 567.789, 9.85156, 565.828, 23.6328, 456, 24, 356.633, 168, 344.789, 168, 348.422, 138.133, 356.789, 162.258, 615.273, 25.6406, 613.211, 48.3672, 409, 178.727, 378.156, 115.758, 377.156, 72, 392, 72, 662.273, 46.3203, 663.273, 75, 662.469, 182.156, 661.477, 197.969, 409, 197.023, 712, 75, 712, 88, 722.828, 88, 756.656, 89.6094, 753.328, 166.188, 717.992, 167.133, 378.172, 179.75, 376.117, 160.203, 376, 120, 376, 116.109, 350.594, 120.344, 350.633, 120, 348.109, 120.75, 712, 168, 717.547, 168, 712, 179.102, 710.992, 181.102, 392, 56.4297, 431.422, 24)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(2, 8, 9, 10, 3), PackedInt32Array(11, 12, 13, 10), PackedInt32Array(10, 9, 14, 15, 16, 17, 18), PackedInt32Array(15, 19, 20), PackedInt32Array(21, 22, 23, 24, 20), PackedInt32Array(11, 10, 25, 26, 27, 28), PackedInt32Array(29, 30, 27), PackedInt32Array(6, 31, 29, 27, 26, 7), PackedInt32Array(32, 15, 20, 24, 33), PackedInt32Array(32, 34, 35, 16, 15), PackedInt32Array(36, 37, 3, 10, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(349, 67, 351, 80, 367, 83, 364, 191, 337, 190, 336, 174), PackedVector2Array(448, 0, 577, 2, 575, 16, 624, 18, 622, 40, 670, 38, 671, 67, 719, 67, 723, 80, 765, 82, 761, 174, 723, 175, 716, 189, 670, 190, 669, 206, 401, 205, 401, 187, 371, 188, 369, 169, 341, 172, 340, 114, 370, 109, 369, 65)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
+agent_radius = 8.0
 
 [node name="level_10" instance=ExtResource("1_gn8iv")]
 
@@ -86,3 +94,7 @@ shape = SubResource("RectangleShape2D_r113n")
 position = Vector2(593, 131)
 movement_stats = SubResource("Resource_r6gwo")
 stats = SubResource("Resource_eh384")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="8"]
+navigation_polygon = SubResource("NavigationPolygon_enm3r")
+metadata/_edit_lock_ = true

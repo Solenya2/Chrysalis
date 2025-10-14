@@ -1,0 +1,103 @@
+[gd_scene load_steps=16 format=4 uid="uid://bjjtsf3nvssnc"]
+
+[ext_resource type="PackedScene" uid="uid://c18muratispac" path="res://levels/level.tscn" id="1_mbx5c"]
+[ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_0riu7"]
+[ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="3_ifvhm"]
+[ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="4_c4mp8"]
+[ext_resource type="Resource" uid="uid://dawc48lm0jan3" path="res://levelspecifcscenes/experiment_leve_2_to_dad_level_3.tres" id="5_ifvhm"]
+[ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="6_2wgda"]
+[ext_resource type="PackedScene" uid="uid://bfonvqe5o2ft6" path="res://Npc/dad_npc.tscn" id="7_xjuun"]
+[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="8_c4mp8"]
+[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="9_3ogyx"]
+[ext_resource type="Texture2D" uid="uid://bknw4hs5jbul" path="res://corupted_levels/forest tiles/treepng.png" id="10_3ogyx"]
+[ext_resource type="Texture2D" uid="uid://v02apbtlp5ir" path="res://Npc/housesdesign-Sheetdadad.png" id="11_2wgda"]
+[ext_resource type="PackedScene" uid="uid://dym26s4jov0mc" path="res://Npc/me_npc.tscn" id="12_2wgda"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_gjyxd"]
+vertices = PackedVector2Array(184, 120, 307, 98, 334, 98, 216, 120, 248, 88, 307, 73, 216, 88, 248, 152, 296, 184, 8, 184, 216, 152, 360, 120, 296, 120, 216, 56, 184, 88, 200, 8, 360, -8, 334, 73, 248, 120, 312, -8, 312, 8, 248, 56, 8, -8, 200, -8, 152, 88, 152, 120)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(1, 0, 4, 5), PackedInt32Array(6, 4, 0), PackedInt32Array(7, 8, 9, 10), PackedInt32Array(2, 11, 12), PackedInt32Array(13, 6, 0, 14, 15), PackedInt32Array(16, 11, 2, 17), PackedInt32Array(12, 8, 7, 18), PackedInt32Array(19, 16, 17, 20), PackedInt32Array(20, 17, 5, 21, 15), PackedInt32Array(5, 4, 21), PackedInt32Array(15, 21, 13), PackedInt32Array(9, 22, 23, 15, 24), PackedInt32Array(3, 10, 9, 0), PackedInt32Array(15, 14, 24), PackedInt32Array(9, 24, 25), PackedInt32Array(2, 12, 18), PackedInt32Array(9, 25, 0), PackedInt32Array(3, 2, 18)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -32, 384, -32, 384, 136, 320, 144, 313.456, 208, -16, 208)])
+source_geometry_mode = 1
+source_geometry_group_name = &"navigation"
+agent_radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sbmk"]
+size = Vector2(23, 58)
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_2wgda"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("9_3ogyx")
+
+[node name="level_11_dad_musican" instance=ExtResource("1_mbx5c")]
+
+[node name="CameraLimits" type="Control" parent="." index="0"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 10.0
+offset_top = -31.0
+offset_right = 384.0
+offset_bottom = 207.0
+script = ExtResource("2_0riu7")
+
+[node name="ForestTilesLayer" parent="." index="1" instance=ExtResource("3_ifvhm")]
+tile_map_data = PackedByteArray("AAACAAUADwADAAIAAAACAAYADwABAAIAAAADAAUADwACAAMAAAADAAYADwADAAIAAAAEAAUADwADAAIAAAAEAAYADwADAAIAAAAFAAUADwACAAMAAAAFAAYADwABAAIAAAAGAAUADwADAAIAAAAGAAYADwADAAIAAAAHAAUADwABAAIAAAAHAAYADwADAAIAAAACAAcADwADAAIAAAADAAcADwACAAMAAAAEAAcADwAAAAEAAAAFAAcADwADAAIAAAAGAAcADwADAAIAAAAHAAcADwAAAAEAAAACAAQADwADAAIAAAADAAQADwADAAIAAAAEAAQADwABAAIAAAAFAAQADwADAAIAAAAGAAQADwAAAAEAAAAHAAQADwADAAIAAAAIAAQADwAAAAEAAAAIAAUADwADAAIAAAAJAAQADwADAAIAAAAJAAUADwADAAIAAAAKAAQADwACAAMAAAAKAAUADwADAAIAAAALAAQADwADAAIAAAALAAUADwADAAIAAAAIAAYADwAAAAMAAAAIAAcADwADAAIAAAAJAAYADwADAAIAAAAJAAcADwABAAIAAAAKAAYADwADAAIAAAAKAAcADwADAAIAAAALAAYADwADAAIAAAALAAcADwACAAMAAAAMAAUADwADAAIAAAAMAAYADwABAAIAAAAMAAcADwAAAAMAAAAHAAEADwAAAAEAAAAHAAIADwADAAIAAAAHAAMADwADAAIAAAAIAAEADwADAAIAAAAIAAIADwAAAAMAAAAIAAMADwADAAIAAAAJAAEADwADAAIAAAAJAAIADwADAAIAAAAJAAMADwADAAIAAAAKAAEADwADAAIAAAAKAAIADwABAAIAAAAKAAMADwADAAIAAAALAAEADwADAAIAAAALAAIADwADAAIAAAALAAMADwADAAIAAAAMAAEADwADAAIAAAAMAAIADwAAAAMAAAAMAAMADwADAAIAAAAMAAQADwAAAAMAAAANAAEADwAAAAEAAAANAAIADwADAAIAAAANAAMADwADAAIAAAANAAQADwACAAMAAAAOAAEADwADAAIAAAAOAAIADwABAAIAAAAOAAMADwADAAIAAAAOAAQADwADAAIAAAAPAAEADwADAAIAAAAPAAIADwADAAIAAAAPAAMADwABAAAAAAAPAAQADwABAAIAAAAIAAAADwAAAAEAAAAJAAAADwADAAIAAAAKAAAADwADAAIAAAALAAAADwADAAIAAAAMAAAADwADAAIAAAANAAAADwADAAIAAAAOAAAADwADAAIAAAAPAAAADwADAAIAAAAHAAAADwADAAIAAAANAAUADwADAAIAAAAOAAUADwADAAIAAAAPAAUADwADAAIAAAAQAAQADwADAAIAAAAQAAUADwADAAIAAAARAAQADwACAAMAAAARAAUADwADAAIAAAASAAQADwADAAIAAAASAAUADwADAAIAAAANAAYADwADAAIAAAANAAcADwADAAIAAAAOAAYADwADAAIAAAAOAAcADwADAAIAAAAPAAYADwACAAMAAAAPAAcADwABAAIAAAAQAAYADwADAAIAAAAQAAcADwADAAIAAAARAAYADwAAAAEAAAARAAcADwABAAAAAAASAAYADwADAAIAAAASAAcADwADAAIAAAATAAYADwADAAIAAAATAAcADwADAAIAAAATAAQADwADAAIAAAATAAUADwAAAAMAAAAUAAQADwADAAIAAAAUAAUADwACAAEAAAAUAAYADwADAAIAAAAVAAQADwADAAIAAAAVAAUADwABAAIAAAAVAAYADwADAAIAAAAUAAcADwAAAAEAAAAVAAcADwAAAAMAAAA=")
+
+[node name="ColorRect" parent="." index="2"]
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 384.0
+offset_bottom = 208.0
+color = Color(0, 0, 0, 1)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="3"]
+visible = false
+navigation_polygon = SubResource("NavigationPolygon_gjyxd")
+metadata/_edit_lock_ = true
+
+[node name="Door3" type="Area2D" parent="." index="4"]
+position = Vector2(38, 92)
+script = ExtResource("4_c4mp8")
+exit_distance = 27
+connection = ExtResource("5_ifvhm")
+next_level_path = "uid://c6yjrkja5dl70"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door3" index="0"]
+position = Vector2(-16.5, 4)
+shape = SubResource("RectangleShape2D_4sbmk")
+
+[node name="CabinTilesLayer" parent="." index="5" instance=ExtResource("6_2wgda")]
+
+[node name="dad_npc" parent="." index="6" instance=ExtResource("7_xjuun")]
+top_level = true
+position = Vector2(160, 19)
+
+[node name="LevelMusicPlaylist" type="Node" parent="." index="7"]
+script = ExtResource("8_c4mp8")
+song_list = SubResource("AudioStreamPlaylist_2wgda")
+
+[node name="Treepng" type="Sprite2D" parent="." index="8"]
+position = Vector2(64, 28)
+texture = ExtResource("10_3ogyx")
+
+[node name="Treepng2" type="Sprite2D" parent="." index="9"]
+position = Vector2(311, 20)
+texture = ExtResource("10_3ogyx")
+
+[node name="Treepng3" type="Sprite2D" parent="." index="10"]
+position = Vector2(117, 152)
+texture = ExtResource("10_3ogyx")
+
+[node name="Treepng4" type="Sprite2D" parent="." index="11"]
+position = Vector2(251, 150)
+texture = ExtResource("10_3ogyx")
+
+[node name="Housesdesign-sheetdadad" type="Sprite2D" parent="." index="12"]
+position = Vector2(228, -22)
+scale = Vector2(1.52256, 1.51887)
+texture = ExtResource("11_2wgda")
+hframes = 9
+frame = 3
+
+[node name="me_npc" parent="." index="13" instance=ExtResource("12_2wgda")]
+position = Vector2(183, 19)

@@ -74,9 +74,11 @@ shape = SubResource("RectangleShape2D_8ioey")
 
 [node name="BatEnemy" parent="." index="7" instance=ExtResource("9_qrt10")]
 position = Vector2(209, 143)
+stop_phrases = Array[String](["stop", "please stop", "pretty please stop"])
 
 [node name="BatEnemy2" parent="." index="8" instance=ExtResource("9_qrt10")]
 position = Vector2(128, 116)
+stop_phrases = Array[String](["stop", "please stop", "pretty please stop"])
 
 [node name="Door2" type="Area2D" parent="." index="9"]
 position = Vector2(373, 119)

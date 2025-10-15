@@ -32,7 +32,7 @@ GRAMMAR = [
     "bedroom player", "boss level one", "corruption level",
     "i challenge you to a rap battle",
     "candy world", "slime world", "neutral world",
-    "play mozart", "mute sound", "summon", "pizza", "help", "kill them", "i love you",
+    "play mozart", "mute sound", "summon", "pizza", "help", "kill them", "i love you", "please stop", "pretty please stop", "stop", "you're pretty", 
 
     # Norwegian phonetics / variants
     "dorlee spill", "detta spillet soooger", "so verom spiller",

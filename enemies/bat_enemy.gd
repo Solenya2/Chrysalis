@@ -1,5 +1,6 @@
 # BatEnemy.gd — A flying enemy that chases the player using navigation and reacts to damage via FSM states.
 # Uses EnemyChaseState and EnemyKnockbackState to control behavior via FSM.
+# Now with voice command stopping support
 
 class_name BatEnemy
 extends Enemy
@@ -18,10 +19,15 @@ extends Enemy
 # Knockback state — triggers on hit, with actor pre-assigned.
 @onready var knockback_state = EnemyKnockbackState.new().set_actor(self)
 
+# Stopped state — when voice command stops the bat
+@onready var stopped_state: EnemyStoppedState = EnemyStoppedState.new().set_actor(self)
+
 # FSM controls the current behavior state of the bat.
 # Starts in chase mode by default.
 @onready var fsm = FSM.new().set_state(chase_state)
 
+# In BatEnemy.gd
+@export var stop_phrases: Array[String] = ["stop", "please stop", "pretty please stop"]
 func _ready() -> void:
 	super()  # Calls Enemy._ready(), which sets up flasher, sounds, etc.
 
@@ -34,7 +40,36 @@ func _ready() -> void:
 
 	# Once knockback finishes (stops moving), return to chasing.
 	knockback_state.finished.connect(fsm.change_state.bind(chase_state))
+	
+	# When voice stop timer expires, return to chase state
+	stop_timer.timeout.connect(_on_voice_stop_timeout)
+# In BatEnemy.gd, add this to override the get_stop_phrases method:
+func get_stop_phrases() -> Array[String]:
+	return stop_phrases
+# Override the base stop method to use FSM
+# In BatEnemy.gd, update the stop_by_voice method:
+func stop_by_voice(phrase: String) -> void:
+	print("[BatEnemy] stop_by_voice called with: ", phrase)
+	if stopped_by_voice:
+		print("[BatEnemy] Already stopped, ignoring")
+		return
+		
+	super.stop_by_voice(phrase)  # This sets the flag and starts timer
+	fsm.change_state(stopped_state)
+	
+ 
+	
+	print("[BatEnemy] ", name, " stopped by voice command: ", phrase)
+
+func _on_voice_stop_timeout() -> void:
+	if fsm.state == stopped_state:
+		fsm.change_state(chase_state)
+		print("[BatEnemy] ", name, " voice stop expired, returning to chase")
 
 func _physics_process(delta: float) -> void:
+	# If base class says we're stopped but FSM isn't in stopped state, fix it
+	if stopped_by_voice and fsm.state != stopped_state:
+		fsm.change_state(stopped_state)
+	
 	# Delegate physics logic to the active FSM state.
 	fsm.state.physics_process(delta)

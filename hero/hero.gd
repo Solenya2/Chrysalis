@@ -84,6 +84,7 @@ func _exit_tree() -> void:
 	MainInstances.hero = null
 
 func _ready() -> void:
+	add_to_group("Player")
 	clap_state.finished.connect(fsm.change_state.bind(move_state))
 	# Initialize alignment system
 	check_alignment()

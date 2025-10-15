@@ -1,0 +1,100 @@
+[gd_scene load_steps=15 format=4 uid="uid://bl5n155r6nmeu"]
+
+[ext_resource type="Script" uid="uid://b10n1bmsfr06b" path="res://levels/level.gd" id="1_gjudx"]
+[ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="2_0iyny"]
+[ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="3_4xnlw"]
+[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="4_46x3g"]
+[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="5_gs43e"]
+[ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="6_kdv17"]
+[ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="7_0uky3"]
+[ext_resource type="Resource" uid="uid://dawc48lm0jan3" path="res://levelspecifcscenes/experiment_leve_2_to_dad_level_3.tres" id="8_xreeq"]
+[ext_resource type="PackedScene" uid="uid://bt4u0pthe82xt" path="res://Npc/npc_dad.tscn" id="9_co13d"]
+[ext_resource type="PackedScene" uid="uid://dw01oh8ccaqri" path="res://Npc/npc_me.tscn" id="10_ytf3a"]
+[ext_resource type="Texture2D" uid="uid://v02apbtlp5ir" path="res://Npc/housesdesign-Sheetdadad.png" id="11_n1yoy"]
+[ext_resource type="Texture2D" uid="uid://bknw4hs5jbul" path="res://corupted_levels/forest tiles/treepng.png" id="12_0iyny"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_nqwvh"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("5_gs43e")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy8ds"]
+size = Vector2(26.5, 64)
+
+[node name="level_11_music_papa" type="Node2D"]
+script = ExtResource("1_gjudx")
+metadata/_edit_lock_ = true
+
+[node name="ForestTilesLayer" parent="." instance=ExtResource("3_4xnlw")]
+position = Vector2(4, 1)
+tile_map_data = PackedByteArray("AAAAAAgADwADAAIAAAAAAAkADwADAAAAAAAAAAoADwADAAIAAAABAAoADwADAAIAAAACAAoADwABAAIAAAADAAoADwADAAIAAAAEAAoADwADAAAAAAAFAAoADwADAAIAAAAGAAoADwABAAAAAAAHAAoADwACAAMAAAAIAAoADwABAAAAAAAJAAoADwADAAIAAAAKAAoADwACAAEAAAALAAoADwADAAIAAAAMAAoADwADAAIAAAANAAoADwADAAIAAAAOAAoADwADAAIAAAAPAAoADwADAAIAAAAQAAoADwABAAIAAAARAAoADwADAAIAAAASAAoADwADAAIAAAATAAoADwAAAAEAAAABAAgADwADAAIAAAABAAkADwADAAIAAAACAAcADwACAAEAAAACAAgADwADAAIAAAACAAkADwADAAIAAAADAAcADwADAAIAAAADAAgADwABAAIAAAADAAkADwADAAIAAAAEAAcADwABAAAAAAAEAAgADwAAAAEAAAAEAAkADwADAAIAAAAFAAcADwADAAIAAAAFAAgADwADAAIAAAAFAAkADwACAAMAAAAGAAcADwADAAAAAAAGAAgADwACAAMAAAAGAAkADwADAAIAAAAHAAcADwACAAEAAAAHAAgADwADAAIAAAAHAAkADwADAAIAAAAIAAcADwADAAIAAAAIAAgADwADAAIAAAAIAAkADwADAAIAAAAJAAcADwACAAEAAAAJAAgADwADAAIAAAAJAAkADwAAAAEAAAAKAAcADwADAAIAAAAKAAgADwABAAAAAAAKAAkADwADAAIAAAALAAcADwADAAIAAAALAAgADwAAAAMAAAALAAkADwADAAIAAAAMAAcADwADAAIAAAAMAAgADwADAAIAAAAMAAkADwAAAAMAAAANAAcADwADAAIAAAANAAgADwADAAIAAAANAAkADwADAAIAAAAOAAcADwABAAAAAAAOAAgADwADAAIAAAAOAAkADwACAAEAAAAPAAcADwADAAIAAAAPAAgADwABAAAAAAAPAAkADwADAAAAAAAQAAcADwADAAIAAAAQAAgADwACAAMAAAAQAAkADwADAAAAAAARAAcADwAAAAEAAAARAAgADwADAAAAAAARAAkADwACAAEAAAASAAcADwAAAAMAAAASAAgADwADAAIAAAASAAkADwADAAIAAAATAAcADwADAAIAAAATAAgADwADAAIAAAATAAkADwACAAMAAAAFAAYADwADAAIAAAAFAAUADwADAAIAAAAFAAQADwAAAAEAAAAFAAMADwADAAIAAAAGAAMADwADAAIAAAAHAAMADwABAAIAAAAIAAMADwADAAIAAAAJAAMADwADAAIAAAAKAAMADwADAAIAAAALAAMADwADAAIAAAAMAAMADwADAAIAAAANAAMADwADAAIAAAAOAAMADwADAAIAAAAHAAQADwADAAIAAAAHAAUADwADAAIAAAAHAAYADwADAAIAAAAIAAQADwADAAIAAAAIAAUADwABAAAAAAAIAAYADwADAAIAAAAJAAQADwADAAIAAAAJAAUADwADAAIAAAAJAAYADwADAAIAAAAKAAQADwADAAIAAAAKAAUADwADAAIAAAAKAAYADwADAAAAAAALAAQADwADAAIAAAALAAUADwAAAAEAAAALAAYADwAAAAEAAAAMAAQADwADAAIAAAAMAAUADwADAAIAAAAMAAYADwADAAIAAAANAAQADwADAAIAAAANAAUADwABAAAAAAANAAYADwABAAAAAAAOAAQADwADAAIAAAAOAAUADwADAAIAAAAOAAYADwAAAAEAAAAGAAQADwACAAEAAAAGAAUADwADAAIAAAAGAAYADwAAAAEAAAABAAcADwAAAAMAAAAAAAcADwABAAAAAAA=")
+
+[node name="CameraLimits" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -34.0
+offset_top = 15.0
+offset_right = 340.0
+offset_bottom = 252.93
+script = ExtResource("2_0iyny")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -49.0
+offset_top = 15.0
+offset_right = 367.0
+offset_bottom = 255.0
+color = Color(0, 0, 0, 1)
+
+[node name="LevelMusicPlaylist" type="Node" parent="."]
+script = ExtResource("4_46x3g")
+song_list = SubResource("AudioStreamPlaylist_nqwvh")
+
+[node name="CabinTilesLayer" parent="." instance=ExtResource("6_kdv17")]
+
+[node name="Door3" type="Area2D" parent="."]
+position = Vector2(-9, 138)
+script = ExtResource("7_0uky3")
+exit_distance = 25
+connection = ExtResource("8_xreeq")
+next_level_path = "uid://c6yjrkja5dl70"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door3"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_gy8ds")
+
+[node name="npc_dad" parent="." instance=ExtResource("9_co13d")]
+z_index = 8
+position = Vector2(149, 66)
+
+[node name="npc_me" parent="." instance=ExtResource("10_ytf3a")]
+z_index = 8
+position = Vector2(168, 64)
+
+[node name="Housesdesign-sheetdadad" type="Sprite2D" parent="."]
+z_index = 7
+position = Vector2(216, 30)
+scale = Vector2(1.60479, 1.59788)
+texture = ExtResource("11_n1yoy")
+hframes = 9
+frame = 3
+metadata/_edit_lock_ = true
+
+[node name="Treepng" type="Sprite2D" parent="."]
+position = Vector2(287, 75)
+texture = ExtResource("12_0iyny")
+
+[node name="Treepng2" type="Sprite2D" parent="."]
+position = Vector2(41, 78)
+texture = ExtResource("12_0iyny")
+
+[node name="Treepng3" type="Sprite2D" parent="."]
+position = Vector2(98, 200)
+texture = ExtResource("12_0iyny")
+
+[node name="Treepng4" type="Sprite2D" parent="."]
+position = Vector2(270, 195)
+texture = ExtResource("12_0iyny")
+
+[editable path="npc_dad"]

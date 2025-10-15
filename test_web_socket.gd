@@ -159,11 +159,111 @@ func _handle_command_final(text_raw: String) -> void:
 	elif "i challenge you to a rap battle" in text:
 		_try_emit_rap_battle_requested()
 
+	elif text in ["please stop", "pretty please stop", "stop", "you're pretty"]:
+		_try_stop_enemy(text)
+
 func _handle_hotphrase(text: String) -> void:
 	var t := text.strip_edges().to_lower()
 	if t == "i challenge you to a rap battle":
 		_try_emit_rap_battle_requested()
+# -------------------------------------------------
+# Enemy Stop System
+# -------------------------------------------------
+# In VoiceReceiver.gd, update the _try_stop_enemy function:
+func _try_stop_enemy(phrase: String) -> void:
+	print("[DEBUG] _try_stop_enemy called with phrase: ", phrase)
+	var enemies = _find_stop_eligible_enemies(phrase)
+	print("[DEBUG] Found ", enemies.size(), " eligible enemies")
+	for enemy in enemies:
+		print("[DEBUG] Attempting to stop enemy: ", enemy.name)
+		if enemy.has_method("stop_by_voice"):
+			enemy.stop_by_voice(phrase)
+			print("[VoiceReceiver] Stopped enemy: ", enemy.name, " with phrase: ", phrase)
+		else:
+			print("[DEBUG] Enemy ", enemy.name, " doesn't have stop_by_voice method")
 
+# In the VoiceReceiver script, change the _find_stop_eligible_enemies function:
+# In VoiceReceiver.gd, update the _find_stop_eligible_enemies function:
+# In VoiceReceiver.gd, update the _find_stop_eligible_enemies function:
+func _find_stop_eligible_enemies(phrase: String) -> Array[Node]:
+	var hero: Node2D = MainInstances.hero
+	if hero == null:
+		print("[DEBUG] MainInstances.hero is null")
+		return [] as Array[Node]
+
+	print("[DEBUG] Using hero from MainInstances: ", hero.name)
+	var eligible_enemies: Array[Node] = []
+	
+	var stop_eligible_enemies = get_tree().get_nodes_in_group("StopEligible")
+	print("[DEBUG] Total StopEligible enemies: ", stop_eligible_enemies.size())
+	
+	for enemy in stop_eligible_enemies:
+		if not (enemy is Node2D):
+			continue
+		var enemy_node: Node2D = enemy
+		
+		print("[DEBUG] Checking enemy: ", enemy_node.name)
+		
+		# Check if enemy responds to this specific phrase
+		if not _does_enemy_respond_to_phrase(enemy_node, phrase):
+			print("[DEBUG] Enemy ", enemy_node.name, " doesn't respond to phrase: ", phrase)
+			continue
+			
+		# Check if player is close enough
+		if not _is_enemy_in_stop_range(hero, enemy_node):
+			print("[DEBUG] Enemy ", enemy_node.name, " not in range")
+			continue
+			
+		# Check if enemy is available to be stopped
+		if not _is_enemy_available_for_stop(enemy_node):
+			print("[DEBUG] Enemy ", enemy_node.name, " not available for stop")
+			continue
+			
+		print("[DEBUG] Enemy ", enemy_node.name, " is eligible!")
+		eligible_enemies.append(enemy_node)
+	
+	return eligible_enemies
+
+# In VoiceReceiver.gd, update the _does_enemy_respond_to_phrase function:
+func _does_enemy_respond_to_phrase(enemy: Node2D, phrase: String) -> bool:
+	if enemy.has_method("get_stop_phrases"):
+		var stop_phrases: Array = enemy.get_stop_phrases()
+		print("[DEBUG] Enemy ", enemy.name, " has stop_phrases: ", stop_phrases)
+		for stop_phrase in stop_phrases:
+			if str(stop_phrase) == phrase:
+				return true
+	return false
+# In the _is_enemy_in_stop_range function, replace with:
+# In VoiceReceiver.gd, update the _is_enemy_in_stop_range function:
+# In VoiceReceiver.gd, update the _is_enemy_in_stop_range function:
+func _is_enemy_in_stop_range(hero: Node2D, enemy: Node2D) -> bool:
+	# Always use the enemy's voice proximity Area2D
+	if enemy.has_method("is_player_in_voice_range"):
+		var in_range = enemy.is_player_in_voice_range()
+		print("[DEBUG] Enemy ", enemy.name, " - is_player_in_voice_range: ", in_range)
+		return in_range
+	
+	# Fallback to distance check if no Area2D (shouldn't happen with our setup)
+	var stop_radius: float = rap_trigger_radius
+	var distance = hero.global_position.distance_to(enemy.global_position)
+	print("[DEBUG] Distance to enemy: ", distance, " (radius: ", stop_radius, ")")
+	return distance <= stop_radius
+
+func _is_enemy_available_for_stop(enemy: Node2D) -> bool:
+	if not enemy.is_inside_tree() or not enemy.is_visible_in_tree():
+		return false
+		
+	# Check if enemy is already stopped
+	if enemy.has_method("is_stopped_by_voice") and enemy.is_stopped_by_voice():
+		return false
+		
+	# Check global pause state
+	var busy_globally := false
+	var pm := get_node_or_null("/root/PauseManager")
+	if pm and pm.has_method("is_cinematic"):
+		busy_globally = pm.call("is_cinematic")
+		
+	return not busy_globally
 func _try_emit_rap_battle_requested() -> void:
 	var npc := _find_nearest_rap_npc(rap_trigger_radius)
 	if npc:

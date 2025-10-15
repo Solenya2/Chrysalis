@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://csteocmfklci7"]
+[gd_scene load_steps=14 format=3 uid="uid://csteocmfklci7"]
 
 [ext_resource type="PackedScene" uid="uid://b624l7rnhvkej" path="res://enemies/enemy.tscn" id="1_7il16"]
 [ext_resource type="Script" uid="uid://buwd6ktqt0h8a" path="res://enemies/bat_enemy.gd" id="2_328rv"]
@@ -73,8 +73,12 @@ height = 16.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_6vd02"]
 radius = 4.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_erta8"]
+size = Vector2(244, 224)
+
 [node name="BatEnemy" instance=ExtResource("1_7il16")]
 script = ExtResource("2_328rv")
+stop_phrases = Array[String](["stop", "Stop"])
 movement_stats = ExtResource("3_fi7oh")
 stats = ExtResource("4_yq7fh")
 
@@ -104,18 +108,21 @@ unique_name_in_owner = true
 path_desired_distance = 8.0
 target_desired_distance = 8.0
 
-[node name="Hurtbox" parent="." index="4"]
-visible = false
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, -5)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_6506i")
 
 [node name="Hitbox" parent="." index="5"]
-visible = false
 damage = 0.25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_6vd02")
+
+[node name="VoiceProximity" parent="." index="6"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VoiceProximity" index="0"]
+position = Vector2(16, -16)
+shape = SubResource("RectangleShape2D_erta8")

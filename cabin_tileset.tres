@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=25 format=3 uid="uid://htko6ykcqfvx"]
+[gd_resource type="TileSet" load_steps=27 format=3 uid="uid://htko6ykcqfvx"]
 
 [ext_resource type="Texture2D" uid="uid://d2ekdgndc4ijx" path="res://Assetsforleveldesign/kenney_roguelike-indoors/Tilesheets/roguelikeIndoor_transparent.png" id="1_5x741"]
 [ext_resource type="Texture2D" uid="uid://bv674lqmgl5w4" path="res://Assetsforleveldesign/Sprout Lands - Sprites - Basic pack/Sprout Lands - Sprites - Basic pack/Tilesets/Wooden_House_Roof_Tilset.png" id="1_ptgjp"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c4av8it8t5d32" path="res://side_worlds/tilesetwithpurgotroyandstuff.png" id="9_fnj43"]
 [ext_resource type="Texture2D" uid="uid://brgt4xd8ynkkl" path="res://side_worlds/fixedalldimensiontilset.png" id="10_ox4r2"]
 [ext_resource type="Texture2D" uid="uid://cfiljhop1wofv" path="res://side_worlds/finalpurgotrytilset.png" id="11_nc0mf"]
+[ext_resource type="Texture2D" uid="uid://dx40wp3vhau3u" path="res://levels/grasstilemap.png" id="13_nc0mf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fnj43"]
 texture = ExtResource("1_ptgjp")
@@ -4340,6 +4341,25 @@ texture = ExtResource("4_atw30")
 5:2/0 = 0
 6:2/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vmu8b"]
+texture = ExtResource("13_nc0mf")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_atw30")
@@ -4354,3 +4374,4 @@ sources/3 = SubResource("TileSetAtlasSource_ox4r2")
 sources/4 = SubResource("TileSetAtlasSource_nc0mf")
 sources/5 = SubResource("TileSetAtlasSource_vxlm3")
 sources/6 = SubResource("TileSetAtlasSource_f6taf")
+sources/9 = SubResource("TileSetAtlasSource_vmu8b")

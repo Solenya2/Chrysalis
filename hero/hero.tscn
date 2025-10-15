@@ -1016,6 +1016,7 @@ animations = [{
 
 [node name="Hero" type="CharacterBody2D"]
 top_level = true
+z_index = 99
 position = Vector2(2, -4)
 collision_layer = 2
 script = ExtResource("1_k24sg")

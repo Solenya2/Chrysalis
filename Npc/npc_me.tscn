@@ -13,6 +13,7 @@ size = Vector2(25, 28)
 [sub_resource type="Animation" id="Animation_88rxj"]
 resource_name = "guitar"
 length = 0.2
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

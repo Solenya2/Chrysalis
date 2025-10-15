@@ -67,6 +67,10 @@ shape = SubResource("RectangleShape2D_gy8ds")
 [node name="npc_dad" parent="." instance=ExtResource("9_co13d")]
 z_index = 8
 position = Vector2(149, 66)
+opening_dialog = "heya kido wanna hear some real music? "
+playing_dialog = "mmh get ready then "
+post_play_dialog = "why arent you cheering alreay "
+post_refuse_dialog = "come back when you have better taste "
 
 [node name="npc_me" parent="." instance=ExtResource("10_ytf3a")]
 z_index = 8

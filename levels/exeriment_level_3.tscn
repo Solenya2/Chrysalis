@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=4 uid="uid://dg65w0o8ie371"]
+
+[ext_resource type="Script" uid="uid://b10n1bmsfr06b" path="res://levels/level.gd" id="1_r4vnv"]
+[ext_resource type="PackedScene" uid="uid://bm87xo8bekamj" path="res://world/forest_tiles_layer.tscn" id="2_olmw5"]
+[ext_resource type="Script" uid="uid://bsimg0u2jyi3n" path="res://camera/camera_limits.gd" id="3_bey2l"]
+[ext_resource type="Script" uid="uid://dwwljpnfrh8q" path="res://muisc_and_sounds/level_music_playlist.gd" id="4_tfkod"]
+[ext_resource type="AudioStream" uid="uid://du132122awnv" path="res://muisc_and_sounds/music_1.mp3" id="5_qgq48"]
+[ext_resource type="PackedScene" uid="uid://dbyb2xi327wae" path="res://cabin_tiles_layer.tscn" id="6_0b3ex"]
+[ext_resource type="Script" uid="uid://c0cx7ted1x30s" path="res://world/door.gd" id="7_vsbu6"]
+[ext_resource type="Resource" uid="uid://dawc48lm0jan3" path="res://levelspecifcscenes/experiment_leve_2_to_dad_level_3.tres" id="8_vkc0h"]
+[ext_resource type="Texture2D" uid="uid://bknw4hs5jbul" path="res://corupted_levels/forest tiles/treepng.png" id="9_4u5dm"]
+[ext_resource type="PackedScene" uid="uid://csteocmfklci7" path="res://enemies/bat_enemy.tscn" id="10_k1kyx"]
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_nqwvh"]
+shuffle = true
+stream_count = 1
+stream_0 = ExtResource("5_qgq48")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gy8ds"]
+size = Vector2(26.5, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eywg6"]
+size = Vector2(34, 53)
+
+[node name="exeriment_level_3" type="Node2D"]
+script = ExtResource("1_r4vnv")
+metadata/_edit_lock_ = true
+
+[node name="ForestTilesLayer" parent="." instance=ExtResource("2_olmw5")]
+position = Vector2(4, 1)
+tile_map_data = PackedByteArray("AAAAAAgADwADAAIAAAAAAAkADwADAAAAAAAAAAoADwADAAIAAAABAAoADwADAAIAAAACAAoADwABAAIAAAADAAoADwADAAIAAAAEAAoADwADAAAAAAAFAAoADwADAAIAAAAGAAoADwABAAAAAAAHAAoADwACAAMAAAAIAAoADwABAAAAAAAJAAoADwADAAIAAAAKAAoADwADAAIAAAALAAoADwADAAIAAAAMAAoADwADAAIAAAANAAoADwADAAIAAAAOAAoADwADAAIAAAAPAAoADwADAAIAAAAQAAoADwABAAIAAAARAAoADwADAAIAAAASAAoADwADAAIAAAATAAoADwAAAAEAAAABAAgADwADAAIAAAABAAkADwADAAIAAAACAAgADwADAAIAAAACAAkADwADAAIAAAADAAgADwABAAIAAAADAAkADwADAAIAAAAEAAgADwAAAAEAAAAEAAkADwADAAIAAAAFAAgADwADAAIAAAAFAAkADwACAAMAAAAGAAgADwACAAMAAAAGAAkADwADAAIAAAAHAAgADwADAAIAAAAHAAkADwADAAIAAAAIAAgADwADAAIAAAAIAAkADwADAAIAAAAJAAgADwADAAIAAAAJAAkADwADAAIAAAAKAAgADwADAAIAAAAKAAkADwADAAIAAAALAAgADwADAAIAAAALAAkADwADAAIAAAAMAAgADwADAAIAAAAMAAkADwADAAIAAAANAAgADwADAAIAAAANAAkADwADAAIAAAAOAAgADwADAAIAAAAOAAkADwACAAEAAAAPAAgADwABAAAAAAAPAAkADwADAAAAAAAQAAgADwACAAMAAAAQAAkADwADAAAAAAARAAgADwADAAAAAAARAAkADwACAAEAAAASAAgADwADAAIAAAASAAkADwADAAIAAAATAAgADwADAAIAAAATAAkADwACAAMAAAAHAAYADwADAAIAAAAHAAcADwADAAIAAAAIAAUADwADAAIAAAAJAAUADwADAAIAAAAKAAUADwADAAIAAAALAAUADwADAAIAAAAMAAUADwADAAIAAAANAAUADwADAAIAAAAOAAYADwADAAIAAAAOAAcADwADAAIAAAAIAAYADwADAAIAAAAIAAcADwADAAIAAAAJAAYADwADAAIAAAAJAAcADwADAAIAAAAKAAYADwADAAIAAAAKAAcADwADAAIAAAALAAYADwADAAIAAAALAAcADwADAAIAAAAMAAYADwADAAIAAAAMAAcADwADAAIAAAANAAYADwADAAIAAAANAAcADwADAAIAAAAUAAgADwADAAIAAAAUAAkADwADAAIAAAAUAAoADwADAAIAAAAVAAgADwADAAIAAAAVAAkADwABAAAAAAAVAAoADwAAAAEAAAAWAAgADwABAAIAAAAWAAkADwADAAIAAAAWAAoADwACAAEAAAAXAAgADwADAAIAAAAXAAkADwADAAIAAAAXAAoADwABAAAAAAAYAAgADwADAAIAAAAYAAkADwADAAIAAAAYAAoADwADAAIAAAAZAAgADwADAAIAAAAZAAkADwACAAEAAAAZAAoADwADAAIAAAAaAAgADwADAAIAAAAaAAkADwADAAIAAAAaAAoADwADAAAAAAAbAAgADwACAAEAAAAbAAkADwADAAIAAAAbAAoADwADAAIAAAAcAAgADwADAAIAAAAcAAkADwADAAIAAAAcAAoADwADAAIAAAAdAAgADwADAAIAAAAdAAkADwAAAAMAAAAdAAoADwADAAIAAAAbAAMADwADAAIAAAAbAAQADwAAAAEAAAAbAAUADwADAAIAAAAbAAYADwADAAIAAAAbAAcADwADAAIAAAAcAAMADwADAAIAAAAcAAQADwAAAAMAAAAcAAUADwADAAIAAAAcAAYADwABAAIAAAAcAAcADwADAAIAAAAdAAMADwADAAIAAAAdAAQADwADAAIAAAAdAAUADwADAAIAAAAdAAYADwABAAIAAAAdAAcADwADAAIAAAAeAAMADwADAAIAAAAeAAQADwADAAIAAAAeAAUADwADAAIAAAAfAAMADwADAAIAAAAfAAQADwADAAIAAAAfAAUADwADAAIAAAAgAAMADwADAAIAAAAgAAQADwADAAIAAAAgAAUADwADAAIAAAAhAAMADwADAAIAAAAhAAQADwADAAIAAAAhAAUADwADAAIAAAAiAAMADwADAAIAAAAiAAQADwADAAIAAAAiAAUADwADAAIAAAAjAAMADwADAAIAAAAjAAQADwADAAIAAAAjAAUADwADAAIAAAA=")
+
+[node name="CameraLimits" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -34.0
+offset_top = 15.0
+offset_right = 340.0
+offset_bottom = 252.93
+script = ExtResource("3_bey2l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_left = -204.0
+offset_top = -77.0
+offset_right = 660.0
+offset_bottom = 389.0
+color = Color(0, 0, 0, 1)
+
+[node name="LevelMusicPlaylist" type="Node" parent="."]
+script = ExtResource("4_tfkod")
+song_list = SubResource("AudioStreamPlaylist_nqwvh")
+
+[node name="CabinTilesLayer" parent="." instance=ExtResource("6_0b3ex")]
+
+[node name="Door3" type="Area2D" parent="."]
+position = Vector2(-9, 138)
+script = ExtResource("7_vsbu6")
+exit_distance = 25
+connection = ExtResource("8_vkc0h")
+next_level_path = "uid://c6yjrkja5dl70"
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door3"]
+position = Vector2(4, 8)
+shape = SubResource("RectangleShape2D_gy8ds")
+
+[node name="Treepng" type="Sprite2D" parent="."]
+position = Vector2(287, 75)
+texture = ExtResource("9_4u5dm")
+
+[node name="Treepng2" type="Sprite2D" parent="."]
+position = Vector2(41, 78)
+texture = ExtResource("9_4u5dm")
+
+[node name="Treepng3" type="Sprite2D" parent="."]
+position = Vector2(98, 200)
+texture = ExtResource("9_4u5dm")
+
+[node name="Treepng4" type="Sprite2D" parent="."]
+position = Vector2(270, 195)
+texture = ExtResource("9_4u5dm")
+
+[node name="BatEnemy" parent="." instance=ExtResource("10_k1kyx")]
+position = Vector2(170, 141)
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(579, 75)
+script = ExtResource("7_vsbu6")
+exit_direction = 2
+metadata/_custom_type_script = "uid://c0cx7ted1x30s"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(18, -2.5)
+shape = SubResource("RectangleShape2D_eywg6")

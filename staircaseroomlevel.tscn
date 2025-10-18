@@ -59,7 +59,7 @@ metadata/_custom_type_script = "uid://c0cx7ted1x30s"
 shape = SubResource("RectangleShape2D_f2yrc")
 
 [node name="Door3" type="Area2D" parent="." index="4"]
-position = Vector2(294, 103)
+position = Vector2(330, 116)
 script = ExtResource("6_hhwpx")
 exit_direction = 2
 connection = ExtResource("7_f2yrc")

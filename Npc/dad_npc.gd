@@ -24,7 +24,7 @@ func _on_interacted() -> void:
 		return
 	
 	_run_conversation()
-
+ 
 func _run_conversation() -> void:
 	_running = true
 	

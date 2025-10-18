@@ -52,6 +52,7 @@ offset_bottom = 208.0
 color = Color(0.153047, 0.399552, 0.210139, 1)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="3"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_c33vg")
 metadata/_edit_lock_ = true
 

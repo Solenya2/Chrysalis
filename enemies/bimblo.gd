@@ -211,6 +211,9 @@ func _attack_anim_finished() -> void:
 
 # ── Death / cleanup ──────────────────────────────────────────────
 func _on_boss_defeated() -> void:
+	# Stop boss music when defeated
+	Music.stop()
+	
 	if boss_health_bar:
 		var t = create_tween()
 		t.tween_property(boss_health_bar, "modulate:a", 0.0, 0.7)
